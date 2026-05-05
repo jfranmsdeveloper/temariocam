@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TemarioCAM — Fluent Liquid</title>
+<title>TemarioCAM — Mapa Normativo Estratégico</title>
 <style>
 :root[data-theme="dark"] {
   --bg: #05070a;
@@ -33,7 +33,7 @@
   --shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
 
-* { box-sizing: border-box; transition: background-color 0.4s, color 0.4s, border-color 0.4s; }
+* { box-sizing: border-box; transition: background-color 0.4s, color 0.4s, border-color 0.4s, transform 0.3s; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -44,241 +44,82 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fluent Backgrounds */
-.liquid {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  z-index: -1;
-  pointer-events: none;
-  animation: drift 20s infinite alternate;
-}
+.liquid { position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none; animation: drift 20s infinite alternate; }
 .l1 { width: 600px; height: 600px; background: var(--liquid-1); top: -200px; left: -100px; }
 .l2 { width: 500px; height: 500px; background: var(--liquid-2); bottom: -100px; right: -100px; animation-delay: -5s; }
 
-@keyframes drift {
-  from { transform: translate(0,0) scale(1); }
-  to { transform: translate(50px, 30px) scale(1.1); }
-}
+@keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(50px, 30px) scale(1.1); } }
 
-.app {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 24px;
-}
+.app { max-width: 1300px; margin: auto; padding: 40px 24px; }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 60px;
-}
+header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; }
+.brand h1 { font-size: 42px; letter-spacing: -1.5px; margin: 0; font-weight: 800; }
+.brand p { color: var(--text-muted); margin: 8px 0 0; font-size: 18px; }
 
-.brand h1 {
-  font-size: 42px;
-  letter-spacing: -1.5px;
-  margin: 0;
-  font-weight: 800;
-}
-.brand p {
-  color: var(--text-muted);
-  margin: 8px 0 0;
-  font-size: 18px;
-}
+.toggle { background: var(--surface); border: 1px solid var(--line); padding: 8px; border-radius: 14px; cursor: pointer; display: flex; gap: 4px; backdrop-filter: blur(10px); }
+.toggle span { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.toggle .active { background: var(--accent); color: white; }
 
-/* Theme Toggle */
-.toggle {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 8px;
-  border-radius: 14px;
-  cursor: pointer;
-  display: flex;
-  gap: 4px;
-  backdrop-filter: blur(10px);
-}
-.toggle span {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.toggle .active {
-  background: var(--accent);
-  color: white;
-}
+.nav-bar { display: flex; gap: 16px; margin-bottom: 40px; align-items: center; position: sticky; top: 20px; z-index: 100; }
+.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 14px 20px; border-radius: 18px; backdrop-filter: blur(25px); }
+.search-box input { background: none; border: none; color: var(--text); width: 100%; font-size: 16px; outline: none; }
+.filter-tabs { display: flex; background: var(--surface); padding: 6px; border-radius: 18px; border: 1px solid var(--line); backdrop-filter: blur(25px); }
+.tab { border: none; background: none; color: var(--text-muted); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.tab.active { background: var(--surface-hover); color: var(--text); }
 
-/* Search & Filters */
-.nav-bar {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
-  align-items: center;
+/* Grouping Styles */
+.block-group { margin-bottom: 60px; }
+.block-header { 
+  font-size: 13px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
 }
-.search-box {
-  flex: 1;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 14px 20px;
-  border-radius: 18px;
-  backdrop-filter: blur(20px);
-}
-.search-box input {
-  background: none;
-  border: none;
-  color: var(--text);
-  width: 100%;
-  font-size: 16px;
-  outline: none;
-}
-.filter-tabs {
-  display: flex;
-  background: var(--surface);
-  padding: 6px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-}
-.tab {
-  border: none;
-  background: none;
-  color: var(--text-muted);
-  padding: 10px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-}
-.tab.active {
-  background: var(--surface-hover);
-  color: var(--text);
-}
+.block-header::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-/* Grid Layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
 
-/* Fluent Card */
 .card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 32px;
-  padding: 30px;
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-  overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 32px; padding: 30px;
+  backdrop-filter: blur(30px) saturate(180%); box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden;
 }
-.card:hover {
-  background: var(--surface-hover);
-  transform: scale(1.02);
-  transition: 0.4s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
+.card:hover { background: var(--surface-hover); transform: translateY(-5px); }
 
-.card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.badge {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 4px 10px;
-  border-radius: 8px;
-}
+.card-meta { display: flex; justify-content: space-between; align-items: center; }
+.card-num { font-size: 13px; font-weight: 900; color: var(--gold); }
+.badge { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 8px; }
 .badge-high { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
 .badge-mid { background: rgba(255, 159, 10, 0.15); color: #ff9f0a; }
 
-.card-title {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-}
+.card-title { font-size: 20px; font-weight: 750; line-height: 1.3; margin: 0; }
+.law-list { display: flex; flex-direction: column; gap: 12px; }
+.law-item { font-size: 14px; }
+.law-name { color: var(--accent); font-weight: 700; text-decoration: none; margin-bottom: 4px; display: block; }
+.law-arts { color: var(--text-muted); line-height: 1.5; }
 
-.law-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.law-item {
-  font-size: 14px;
-  line-height: 1.5;
-}
-.law-item a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-.law-item a:hover { text-decoration: underline; }
-.law-item .arts {
-  display: block;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-.focus-box {
-  background: rgba(0, 162, 255, 0.05);
-  padding: 12px 16px;
-  border-radius: 16px;
-  border-left: 4px solid var(--accent);
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.footer-actions {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.prog-btn {
-  background: var(--line);
-  border: none;
-  color: var(--text);
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
+.focus-box { background: rgba(0, 162, 255, 0.05); padding: 14px; border-radius: 18px; border-left: 4px solid var(--accent); font-size: 13px; }
+.footer-actions { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+.prog-btn { background: var(--surface-hover); border: 1px solid var(--line); color: var(--text); padding: 8px 16px; border-radius: 14px; font-size: 12px; font-weight: 650; cursor: pointer; }
+.prog-Dominado { border-color: #34c759; color: #34c759; }
 
 @media (max-width: 768px) {
   header { flex-direction: column; gap: 20px; }
-  .nav-bar { flex-direction: column; align-items: stretch; }
+  .nav-bar { flex-direction: column; position: static; }
   .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="liquid l1"></div>
-<div class="liquid l2"></div>
+<div class="liquid l1"></div><div class="liquid l2"></div>
 
 <main class="app">
   <header>
-    <div class="brand">
-      <h1>TemarioCAM</h1>
-      <p>Estrategia y Enfoque</p>
-    </div>
-    <div class="toggle" id="themeToggle">
-      <span data-v="light">Claro</span>
-      <span data-v="dark" class="active">Oscuro</span>
-    </div>
+    <div class="brand"><h1>TemarioCAM</h1><p>Mapa Normativo Estratégico</p></div>
+    <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
   </header>
 
   <div class="nav-bar">
-    <div class="search-box">
-      <input type="text" id="search" placeholder="Busca leyes o temas..." />
-    </div>
+    <div class="search-box"><input type="text" id="search" placeholder="Busca leyes o temas..." /></div>
     <div class="filter-tabs">
       <button class="tab active" data-exam="all">Todo</button>
       <button class="tab" data-exam="c1">C1</button>
@@ -286,27 +127,42 @@ header {
     </div>
   </div>
 
-  <div class="grid" id="grid"></div>
+  <div id="content"></div>
 </main>
 
 <script>
 const LAW_URLS = {
-  'Constitución Española': 'https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229',
+  'Constitución': 'https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229',
   'Ley 39/2015': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565',
   'Ley 40/2015': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-10566',
   'TREBEP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-11719',
   'LCSP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2017-12902',
-  'Estatuto de Autonomía de Melilla': 'https://www.boe.es/buscar/act.php?id=BOE-A-1995-6544'
+  'Estatuto': 'https://www.boe.es/buscar/act.php?id=BOE-A-1995-6544',
+  'TRLRHL': 'https://www.boe.es/buscar/act.php?id=BOE-A-2004-4244'
 };
 
-const DATA = [
-  {id:'t1', exam:'c1', num:'T1', title:'Constitución y Derechos', prio:'high', focus:'Enfoque total en arts. 14 a 29 (Derechos Fundamentales).', laws:[{n:'Constitución Española', arts:'Título I'}]},
-  {id:'t6', exam:'c1', num:'T6', title:'Estatuto de Melilla', prio:'high', focus:'Memorizar art. 21.1 (Materias exclusivas).', laws:[{n:'Estatuto de Autonomía de Melilla', arts:'Títulos I y II'}]},
-  {id:'t10', exam:'c1', num:'T10', title:'Interesado y Representación', prio:'mid', focus:'Diferencia clara entre art. 4, 5 y 6.', laws:[{n:'Ley 39/2015', arts:'Arts. 3-12'}]},
-  {id:'t19', exam:'c1', num:'T19', title:'Contratos del Sector Público', prio:'high', focus:'Umbrales SARA (Obras > 5.5M / Serv > 221k).', laws:[{n:'LCSP', arts:'Arts. 1-27'}]},
-  {id:'t25', exam:'c1', num:'T25', title:'Contratos Menores', prio:'high', focus:'Límites 15k/40k y prohibición de fraccionamiento.', laws:[{n:'LCSP', arts:'Art. 118'}]},
-  {id:'t28', exam:'c1', num:'T28', title:'Personal al Servicio AAPP', prio:'mid', focus:'Requisitos de acceso (Art. 56).', laws:[{n:'TREBEP', arts:'Arts. 1-13'}]}
+const BLOCKS = [
+  { id: 'b1', name: 'Bloque I: Derecho Constitucional y Organización' },
+  { id: 'b2', name: 'Bloque II: Derecho Administrativo y Procedimiento' },
+  { id: 'b3', name: 'Bloque III: Gestión de Personal y Contratación' },
+  { id: 'b4', name: 'Bloque IV: Haciendas Locales y Organización CAM' }
 ];
+
+const DATA = [
+  {id:'c1-t1', bloque:'b1', exam:'c1', num:'T1', title:'La Constitución Española', prio:'high', focus:'Arts. 1-55. Especial atención a Derechos Fundamentales (14-29).', laws:[{n:'Constitución', arts:'Título Preliminar y Título I'}]},
+  {id:'c1-t6', bloque:'b1', exam:'c1', num:'T6', title:'Estatuto de Autonomía de Melilla', prio:'high', focus:'Art. 21.1 (Competencias exclusivas) y Organización Institucional.', laws:[{n:'Estatuto', arts:'Íntegro'}]},
+  {id:'c1-t10', bloque:'b2', exam:'c1', num:'T10', title:'El Interesado y Representación', prio:'high', focus:'Capacidad (Art. 3) y Acreditación de representación (Art. 5).', laws:[{n:'Ley 39/2015', arts:'Arts. 3-12'}]},
+  {id:'c1-t11', bloque:'b2', exam:'c1', num:'T11', title:'Términos y Plazos', prio:'mid', focus:'Cómputo en días hábiles/naturales y horas (Art. 30).', laws:[{n:'Ley 39/2015', arts:'Arts. 29-33'}]},
+  {id:'c1-t12', bloque:'b2', exam:'c1', num:'T12', title:'Actos Administrativos', prio:'high', focus:'Motivación (Art. 35) y Notificación (Arts. 40-44).', laws:[{n:'Ley 39/2015', arts:'Arts. 34-46'}]},
+  {id:'c1-t19', bloque:'b3', exam:'c1', num:'T19', title:'Contratos del Sector Público', prio:'high', focus:'Tipos de contratos y Umbrales SARA (actualizados).', laws:[{n:'LCSP', arts:'Arts. 1-27'}]},
+  {id:'c1-t25', bloque:'b3', exam:'c1', num:'T25', title:'Contratos Menores', prio:'high', focus:'Límites (15k/40k) y prohibición de fraccionamiento.', laws:[{n:'LCSP', arts:'Art. 118'}]},
+  {id:'c1-t28', bloque:'b3', exam:'c1', num:'T28', title:'Personal al Servicio de AAPP (TREBEP)', prio:'high', focus:'Clases de personal (Arts. 8-12) y Requisitos de acceso (Art. 56).', laws:[{n:'TREBEP', arts:'Arts. 1-13, 55-62'}]},
+  {id:'c1-t29', bloque:'b4', exam:'c1', num:'T29', title:'Haciendas Locales: Recursos', prio:'mid', focus:'Tasas vs Precios Públicos (Concepto y diferencia).', laws:[{n:'TRLRHL', arts:'Arts. 2, 20-27, 41-47'}]},
+  {id:'c2-t1', bloque:'b1', exam:'c2', num:'T1', title:'Constitución: Derechos y Deberes', prio:'high', focus:'Título I completo.', laws:[{n:'Constitución', arts:'Título I'}]},
+  {id:'c2-t10', bloque:'b2', exam:'c2', num:'T10', title:'Procedimiento Administrativo Común', prio:'high', focus:'Derechos del interesado (Art. 13).', laws:[{n:'Ley 39/2015', arts:'Arts. 13-28'}]}
+];
+
+// Nota: He incluido los temas principales recuperados. Se pueden añadir los 75 temas siguiendo este patrón.
 
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
@@ -315,44 +171,60 @@ let state = {
   progress: JSON.parse(localStorage.getItem('progress') || '{}')
 };
 
-function setUI() {
-  document.documentElement.setAttribute('data-theme', state.theme);
-  document.querySelectorAll('#themeToggle span').forEach(s => {
-    s.classList.toggle('active', s.dataset.v === state.theme);
-  });
+function getUrl(name) {
+  for (let k in LAW_URLS) if (name.includes(k)) return LAW_URLS[k];
+  return '#';
 }
 
 function render() {
-  const grid = document.getElementById('grid');
+  const container = document.getElementById('content');
   const filtered = DATA.filter(d => {
-    return (state.exam === 'all' || d.exam === state.exam) && 
-           (d.title.toLowerCase().includes(state.q.toLowerCase()) || d.num.toLowerCase().includes(state.q.toLowerCase()));
+    const matchExam = state.exam === 'all' || d.exam === state.exam;
+    const txt = (d.title + d.num + d.focus).toLowerCase();
+    const matchSearch = txt.includes(state.q.toLowerCase());
+    return matchExam && matchSearch;
   });
 
-  grid.innerHTML = filtered.map(item => {
-    const prog = state.progress[item.id] || 'Pendiente';
-    return `
-      <article class="card">
-        <div class="card-meta">
-          <span style="font-weight: 800; font-size: 14px; opacity: 0.5">${item.num} · ${item.exam.toUpperCase()}</span>
-          <span class="badge badge-${item.prio}">${item.prio === 'high' ? 'Crítico' : 'Importante'}</span>
-        </div>
-        <h2 class="card-title">${item.title}</h2>
-        <div class="law-list">
-          ${item.laws.map(l => `
-            <div class="law-item">
-              <a href="${LAW_URLS[l.n] || '#'}" target="_blank">${l.n} ↗</a>
-              <span class="arts">${l.arts}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="focus-box">🎯 Al grano: ${item.focus}</div>
-        <div class="footer-actions">
-          <button class="prog-btn" onclick="toggleProg('${item.id}')">${prog}</button>
-        </div>
-      </article>
-    `;
-  }).join('');
+  const grouped = BLOCKS.map(b => ({
+    ...b,
+    items: filtered.filter(item => item.bloque === b.id)
+  })).filter(b => b.items.length > 0);
+
+  container.innerHTML = grouped.map(block => `
+    <section class="block-group">
+      <div class="block-header">${block.name}</div>
+      <div class="grid">
+        ${block.items.map(item => {
+          const prog = state.progress[item.id] || 'Pendiente';
+          return `
+            <article class="card">
+              <div class="card-meta">
+                <span class="card-num">${item.num} · ${item.exam.toUpperCase()}</span>
+                <span class="badge badge-${item.prio}">${item.prio === 'high' ? 'Crítico' : 'Importante'}</span>
+              </div>
+              <h2 class="card-title">${item.title}</h2>
+              <div class="law-list">
+                ${item.laws.map(l => `
+                  <div class="law-item">
+                    <a href="${getUrl(l.n)}" class="law-name" target="_blank">${l.n} ↗</a>
+                    <span class="law-arts">${l.arts}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="focus-box">🎯 Al grano: ${item.focus}</div>
+              <div class="footer-actions">
+                <button class="prog-btn prog-${prog}" onclick="toggleProg('${item.id}')">${prog}</button>
+              </div>
+            </article>
+          `;
+        }).join('')}
+      </div>
+    </section>
+  `).join('');
+
+  if (grouped.length === 0) {
+    container.innerHTML = '<div style="text-align:center; padding: 40px; opacity: 0.5;">No se han encontrado temas con esos filtros.</div>';
+  }
 }
 
 window.toggleProg = (id) => {
@@ -363,7 +235,14 @@ window.toggleProg = (id) => {
   render();
 };
 
-document.getElementById('themeToggle').onclick = (e) => {
+function setUI() {
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.querySelectorAll('#themeToggle span').forEach(s => {
+    s.classList.toggle('active', s.dataset.v === state.theme);
+  });
+}
+
+document.getElementById('themeToggle').onclick = () => {
   state.theme = state.theme === 'dark' ? 'light' : 'dark';
   localStorage.setItem('theme', state.theme);
   setUI();
@@ -386,5 +265,4 @@ document.querySelectorAll('.tab').forEach(t => {
 setUI();
 render();
 </script>
-</body>
-</html>
+</body></html>
