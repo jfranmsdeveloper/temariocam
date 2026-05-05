@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root[data-theme="dark"] {
-  --melilla-blue: #005BBF;
+  --melilla-blue: #007AFF;
   --melilla-gold: #FFD700;
   --bg: #030509;
   --surface: rgba(255, 255, 255, 0.03);
@@ -15,12 +15,11 @@
   --line: rgba(255, 255, 255, 0.1);
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.5);
-  --accent: var(--melilla-blue);
   --glass-blur: blur(60px);
 }
 
 :root[data-theme="light"] {
-  --melilla-blue: #0076F5;
+  --melilla-blue: #007AFF;
   --melilla-gold: #D4AF37;
   --bg: #F0F4F8;
   --surface: rgba(255, 255, 255, 0.6);
@@ -28,7 +27,6 @@
   --line: rgba(0, 0, 0, 0.04);
   --text: #0A1128;
   --text-muted: #546E7A;
-  --accent: var(--melilla-blue);
   --glass-blur: blur(40px);
 }
 
@@ -40,7 +38,7 @@ body {
 
 .liquid { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; pointer-events: none; opacity: 0.4; animation: drift 25s infinite alternate; }
 .l1 { width: 800px; height: 800px; background: radial-gradient(circle, var(--melilla-blue) 0%, transparent 70%); top: -300px; left: -200px; }
-.l2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--melilla-gold) 0%, transparent 70%); bottom: -200px; right: -200px; animation-delay: -10s; }
+.l2 { width: 600px; height: 600px; background: radial-gradient(circle, #AF52DE 0%, transparent 70%); bottom: -200px; right: -200px; animation-delay: -10s; }
 
 @keyframes drift { from { transform: translate(0,0) rotate(0deg); } to { transform: translate(100px, 50px) rotate(30deg); } }
 
@@ -60,12 +58,13 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 
 .filter-tabs { display: flex; background: var(--surface); padding: 4px; border-radius: 20px; border: 1px solid var(--line); backdrop-filter: var(--glass-blur); }
 .tab { border: none; background: none; color: var(--text-muted); padding: 10px 24px; border-radius: 16px; cursor: pointer; font-weight: 800; font-size: 14px; }
-.tab.active { background: var(--surface-hover); color: var(--accent); }
+.tab.active { background: var(--surface-hover); color: var(--text); }
 
-.block-container { margin-bottom: 30px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); backdrop-filter: var(--glass-blur); overflow: hidden; }
+.block-container { margin-bottom: 24px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); backdrop-filter: var(--glass-blur); overflow: hidden; }
 .block-header { padding: 35px 45px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-.block-header h3 { margin: 0; font-family: 'Playfair Display', serif; font-size: 26px; color: var(--melilla-gold); }
-.block-header .icon-wrap { display: flex; align-items: center; gap: 15px; }
+.block-header h3 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.block-header .icon-wrap { display: flex; align-items: center; gap: 20px; }
+.block-header .icon-wrap svg { width: 32px; height: 32px; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; padding: 45px; border-top: 1px solid var(--line); }
 
@@ -73,7 +72,7 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 32px; padding: 35px;
   display: flex; flex-direction: column; gap: 20px; cursor: pointer;
 }
-.card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--melilla-blue); background: rgba(0,91,191,0.05); }
+.card:hover { transform: scale(1.02) translateY(-10px); background: rgba(255,255,255,0.05); }
 .card-num { font-size: 14px; font-weight: 900; color: var(--melilla-gold); letter-spacing: 2px; }
 .card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin: 0; line-height: 1.25; }
 
@@ -399,14 +398,56 @@ const C2 = [
 ];
 
 const BLOCKS = [
-  { id: 'b1', name: 'Bloque I: Ordenamiento Constitucional y Derechos', range: {c1: [1,5, 8,8], c2: [1,9, 16,16]}, icon: '📜', accent: '#005BBF' },
-  { id: 'b2', name: 'Bloque II: Organización Política de Melilla (EAM y REGA)', range: {c1: [6,6, 33,36], c2: [10,14]}, icon: '🏛️', accent: '#0076F5' },
-  { id: 'b3', name: 'Bloque III: Procedimiento Administrativo Común (LPAC)', range: {c1: [9,17], c2: ['E1','E5']}, icon: '⚖️', accent: '#FFD700' },
-  { id: 'b4', name: 'Bloque IV: Gestión de Contratación Pública (LCSP)', range: {c1: [19,25], c2: ['E12','E13']}, icon: '📔', accent: '#D4AF37' },
-  { id: 'b5', name: 'Bloque V: Función Pública y Gestión de Personal (TREBEP)', range: {c1: [28,31], c2: ['E17','E17']}, icon: '👤', accent: '#005BBF' },
-  { id: 'b6', name: 'Bloque VI: Régimen Jurídico de las Entidades Locales', range: {c1: [7,7, 32,32, 37,37], c2: [15,15, 'E6','E6', 'E8','E11']}, icon: '🏘️', accent: '#0076F5' },
-  { id: 'b7', name: 'Bloque VII: Hacienda Pública, Presupuestos y Control', range: {c1: [38,42], c2: ['E15','E16']}, icon: '🖋️', accent: '#FFD700' },
-  { id: 'b8', name: 'Bloque VIII: Potestad Sancionadora y Responsabilidad', range: {c1: [18,18, 26,27], c2: ['E7','E7', 'E14','E14']}, icon: '🛡️', accent: '#D4AF37' }
+  { 
+    id: 'b-melilla', 
+    name: 'Ciudad Autónoma de Melilla', 
+    range: {
+      c1: [6,7, 32,37], 
+      c2: [10,15, 'E6','E6', 'E8','E11']
+    }, 
+    icon: `<svg viewBox="0 0 24 24" fill="#007AFF"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, 
+    accent: '#007AFF' 
+  },
+  { 
+    id: 'b-estado', 
+    name: 'Organización del Estado', 
+    range: {
+      c1: [1,4], 
+      c2: [1,8]
+    }, 
+    icon: `<svg viewBox="0 0 24 24" fill="#FF3B30"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, 
+    accent: '#FF3B30' 
+  },
+  { 
+    id: 'b-admin', 
+    name: 'Derecho Administrativo', 
+    range: {
+      c1: [5,5, 9,27], 
+      c2: [9,9, 'E1','E5', 'E7','E7', 'E12','E14']
+    }, 
+    icon: `<svg viewBox="0 0 24 24" fill="#FF9500"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, 
+    accent: '#FF9500' 
+  },
+  { 
+    id: 'b-financiera', 
+    name: 'Gestión Financiera', 
+    range: {
+      c1: [38,42], 
+      c2: ['E15','E16']
+    }, 
+    icon: `<svg viewBox="0 0 24 24" fill="#34C759"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, 
+    accent: '#34C759' 
+  },
+  { 
+    id: 'b-personal', 
+    name: 'Función Pública', 
+    range: {
+      c1: [8,8, 28,31], 
+      c2: [16,16, 'E17','E17']
+    }, 
+    icon: `<svg viewBox="0 0 24 24" fill="#AF52DE"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, 
+    accent: '#AF52DE' 
+  }
 ];
 
 const ALL_DATA = [
@@ -417,7 +458,7 @@ const ALL_DATA = [
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
   exam: 'all', q: '',
-  openBlocks: new Set(['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8'])
+  openBlocks: new Set(['b-melilla', 'b-estado', 'b-admin', 'b-financiera', 'b-personal'])
 };
 
 function parseArts(text) {
@@ -467,9 +508,9 @@ function render() {
 
   container.innerHTML = grouped.map(block => `
     <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}">
-      <div class="block-header" onclick="toggleBlock('${block.id}')" style="border-left: 8px solid ${block.accent}">
-        <div class="icon-wrap"><span>${block.icon}</span><h3>${block.name}</h3></div>
-        <span style="font-size: 11px; font-weight: 900; opacity: 0.5; letter-spacing:1px;">${state.openBlocks.has(block.id) ? 'CERRAR' : 'EXPANDIR'}</span>
+      <div class="block-header" onclick="toggleBlock('${block.id}')">
+        <div class="icon-wrap">${block.icon}<h3 style="color:${block.accent}">${block.name}</h3></div>
+        <span style="font-size: 11px; font-weight: 900; opacity: 0.5; letter-spacing:1px; color:var(--text)">${state.openBlocks.has(block.id) ? 'CERRAR' : 'ABRIR'}</span>
       </div>
       <div class="block-content" style="${state.openBlocks.has(block.id) ? 'display:block' : 'display:none'}">
         <div class="grid">
