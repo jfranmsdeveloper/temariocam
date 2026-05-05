@@ -114,7 +114,15 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 }
 .block-select:focus { border-color: var(--melilla-gold); }
 
+.sort-btn {
+  background: none; border: none; padding: 8px; cursor: pointer; opacity: 0.4;
+  display: flex; align-items: center; justify-content: center; border-radius: 8px;
+}
+.sort-btn:hover { opacity: 1; background: var(--surface-hover); }
+.sort-btn svg { width: 18px; height: 18px; fill: var(--text); }
+
 .edit-btn { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-muted); display: flex; align-items: center; gap: 8px; backdrop-filter: var(--glass-blur); }
+
 
 .edit-btn.active { border-color: var(--melilla-gold); color: var(--melilla-gold); }
 
@@ -529,9 +537,19 @@ function render() {
   const container = document.getElementById('content');
   const filtered = ALL_DATA.filter(d => (state.exam === 'all' || d.exam === state.exam) && (d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase()));
 
-  const grouped = BLOCKS.map(b => ({
-    ...b, items: filtered.filter(item => state.userGrouping[item.id] === b.id)
-  })).filter(b => b.items.length > 0 || state.editMode);
+  const grouped = BLOCKS.map(b => {
+    let items = filtered.filter(item => state.userGrouping[item.id] === b.id);
+    if (state.blockSorts && state.blockSorts[b.id]) {
+      items.sort((a, b) => {
+        const na = parseInt(a.num.replace(/\D/g, ''));
+        const nb = parseInt(b.num.replace(/\D/g, ''));
+        if (na !== nb) return na - nb;
+        return a.exam.localeCompare(b.exam);
+      });
+    }
+    return { ...b, items };
+  }).filter(b => b.items.length > 0 || state.editMode);
+
 
   container.innerHTML = grouped.map(block => `
     <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}" 
@@ -540,9 +558,16 @@ function render() {
          ondragleave="handleDragLeave(event, '${block.id}')"
          ondrop="handleDrop(event, '${block.id}')">
       <div class="block-header" onclick="toggleBlock('${block.id}')">
-        <div class="icon-wrap">${block.icon}<h3 style="color:${block.accent}">${block.name}</h3></div>
+        <div class="icon-wrap">
+          ${block.icon}
+          <h3 style="color:${block.accent}">${block.name}</h3>
+          <button class="sort-btn" onclick="event.stopPropagation(); sortBlock('${block.id}')" title="Ordenar por número">
+            <svg viewBox="0 0 24 24"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg>
+          </button>
+        </div>
         <span style="font-size: 11px; font-weight: 900; opacity: 0.5; letter-spacing:1px; color:var(--text)">${state.openBlocks.has(block.id) ? 'CERRAR' : 'ABRIR'}</span>
       </div>
+
       <div class="block-content" style="${state.openBlocks.has(block.id) ? 'display:block' : 'display:none'}">
         <div class="grid">
           ${block.items.map(item => `
@@ -629,6 +654,23 @@ window.toggleBlock = (id) => {
   else state.openBlocks.add(id);
   render();
 };
+
+window.sortBlock = (id) => {
+  const items = ALL_DATA.filter(d => state.userGrouping[d.id] === id);
+  items.sort((a, b) => {
+    const na = parseInt(a.num.replace(/\D/g, ''));
+    const nb = parseInt(b.num.replace(/\D/g, ''));
+    if (na !== nb) return na - nb;
+    return a.exam.localeCompare(b.exam);
+  });
+  
+  // To keep this order, we update ALL_DATA or just re-render with a custom order
+  // For now, let's just make it a visual sort in the render function
+  state.blockSorts = state.blockSorts || {};
+  state.blockSorts[id] = true;
+  render();
+};
+
 
 window.openModal = (id) => {
   const item = ALL_DATA.find(d => d.id === id);
