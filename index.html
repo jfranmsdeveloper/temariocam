@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TemarioCAM — Esquema Normativo</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<title>TemarioCAM — El Estratega</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root[data-theme="dark"] {
   --bg: #05070a; --surface: rgba(255, 255, 255, 0.04); --surface-hover: rgba(255, 255, 255, 0.08);
@@ -45,16 +45,24 @@ header { display: flex; justify-content: space-between; align-items: flex-start;
 .tab { border: none; background: none; color: var(--text-muted); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 13px; }
 .tab.active { background: var(--surface-hover); color: var(--text); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 24px; }
+/* Accordion Blocks */
+.block-container { margin-bottom: 20px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: var(--surface); backdrop-filter: blur(20px); }
+.block-header { padding: 24px 30px; background: var(--surface-hover); cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+.block-header h3 { margin: 0; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); letter-spacing: 1px; }
+.block-header .arrow { transition: transform 0.3s; font-size: 14px; opacity: 0.5; }
+.block-content { padding: 30px; display: none; }
+.block-container.open .block-content { display: block; }
+.block-container.open .arrow { transform: rotate(180deg); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
 
 .card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 34px; padding: 34px;
-  backdrop-filter: blur(40px) saturate(180%); box-shadow: var(--shadow);
-  display: flex; flex-direction: column; gap: 18px; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 24px;
+  backdrop-filter: blur(40px) saturate(180%); display: flex; flex-direction: column; gap: 15px; cursor: pointer;
 }
-.card:hover { transform: translateY(-5px); border-color: var(--accent); background: var(--surface-hover); }
-.card-num { font-size: 14px; font-weight: 900; color: var(--gold); letter-spacing: 1.5px; }
-.card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; line-height: 1.2; margin: 0; }
+.card:hover { border-color: var(--accent); background: var(--surface-hover); }
+.card-num { font-size: 12px; font-weight: 900; color: var(--gold); letter-spacing: 1px; opacity: 0.8; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.2; margin: 0; }
 
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
@@ -74,19 +82,19 @@ header { display: flex; justify-content: space-between; align-items: flex-start;
 .law-block { margin-bottom: 40px; }
 .law-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--accent); margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 15px; }
 
-/* List & Sub-list (Outline) */
 .outline-list { list-style: none; padding: 0; margin: 0; }
-.outline-item { margin-bottom: 12px; padding-left: 20px; position: relative; line-height: 1.6; }
-.outline-item::before { content: "•"; position: absolute; left: 0; color: var(--gold); font-weight: 800; }
-.outline-item b { color: var(--gold); }
+.outline-item { margin-bottom: 15px; padding-left: 25px; position: relative; line-height: 1.7; font-size: 16px; }
+.outline-item::before { content: "🎯"; position: absolute; left: 0; top: 2px; font-size: 14px; }
+.outline-item b { color: var(--gold); font-weight: 800; border-bottom: 1px solid rgba(255,204,0,0.2); }
 
-.sub-list { list-style: none; padding-left: 24px; margin: 8px 0; border-left: 1px solid var(--line); }
-.sub-item { margin-bottom: 6px; font-size: 14px; color: var(--text-muted); position: relative; padding-left: 15px; }
-.sub-item::before { content: "—"; position: absolute; left: 0; opacity: 0.4; }
+.sub-list { list-style: none; padding-left: 20px; margin: 10px 0; border-left: 2px solid var(--line); }
+.sub-item { margin-bottom: 8px; font-size: 15px; color: var(--text-muted); position: relative; padding-left: 15px; }
+.sub-item::before { content: "→"; position: absolute; left: 0; opacity: 0.4; color: var(--accent); }
 
 @media (max-width: 768px) {
   .modal-content { padding: 30px; }
   .modal-header h2 { font-size: 24px; }
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -96,7 +104,7 @@ header { display: flex; justify-content: space-between; align-items: flex-start;
 
 <main class="app">
   <header>
-    <div class="brand"><h1>TemarioCAM</h1><p>Esquema Normativo Detallado</p></div>
+    <div class="brand"><h1>TemarioCAM</h1><p>The Strategist — C1/C2 Melilla</p></div>
     <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
   </header>
 
@@ -120,7 +128,7 @@ header { display: flex; justify-content: space-between; align-items: flex-start;
 </div>
 
 <script>
-// Data recovery (Original full dataset)
+// Base de datos completa recuperada
 const C1 = [
 {parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[
   {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9 (Título Preliminar) + arts. 10–55 (Título I: Capítulos I al V, incluyendo derechos fundamentales arts. 15–29, derechos y deberes arts. 30–38, principios rectores arts. 39–52, garantías arts. 53–54 y suspensión art. 55) + arts. 56–65 (Título II: La Corona) + arts. 166–169 (Título X: Reforma constitucional)"}
@@ -392,6 +400,14 @@ const C2 = [
 ]}
 ];
 
+const BLOCKS = [
+  { id: 'b1', name: 'Bloque I: Constitución y Organización del Estado', range: {c1: [1,5], c2: [1,9]} },
+  { id: 'b2', name: 'Bloque II: Melilla y el Estatuto de Autonomía', range: {c1: [6,6, 33,36], c2: [10,14]} },
+  { id: 'b3', name: 'Bloque III: Derecho Administrativo y Procedimiento', range: {c1: [9,18], c2: ['E1','E5']} },
+  { id: 'b4', name: 'Bloque IV: Régimen Local, Haciendas y Patrimonio', range: {c1: [7,8, 32,32, 37,42], c2: [15,16, 'E6','E11', 'E15','E16']} },
+  { id: 'b5', name: 'Bloque V: Contratación y Función Pública (TREBEP)', range: {c1: [19,25, 28,31], c2: ['E12','E13', 'E17','E17']} }
+];
+
 const ALL_DATA = [
   ...C1.map(x => ({...x, exam:'c1', id:'c1-'+x.num})),
   ...C2.map(x => ({...x, exam:'c2', id:'c2-'+x.num}))
@@ -400,11 +416,34 @@ const ALL_DATA = [
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
   exam: 'all', q: '',
-  progress: JSON.parse(localStorage.getItem('progress') || '{}')
+  openBlocks: new Set(['b1'])
 };
 
+function getBlockId(item) {
+  const n = item.num;
+  const isC1 = item.exam === 'c1';
+  for (const b of BLOCKS) {
+    const r = isC1 ? b.range.c1 : b.range.c2;
+    for (let i = 0; i < r.length; i += 2) {
+      const start = r[i];
+      const end = r[i+1];
+      if (typeof n === 'string' && n.startsWith('T')) {
+        const val = parseInt(n.substring(1));
+        if (val >= start && val <= end) return b.id;
+      } else if (typeof n === 'string' && n.startsWith('E')) {
+        if (typeof start === 'string' && start.startsWith('E')) {
+          const val = parseInt(n.substring(1));
+          const sVal = parseInt(start.substring(1));
+          const eVal = parseInt(end.substring(1));
+          if (val >= sVal && val <= eVal) return b.id;
+        }
+      }
+    }
+  }
+  return 'b4'; // Default
+}
+
 function parseArts(text) {
-  // Split by " + " for main items, then by " — " or " : " for sub-items
   const parts = text.split(/\s\+\s/);
   return `<ul class="outline-list">${parts.map(p => {
     const subParts = p.split(/\s[—:]\s/);
@@ -426,17 +465,36 @@ function render() {
            (d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase());
   });
 
-  container.innerHTML = `<div class="grid">${filtered.map(item => `
-    <article class="card" onclick="openModal('${item.id}')">
-      <div class="card-num">${item.num} · ${item.exam.toUpperCase()}</div>
-      <h2 class="card-title">${item.enunciado}</h2>
-      <div class="card-footer">
-        <span class="badge">${item.parte}</span>
-        <div style="font-size: 11px; color: var(--accent); font-weight: 800;">VER ESQUEMA →</div>
+  const grouped = BLOCKS.map(b => ({
+    ...b,
+    items: filtered.filter(item => getBlockId(item) === b.id)
+  })).filter(b => b.items.length > 0);
+
+  container.innerHTML = grouped.map(block => `
+    <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}" id="${block.id}">
+      <div class="block-header" onclick="toggleBlock('${block.id}')">
+        <h3>${block.name}</h3>
+        <span class="arrow">▼</span>
       </div>
-    </article>
-  `).join('')}</div>`;
+      <div class="block-content">
+        <div class="grid">
+          ${block.items.map(item => `
+            <article class="card" onclick="openModal('${item.id}')">
+              <div class="card-num">${item.num} · ${item.exam.toUpperCase()}</div>
+              <h2 class="card-title">${item.enunciado}</h2>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
 }
+
+window.toggleBlock = (id) => {
+  if (state.openBlocks.has(id)) state.openBlocks.delete(id);
+  else state.openBlocks.add(id);
+  render();
+};
 
 window.openModal = (id) => {
   const item = ALL_DATA.find(d => d.id === id);
