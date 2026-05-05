@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TemarioCAM — Melilla Strategic Edition</title>
+<title>TemarioCAM — Melilla Strategic Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root[data-theme="dark"] {
@@ -38,7 +38,6 @@ body {
   background-color: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased;
 }
 
-/* Liquid Blobs - Melilla Style */
 .liquid { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; pointer-events: none; opacity: 0.4; animation: drift 25s infinite alternate; }
 .l1 { width: 800px; height: 800px; background: radial-gradient(circle, var(--melilla-blue) 0%, transparent 70%); top: -300px; left: -200px; }
 .l2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--melilla-gold) 0%, transparent 70%); bottom: -200px; right: -200px; animation-delay: -10s; }
@@ -48,23 +47,22 @@ body {
 .app { max-width: 1400px; margin: auto; padding: 60px 24px; }
 
 header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
-.brand h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; margin: 0; letter-spacing: -3px; color: var(--melilla-blue); text-shadow: 0 10px 30px rgba(0,91,191,0.2); }
+.brand h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; margin: 0; letter-spacing: -3px; color: var(--melilla-blue); }
 .brand p { color: var(--text-muted); margin: 8px 0 0; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
 
 .toggle { background: var(--surface); border: 1px solid var(--line); padding: 4px; border-radius: 16px; cursor: pointer; display: flex; backdrop-filter: var(--glass-blur); }
 .toggle span { padding: 6px 16px; border-radius: 12px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-.toggle .active { background: var(--melilla-blue); color: white; box-shadow: 0 5px 15px rgba(0,91,191,0.3); }
+.toggle .active { background: var(--melilla-blue); color: white; }
 
 .nav-bar { display: flex; gap: 20px; margin-bottom: 50px; position: sticky; top: 30px; z-index: 1000; }
-.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 18px 24px; border-radius: 24px; backdrop-filter: var(--glass-blur); border-bottom: 2px solid rgba(255,255,255,0.05); }
+.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 18px 24px; border-radius: 24px; backdrop-filter: var(--glass-blur); }
 .search-box input { background: none; border: none; color: var(--text); width: 100%; font-size: 18px; outline: none; font-weight: 600; }
 
 .filter-tabs { display: flex; background: var(--surface); padding: 4px; border-radius: 20px; border: 1px solid var(--line); backdrop-filter: var(--glass-blur); }
 .tab { border: none; background: none; color: var(--text-muted); padding: 10px 24px; border-radius: 16px; cursor: pointer; font-weight: 800; font-size: 14px; }
-.tab.active { background: var(--surface-hover); color: var(--accent); border: 1px solid var(--line); }
+.tab.active { background: var(--surface-hover); color: var(--accent); }
 
-/* Collapsible Blocks - Liquid Apple Style */
-.block-container { margin-bottom: 30px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); backdrop-filter: var(--glass-blur); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+.block-container { margin-bottom: 30px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); backdrop-filter: var(--glass-blur); overflow: hidden; }
 .block-header { padding: 35px 45px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .block-header h3 { margin: 0; font-family: 'Playfair Display', serif; font-size: 26px; color: var(--melilla-gold); }
 .block-header .icon-wrap { display: flex; align-items: center; gap: 15px; }
@@ -73,22 +71,21 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 
 .card {
   background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 32px; padding: 35px;
-  display: flex; flex-direction: column; gap: 20px; cursor: pointer; position: relative;
+  display: flex; flex-direction: column; gap: 20px; cursor: pointer;
 }
 .card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--melilla-blue); background: rgba(0,91,191,0.05); }
 .card-num { font-size: 14px; font-weight: 900; color: var(--melilla-gold); letter-spacing: 2px; }
 .card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin: 0; line-height: 1.25; }
 
-/* Modal - Ultimate Liquid Glass */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(25px); z-index: 2000; display: none; place-items: center; padding: 24px; }
 .modal-content {
   background: var(--bg); border: 1px solid var(--line); border-radius: 50px;
   width: 100%; max-width: 1100px; max-height: 90vh; overflow-y: auto;
-  position: relative; padding: 80px; box-shadow: 0 100px 200px rgba(0,0,0,0.8);
+  position: relative; padding: 80px;
 }
 .close-modal { position: absolute; top: 40px; right: 40px; cursor: pointer; opacity: 0.4; font-size: 30px; }
 
-.modal-header h2 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--melilla-blue); margin: 20px 0; letter-spacing: -2px; }
+.modal-header h2 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--melilla-blue); margin: 20px 0; }
 
 .law-block { margin-bottom: 50px; border-left: 6px solid var(--melilla-blue); padding-left: 40px; }
 .law-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--melilla-gold); margin-bottom: 30px; }
@@ -97,13 +94,12 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .outline-item { margin-bottom: 25px; padding-left: 35px; position: relative; font-size: 18px; line-height: 1.6; }
 .outline-item::before { content: "⚖️"; position: absolute; left: 0; top: 4px; font-size: 20px; }
 
-.sub-list { list-style: none; padding-left: 20px; margin-top: 15px; }
+.sub-list { list-style: none; padding-left: 20px; margin-top: 15px; border-left: 2px solid var(--line); }
 .sub-item { font-size: 16px; color: var(--text-muted); margin-bottom: 12px; position: relative; padding-left: 20px; }
 .sub-item::before { content: "🖋️"; position: absolute; left: 0; opacity: 0.5; }
 
 @media (max-width: 1024px) {
-  .modal-content { padding: 40px; border-radius: 40px; }
-  .modal-header h2 { font-size: 32px; }
+  .modal-content { padding: 40px; }
   .grid { grid-template-columns: 1fr; padding: 24px; }
 }
 </style>
@@ -119,11 +115,11 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   </header>
 
   <div class="nav-bar">
-    <div class="search-box"><input type="text" id="search" placeholder="Buscar en el mapa estratégico..." /></div>
+    <div class="search-box"><input type="text" id="search" placeholder="Busca en el mapa estratégico..." /></div>
     <div class="filter-tabs">
       <button class="tab active" data-exam="all">Todo</button>
-      <button class="tab" data-exam="c1">C1 Administrativo</button>
-      <button class="tab" data-exam="c2">C2 Auxiliar</button>
+      <button class="tab" data-exam="c1">C1</button>
+      <button class="tab" data-exam="c2">C2</button>
     </div>
   </div>
 
@@ -138,7 +134,7 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 </div>
 
 <script>
-// Base de datos completa
+// --- FULL DATASET (DO NOT TRUNCATE) ---
 const C1 = [
 {parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[
   {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9 (Título Preliminar) + arts. 10–55 (Título I: Capítulos I al V, incluyendo derechos fundamentales arts. 15–29, derechos y deberes arts. 30–38, principios rectores arts. 39–52, garantías arts. 53–54 y suspensión art. 55) + arts. 56–65 (Título II: La Corona) + arts. 166–169 (Título X: Reforma constitucional)"}
@@ -146,31 +142,279 @@ const C1 = [
 {parte:"Parte general",num:"T2",enunciado:"La CE 1978: Título III De las Cortes Generales. Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes Generales.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 66–96 (Título III: Cortes Generales — Cámaras, elaboración de leyes y Tratados Internacionales) + arts. 97–107 (Título IV: Gobierno y Administración) + arts. 108–116 (Título V: Relaciones Gobierno–Cortes)"}
 ]},
+{parte:"Parte general",num:"T3",enunciado:"La CE 1978: Título VI del Poder Judicial. El CGPJ: composición y funcionamiento en la LO 6/1985.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 117–127 (Título VI: Poder Judicial)"},
+  {n:"LO 6/1985, de 1 de julio, del Poder Judicial (LOPJ)",arts:"Arts. 558–565 (Libro VIII, Título I: atribuciones del CGPJ) + arts. 566–584 (Título II: Vocales, Presidente y Vicepresidente — núcleo del tema) + arts. 585–642 (Título III: órganos del CGPJ)"}
+]},
+{parte:"Parte general",num:"T4",enunciado:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo.",leyes:[
+  {n:"LO 3/1981, de 6 de abril, del Defensor del Pueblo",arts:"Íntegra: arts. 1–37 (Títulos I al V: nombramiento y cese, procedimiento, resoluciones, relaciones con las Cortes, medios) + Disposiciones Adicional, Transitoria y Final"}
+]},
+{parte:"Parte general",num:"T5",enunciado:"Fuentes del Derecho Público. La ley: clases de leyes. El reglamento: concepto y clases.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 81–82 (leyes orgánicas y decretos legislativos), art. 86 (decretos-ley), art. 97 (potestad reglamentaria del Gobierno)"},
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 127–133 (Título VI: iniciativa legislativa y potestad reglamentaria)"},
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 128–133 (Título VI: potestad reglamentaria — jerarquía e inderogabilidad singular)"},
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM (BOME Extra. 2/2017)",arts:"Arts. 69–71 (Cap. IV y V del Título IV: elaboración de reglamentos del Consejo de Gobierno y reglamentos organizativos de las Consejerías)"}
+]},
 {parte:"Parte general",num:"T6",enunciado:"Ley Orgánica 2/1995, de 13 de marzo, sobre el Estatuto de Autonomía de la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"LO 2/1995, de 13 de marzo, Estatuto de Autonomía de Melilla (EAM)",arts:"Íntegra: arts. 1–4 (Título Preliminar) + arts. 5–19 (Título I: organización institucional — Asamblea, Presidente, Consejo de Gobierno) + arts. 20–27 (Título II: competencias, incluido art. 21.1 con las 25 materias) + arts. 28–32 (Título III: régimen jurídico) + art. 33 (Título IV: cooperación con el Estado) + arts. 34–40 (Título V: régimen económico y financiero) + art. 41 (Título VI: reforma)"}
+  {n:"LO 2/1995, de 13 de marzo, Estatuto de Autonomía de Melilla (EAM)",arts:"Íntegra: arts. 1–4 (Título Preliminar) + arts. 5–19 (Título I: organización institucional — Asamblea, Presidente, Consejo de Gobierno) + arts. 20–27 (Título II: competencias, incluido art. 21.1 con las 25 materias) + arts. 28–32 (Título III: régimen jurídico) + art. 33 (Título IV: cooperación con el Estado) + arts. 34–40 (Título V: régimen económico y financiero) + art. 41 (Título VI: reforma) + Disposiciones Adicionales 1ª–6ª, Transitorias 1ª–4ª y Finales"}
+]},
+{parte:"Parte general",num:"T7",enunciado:"El Régimen local español: principios, clases de entidades locales, el Municipio, término municipal, población, empadronamiento, organización (Título II Ley 7/1985), competencias y servicios mínimos.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 137–142 (Título VIII, Cap. II: Administración Local — autonomía municipal y provincial)"},
+  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local (LRBRL)",arts:"Art. 1 (Título Preliminar) + arts. 2–10 (Título I: disposiciones generales y clases de entidades) + arts. 11–18 (Título II, Cap. I: territorio y población — empadronamiento arts. 15–16) + arts. 19–24 bis (Título II, Cap. II: organización municipal — Alcalde art. 21, Pleno art. 22, Junta de Gobierno Local art. 23) + arts. 25–28 (Título II, Cap. III: competencias propias art. 25, servicios mínimos obligatorios art. 26, delegación art. 27)"}
+]},
+{parte:"Parte general",num:"T8",enunciado:"LO 3/2007 para la igualdad efectiva de mujeres y hombres. Título Preliminar y Título I: El principio de igualdad y la tutela contra la discriminación.",leyes:[
+  {n:"LO 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",arts:"Arts. 1–2 (Título Preliminar: objeto y ámbito) + arts. 3–13 (Título I: principio de igualdad, discriminación directa e indirecta art. 6, acoso sexual art. 7, acciones positivas art. 11, tutela judicial art. 12, prueba art. 13). También: art. 53 y DA 1ª (presencia equilibrada en Tribunales de Selección)"}
+]},
+{parte:"Parte específica",num:"T9",enunciado:"La potestad organizatoria de la Administración: órganos administrativos, competencia y sus técnicas de traslación, órganos colegiados.",leyes:[
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 5–7 (Sección 1ª: órganos administrativos) + arts. 8–14 (Sección 2ª: competencia — delegación art. 9, avocación art. 10, encomiendas art. 11, delegación de firma art. 12, suplencia art. 13) + arts. 15–22 (Sección 3ª: órganos colegiados — funcionamiento arts. 15–18, órganos AGE arts. 19–22)"},
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM (BOME Extra. 2/2017)",arts:"Arts. 47–67 (Título IV, Cap. II: órganos de la Administración — Secretarios Técnicos y Directores Generales arts. 50–57, órganos inferiores arts. 61–64, órganos colegiados arts. 66–67) + arts. 72–79 (Cap. VI: ejercicio de competencias — delegación art. 73, avocación art. 74, encomienda art. 75, delegación de firma art. 76, suplencia art. 77)"}
+]},
+{parte:"Parte específica",num:"T10",enunciado:"Las personas ante la Administración: derechos y obligaciones. El interesado: concepto, capacidad de obrar y representación. Identificación de los interesados y sus derechos en el procedimiento.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 3–8 (Título I, Cap. I: capacidad de obrar art. 3, concepto de interesado art. 4, representación arts. 5–6, identificación art. 9) + arts. 9–12 (Cap. II: identificación y firma electrónica) + art. 53 (derechos del interesado en el procedimiento)"}
+]},
+{parte:"Parte específica",num:"T11",enunciado:"El acto administrativo. Concepto. Elementos. Clases.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 34–36 (Título III, Cap. I: producción y contenido del acto art. 34, motivación art. 35, forma art. 36)"},
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 1–4 (Cap. I: disposiciones generales — principios de actuación de las AAPP)"}
+]},
+{parte:"Parte específica",num:"T12",enunciado:"La notificación: contenido, plazo y práctica en papel y electrónica. Notificación infructuosa. La publicación. Demora y retroactividad de la eficacia.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Art. 37 (inderogabilidad singular) + arts. 38–39 (ejecutividad y efectos del acto) + arts. 40–46 (Cap. II, Sección sobre notificaciones: condiciones generales art. 41, notificación en papel art. 42, electrónica art. 43, infructuosa art. 44, publicación art. 45, indicación de recursos art. 46)"}
+]},
+{parte:"Parte específica",num:"T13",enunciado:"Invalidez del acto administrativo: nulidad de pleno derecho y anulabilidad. Conservación del acto. Revocación. Rectificación de errores. Revisión de oficio. Declaración de lesividad.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 47–52 (Título III, Cap. III: nulidad de pleno derecho art. 47, anulabilidad art. 48, conversión art. 49, conservación art. 51, convalidación art. 52) + arts. 106–111 (Título V, Cap. I: revisión de oficio art. 106, declaración de lesividad art. 107, suspensión art. 108, revocación y rectificación art. 109, límites art. 110, competencia art. 111)"}
+]},
+{parte:"Parte específica",num:"T14",enunciado:"Normas de actuación de las AAPP: registro, archivo, colaboración y comparecencia. Términos y plazos: cómputo, ampliación y tramitación de urgencia.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 13–28 (Título II, Cap. I: derechos de las personas art. 13, registro art. 16, archivo art. 17, colaboración art. 18, comparecencia art. 19, comunicaciones entre AAPP arts. 20–27) + arts. 29–33 (Cap. II: términos y plazos — cómputo art. 30, ampliación art. 32, tramitación de urgencia art. 33)"}
+]},
+{parte:"Parte específica",num:"T15",enunciado:"Las fases del procedimiento administrativo: iniciación, ordenación, instrucción y terminación.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 54–69 (Título IV, Cap. II: iniciación — de oficio arts. 54–65, a solicitud arts. 66–69) + arts. 70–74 (Cap. III: ordenación) + arts. 75–83 (Cap. IV: instrucción — prueba arts. 77–78, informes arts. 79–81, participación arts. 82–83) + arts. 84–95 (Cap. V: terminación — resolución arts. 87–88, desistimiento y renuncia arts. 93–94, caducidad art. 95)"}
+]},
+{parte:"Parte específica",num:"T16",enunciado:"La obligación de resolver. Suspensión y ampliación del plazo para resolver. La falta de resolución expresa: el silencio administrativo.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Art. 21 (obligación de resolver y plazo máximo) + art. 22 (suspensión del plazo) + art. 23 (ampliación del plazo para resolver) + art. 24 (silencio administrativo en procedimientos iniciados a solicitud) + art. 25 (silencio en procedimientos iniciados de oficio) + art. 26 (falta de resolución en recursos)"}
+]},
+{parte:"Parte específica",num:"T17",enunciado:"Recursos administrativos. La coacción administrativa: autotutela ejecutiva. Ejecución forzosa de actos administrativos: medios y principios.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 112–120 (Título V, Cap. II: principios de los recursos — reglas generales, suspensión, audiencia) + arts. 121–122 (recurso de alzada) + arts. 123–124 (recurso potestativo de reposición) + arts. 125–126 (recurso extraordinario de revisión) + arts. 97–105 (Título IV, Cap. VII: ejecución — ejecutoriedad art. 98, medios de ejecución forzosa art. 100, apremio sobre patrimonio art. 101, ejecución subsidiaria art. 102, multa coercitiva art. 103, compulsión sobre personas art. 104)"}
+]},
+{parte:"Parte específica",num:"T18",enunciado:"La potestad sancionadora: concepto y significado. Principios del ejercicio. Especialidades del procedimiento sancionador.",leyes:[
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 25–31 (Cap. III del Título Preliminar: principios de la potestad sancionadora — legalidad art. 25, irretroactividad art. 26, tipicidad art. 27, responsabilidad art. 28, proporcionalidad art. 29, prescripción art. 30, concurrrencia art. 31)"},
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 63–69 (en Título IV: garantías del procedimiento sancionador — procedimiento iniciado de oficio, derechos del presunto responsable, medidas provisionales, resolución)"}
 ]},
 {parte:"Parte específica",num:"T19",enunciado:"Contratos del sector público: objeto y ámbito de la LCSP. Tipos de contratos. Contratos sujetos a regulación armonizada.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 1–11 (Objeto y ámbito) + arts. 12–18 (Tipos de contratos) + arts. 19–23 (SARA: umbrales obras 5.538.000 €, servicios 221.000 €) + arts. 24–27 (Administrativos y privados)"}
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 1–11 (Título Preliminar: objeto, ámbito subjetivo, negocios y contratos excluidos) + arts. 12–18 (tipos de contratos: obras, concesión de obras, concesión de servicios, suministro, servicios y mixtos) + arts. 19–23 (SARA: umbrales obras 5.538.000 €, servicios 221.000 €) + arts. 24–27 (contratos administrativos y privados)"}
+]},
+{parte:"Parte específica",num:"T20",enunciado:"Disposiciones generales sobre contratación: libertad de pactos, contenido mínimo, perfección y forma.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 28–33 (necesidad, idoneidad y duración) + arts. 34–35 (libertad de pactos y contenido) + arts. 36–37 (perfección y forma)"}
+]},
+{parte:"Parte específica",num:"T21",enunciado:"Las partes en los contratos del sector público. Órganos de contratación. Capacidad y solvencia.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 61–63 (órganos de contratación) + arts. 64–97 (capacidad, prohibiciones de contratar, solvencia)"}
+]},
+{parte:"Parte específica",num:"T22",enunciado:"Objeto, presupuesto, valor estimado, precio y revisión. Garantías. Preparación de contratos: expediente, pliegos.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 99–105 (objeto, presupuesto, valor estimado, precio) + arts. 106–114 (garantías) + arts. 115–130 (preparación del expediente y pliegos)"}
+]},
+{parte:"Parte específica",num:"T23",enunciado:"Adjudicación de los contratos: normas generales y procedimientos.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 131–187 (normas de adjudicación y tipos de procedimientos)"}
+]},
+{parte:"Parte específica",num:"T24",enunciado:"Efectos de los contratos. Prerrogativas de la Administración. Ejecución.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Arts. 188–192 (prerrogativas) + arts. 193–213 (ejecución, modificación y resolución)"}
+]},
+{parte:"Parte específica",num:"T25",enunciado:"Los contratos menores. Regulación, límites y procedimiento.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP)",arts:"Art. 118 (contratos menores: límites obras < 40k, resto < 15k) + art. 332 (OIReScon)"}
+]},
+{parte:"Parte específica",num:"T26",enunciado:"Actividad subvencional: procedimientos de concesión, gestión y reintegro.",leyes:[
+  {n:"Ley 38/2003, de 17 de noviembre, General de Subvenciones (LGS)",arts:"Arts. 1–10 (principios) + arts. 22–34 (concesión y gestión) + arts. 36–43 (reintegro)"}
+]},
+{parte:"Parte específica",num:"T27",enunciado:"La responsabilidad patrimonial de la Administración. Procedimiento especial.",leyes:[
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 32–37 (principios de responsabilidad)"},
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común",arts:"Arts. 61, 65, 67, 81, 91, 96 (especialidades procedimiento)"}
+]},
+{parte:"Parte específica",num:"T28",enunciado:"Los empleados públicos: clases, acceso y extinción de la condición.",leyes:[
+  {n:"RDL 5/2015, de 30 de octubre, TREBEP",arts:"Arts. 1–13 (clases de personal) + arts. 55–68 (acceso y pérdida de condición)"}
+]},
+{parte:"Parte específica",num:"T29",enunciado:"Provisión de puestos de trabajo y situaciones administrativas.",leyes:[
+  {n:"RDL 5/2015, de 30 de octubre, TREBEP",arts:"Arts. 78–84 (provisión) + arts. 85–92 (situaciones administrativas)"}
+]},
+{parte:"Parte específica",num:"T30",enunciado:"Derechos de los funcionarios: individuales, colectivos, sindicación y huelga.",leyes:[
+  {n:"RDL 5/2015, de 30 de octubre, TREBEP",arts:"Arts. 14–15 (derechos) + arts. 31–46 (negociación colectiva)"}
+]},
+{parte:"Parte específica",num:"T31",enunciado:"Deberes de los funcionarios. Régimen disciplinario e incompatibilidades.",leyes:[
+  {n:"RDL 5/2015, de 30 de octubre, TREBEP",arts:"Arts. 52–54 (deberes) + arts. 93–98 (disciplina)"},
+  {n:"Ley 53/1984, de 26 de diciembre, de Incompatibilidades",arts:"Íntegra: arts. 1–22"}
+]},
+{parte:"Parte específica",num:"T32",enunciado:"Intervención administrativa local: autorizaciones y licencias.",leyes:[
+  {n:"Ley 7/1985, de 2 de abril, LRBRL",arts:"Arts. 84, 84 bis, 84 ter (intervención)"},
+  {n:"Decreto de 17 de junio de 1955, RSCL",arts:"Arts. 1–22 (policía y licencias)"}
+]},
+{parte:"Parte específica",num:"T33",enunciado:"El Presidente de la Ciudad Autónoma de Melilla. Atribuciones y cese.",leyes:[
+  {n:"LO 2/1995, de 13 de marzo, EAM",arts:"Arts. 14–15 (Presidente)"},
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM",arts:"Arts. 5–11 (elección y cese)"}
+]},
+{parte:"Parte específica",num:"T34",enunciado:"El Consejo de Gobierno: composición y funcionamiento. Los Consejeros.",leyes:[
+  {n:"LO 2/1995, de 13 de marzo, EAM",arts:"Arts. 16–19 (Consejo de Gobierno)"},
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM",arts:"Arts. 12–35 (funcionamiento y estatuto personal)"}
+]},
+{parte:"Parte específica",num:"T35",enunciado:"La Asamblea de Melilla: elecciones, organización y atribuciones.",leyes:[
+  {n:"LO 2/1995, de 13 de marzo, EAM",arts:"Arts. 6–13 (Asamblea)"},
+  {n:"Reglamento de la Asamblea de Melilla",arts:"Organización interna y Comisiones"}
+]},
+{parte:"Parte específica",num:"T36",enunciado:"La Administración de la CAM. Singularidades y función directiva.",leyes:[
+  {n:"LO 2/1995, de 13 de marzo, EAM",arts:"Art. 28 (organización propia)"},
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM",arts:"Arts. 1–4, 47–67, 97–107"}
+]},
+{parte:"Parte específica",num:"T37",enunciado:"Patrimonio local: clases de bienes, dominio público y patrimoniales.",leyes:[
+  {n:"Ley 7/1985, de 2 de abril, LRBRL",arts:"Arts. 79–83 (patrimonio)"},
+  {n:"RD 1372/1986, de 13 de junio, RBEL",arts:"Íntegro: arts. 1–135"}
+]},
+{parte:"Parte específica",num:"T38",enunciado:"Presupuesto local: concepto, elaboración y aprobación.",leyes:[
+  {n:"RDL 2/2004, de 5 de marzo, TRLRHL",arts:"Arts. 162–169 (presupuestos)"}
+]},
+{parte:"Parte específica",num:"T39",enunciado:"Estructura presupuestaria y modificaciones de crédito.",leyes:[
+  {n:"RDL 2/2004, de 5 de marzo, TRLRHL",arts:"Art. 167 (estructura) + arts. 177–182 (modificaciones)"}
+]},
+{parte:"Parte específica",num:"T40",enunciado:"Ejecución del presupuesto de gastos e ingresos: fases.",leyes:[
+  {n:"RDL 2/2004, de 5 de marzo, TRLRHL",arts:"Arts. 183–193 (ejecución y pagos)"}
+]},
+{parte:"Parte específica",num:"T41",enunciado:"El control interno en las Entidades del Sector Público Local.",leyes:[
+  {n:"RDL 2/2004, de 5 de marzo, TRLRHL",arts:"Arts. 213–222 (control)"},
+  {n:"RD 424/2017, de 28 de abril, control interno SPL",arts:"Íntegro: arts. 1–39"}
+]},
+{parte:"Parte específica",num:"T42",enunciado:"Tasas, precios públicos y contribuciones especiales.",leyes:[
+  {n:"RDL 2/2004, de 5 de marzo, TRLRHL",arts:"Arts. 20–47 (recursos tributarios)"}
 ]}
 ];
 
-// Add the rest of themes...
+const C2 = [
+{parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9"}
+]},
+{parte:"Parte general",num:"T2",enunciado:"La Constitución Española de 1978: Título I De los derechos y deberes fundamentales.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 10–55"}
+]},
+{parte:"Parte general",num:"T3",enunciado:"La Constitución Española de 1978: Título II De la Corona.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 56–65"}
+]},
+{parte:"Parte general",num:"T4",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 66–96"}
+]},
+{parte:"Parte general",num:"T5",enunciado:"La CE 1978: Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 97–116"}
+]},
+{parte:"Parte general",num:"T6",enunciado:"La CE 1978: Título VI del Poder Judicial. El CGPJ.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 117–127"},
+  {n:"LO 6/1985 (LOPJ)",arts:"Arts. 558–642"}
+]},
+{parte:"Parte general",num:"T7",enunciado:"La CE 1978: Título VIII Organización territorial. Acceso a autonomía de Melilla.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 137–158"},
+  {n:"LO 2/1995 (EAM)",arts:"Art. 1"}
+]},
+{parte:"Parte general",num:"T8",enunciado:"Tribunal Constitucional y Reforma Constitucional.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 159–169"},
+  {n:"LO 2/1979 (LOTC)",arts:"Arts. 1–26"}
+]},
+{parte:"Parte general",num:"T9",enunciado:"Fuentes del Derecho Público. La ley y el reglamento.",leyes:[
+  {n:"Constitución Española de 1978",arts:"Arts. 81–82, 86, 97"},
+  {n:"Ley 39/2015",arts:"Arts. 127–133"},
+  {n:"Ley 40/2015",arts:"Arts. 128–133"}
+]},
+{parte:"Parte general",num:"T10",enunciado:"Estatuto de Melilla: Título Preliminar y Título I.",leyes:[
+  {n:"LO 2/1995 (EAM)",arts:"Arts. 1–19"}
+]},
+{parte:"Parte general",num:"T11",enunciado:"Estatuto de Melilla: Título II de las competencias.",leyes:[
+  {n:"LO 2/1995 (EAM)",arts:"Arts. 20–27 (las 25 materias)"}
+]},
+{parte:"Parte general",num:"T12",enunciado:"Estatuto de Melilla: Título III Régimen jurídico.",leyes:[
+  {n:"LO 2/1995 (EAM)",arts:"Arts. 28–32"}
+]},
+{parte:"Parte general",num:"T13",enunciado:"Estatuto de Melilla: Título IV, V y VI.",leyes:[
+  {n:"LO 2/1995 (EAM)",arts:"Arts. 33–41"}
+]},
+{parte:"Parte general",num:"T14",enunciado:"El REGA: órganos de la Administración de Melilla.",leyes:[
+  {n:"REGA — Reglamento del Gobierno y la Administración de la CAM",arts:"Arts. 1–4, 47–67, 72–79"}
+]},
+{parte:"Parte general",num:"T15",enunciado:"El Régimen local. El Municipio: concepto y elementos.",leyes:[
+  {n:"Ley 7/1985 (LRBRL)",arts:"Arts. 1–14"}
+]},
+{parte:"Parte general",num:"T16",enunciado:"LO 3/2007 para la igualdad efectiva. Título Preliminar y I.",leyes:[
+  {n:"LO 3/2007",arts:"Arts. 1–13"}
+]},
+{parte:"Parte específica",num:"E1",enunciado:"Ley 39/2015: objeto, capacidad, interesado, plazos.",leyes:[
+  {n:"Ley 39/2015",arts:"Arts. 1–33"}
+]},
+{parte:"Parte específica",num:"E2",enunciado:"El acto administrativo: concepto y eficacia.",leyes:[
+  {n:"Ley 39/2015",arts:"Arts. 34–46"}
+]},
+{parte:"Parte específica",num:"E3",enunciado:"El procedimiento administrativo: fases. Procedimiento en REGA.",leyes:[
+  {n:"Ley 39/2015",arts:"Arts. 53–95"},
+  {n:"REGA",arts:"Arts. 82–86"}
+]},
+{parte:"Parte específica",num:"E4",enunciado:"Nulidad y revisión de actos. Órganos en la CAM.",leyes:[
+  {n:"Ley 39/2015",arts:"Arts. 47–52, 106–111"},
+  {n:"REGA",arts:"Arts. 87–91"}
+]},
+{parte:"Parte específica",num:"E5",enunciado:"Recursos administrativos en la CAM.",leyes:[
+  {n:"Ley 39/2015",arts:"Arts. 112–126"},
+  {n:"REGA",arts:"Arts. 92–96"}
+]},
+{parte:"Parte específica",num:"E6",enunciado:"Acción administrativa en el RSCL.",leyes:[
+  {n:"RSCL",arts:"Arts. 1–137"}
+]},
+{parte:"Parte específica",num:"E7",enunciado:"Responsabilidad patrimonial en la CAM.",leyes:[
+  {n:"Ley 40/2015",arts:"Arts. 32–37"},
+  {n:"REGA",arts:"Art. 111"}
+]},
+{parte:"Parte específica",num:"E8",enunciado:"Patrimonio local en el RBEL.",leyes:[
+  {n:"Ley 7/1985",arts:"Arts. 79–83"},
+  {n:"RD 1372/1986 (RBEL)",arts:"Arts. 1–135"}
+]},
+{parte:"Parte específica",num:"E9",enunciado:"Término municipal, población y organización.",leyes:[
+  {n:"Ley 7/1985",arts:"Arts. 11–28"}
+]},
+{parte:"Parte específica",num:"E10",enunciado:"Licencias: naturaleza y procedimiento.",leyes:[
+  {n:"Ley 7/1985",arts:"Arts. 84, 84 bis"},
+  {n:"RSCL",arts:"Arts. 18–22"}
+]},
+{parte:"Parte específica",num:"E11",enunciado:"Ordenanzas locales en la CAM.",leyes:[
+  {n:"Ley 7/1985",arts:"Arts. 49–50"},
+  {n:"REGA",arts:"Arts. 69–71"}
+]},
+{parte:"Parte específica",num:"E12",enunciado:"Contratos del Sector Público: tipos y órganos.",leyes:[
+  {n:"Ley 9/2017 (LCSP)",arts:"Arts. 1–23, 61–63, 318"},
+  {n:"REGA",arts:"Art. 112"}
+]},
+{parte:"Parte específica",num:"E13",enunciado:"Contratos menores en la CAM.",leyes:[
+  {n:"Ley 9/2017",arts:"Arts. 118, 332"},
+  {n:"REGA",arts:"Art. 112"}
+]},
+{parte:"Parte específica",num:"E14",enunciado:"Órganos, competencia, abstención y recusación.",leyes:[
+  {n:"Ley 40/2015",arts:"Arts. 5–24"}
+]},
+{parte:"Parte específica",num:"E15",enunciado:"Recursos municipales: tasas y precios públicos.",leyes:[
+  {n:"RDL 2/2004",arts:"Arts. 2, 20–47"}
+]},
+{parte:"Parte específica",num:"E16",enunciado:"Ordenanzas fiscales en la CAM.",leyes:[
+  {n:"RDL 2/2004",arts:"Arts. 15–19"},
+  {n:"Ordenanzas Melilla",arts:"Contenido y elaboración"}
+]},
+{parte:"Parte específica",num:"E17",enunciado:"TREBEP: derechos, deberes y disciplina.",leyes:[
+  {n:"RDL 5/2015",arts:"Arts. 1–15, 21–30, 47–68, 93–98"}
+]}
+];
+
 const BLOCKS = [
   { id: 'b1', name: 'Bloque I: El Estado y la Constitución', range: {c1: [1,5], c2: [1,9]}, icon: '📜' },
   { id: 'b2', name: 'Bloque II: Melilla y el Estatuto de Autonomía', range: {c1: [6,6, 33,36], c2: [10,14]}, icon: '🏛️' },
   { id: 'b3', name: 'Bloque III: Procedimiento y Derecho Administrativo', range: {c1: [9,18], c2: ['E1','E5']}, icon: '⚖️' },
-  { id: 'b4', name: 'Bloque IV: Contratación y Función Pública (TREBEP)', range: {c1: [19,25, 28,31], c2: ['E12','E13', 'E17','E17']}, icon: '🖋️' }
+  { id: 'b4', name: 'Bloque IV: Régimen Local, Haciendas y Patrimonio', range: {c1: [7,8, 32,32, 37,42], c2: [15,16, 'E6','E11', 'E15','E16']}, icon: '🖋️' },
+  { id: 'b5', name: 'Bloque V: Contratación y Función Pública (TREBEP)', range: {c1: [19,25, 28,31], c2: ['E12','E13', 'E17','E17']}, icon: '📔' }
 ];
 
 const ALL_DATA = [
-  ...C1.map(x => ({...x, exam:'c1', id:'c1-'+x.num}))
-  // ... rest of data
+  ...C1.map(x => ({...x, exam:'c1', id:'c1-'+x.num})),
+  ...C2.map(x => ({...x, exam:'c2', id:'c2-'+x.num}))
 ];
 
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
   exam: 'all', q: '',
-  openBlocks: new Set(['b1', 'b2'])
+  openBlocks: new Set(['b1', 'b2', 'b3', 'b4', 'b5'])
 };
 
 function parseArts(text) {
@@ -194,9 +438,18 @@ function render() {
 
   const grouped = BLOCKS.map(b => ({
     ...b, items: filtered.filter(item => {
-      const n = parseInt(item.num.substring(1));
-      const r = item.exam === 'c1' ? b.range.c1 : b.range.c2;
-      return n >= r[0] && n <= r[1];
+      const isC1 = item.exam === 'c1';
+      const r = isC1 ? b.range.c1 : b.range.c2;
+      const n = item.num;
+      for(let i=0; i<r.length; i+=2) {
+        if(typeof r[i] === 'number') {
+          const val = parseInt(n.substring(1));
+          if(val >= r[i] && val <= r[i+1]) return true;
+        } else {
+          if(n === r[i] || (n >= r[i] && n <= r[i+1])) return true;
+        }
+      }
+      return false;
     })
   })).filter(b => b.items.length > 0);
 
