@@ -557,10 +557,11 @@ function render() {
       return a.exam.localeCompare(b.exam);
     });
 
-    const general = items.filter(i => i.parte.toLowerCase().includes('general'));
-    const especifica = items.filter(i => i.parte.toLowerCase().includes('específica') || i.parte.toLowerCase().includes('especifica'));
+    const general = items.filter(i => i.num.startsWith('T'));
+    const especifica = items.filter(i => i.num.startsWith('E'));
     
     return { ...b, general, especifica, hasItems: items.length > 0 };
+
   }).filter(b => b.hasItems || state.editMode);
 
   container.innerHTML = grouped.map(block => {
