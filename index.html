@@ -1,60 +1,288 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Estrategia Oposiciones CAM — Melilla C1/C2</title>
+<title>TemarioCAM — Fluent Liquid</title>
 <style>
-:root{
-  --bg0:#060d1a; --bg1:#0a1a2f; --ink:#f6fbff; --muted:rgba(246,251,255,.65); --soft:rgba(255,255,255,.08);
-  --glass:rgba(255,255,255,.12); --glass2:rgba(255,255,255,.08); --line:rgba(255,255,255,.18);
-  --gold:#ffd88a; --blue:#81c7ff; --red:#ff6b6b; --mint:#8ff7d7; --shadow:0 24px 60px rgba(0,0,0,.45);
-  --prio-high:#ff4d4d; --prio-mid:#ffa500; --prio-low:#4ade80;
+:root[data-theme="dark"] {
+  --bg: #05070a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --accent: #00a2ff;
+  --gold: #ffcc00;
+  --liquid-1: rgba(0, 162, 255, 0.2);
+  --liquid-2: rgba(255, 204, 0, 0.15);
+  --shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth} 
-body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;color:var(--ink);background:#060d1a;overflow-x:hidden}
-.liquid{position:fixed;border-radius:999px;filter:blur(80px);opacity:.3;pointer-events:none;z-index:-1}.b1{width:500px;height:500px;background:var(--blue);left:-200px;top:-100px}.b2{width:400px;height:400px;background:var(--gold);right:-100px;bottom:-100px}
-.app{position:relative;max-width:1300px;margin:auto;padding:20px 20px 80px}.hero{margin:40px 0 30px;text-align:left}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700}h1{font-size:clamp(32px,5vw,56px);margin:10px 0;letter-spacing:-2px}
-.lead{color:var(--muted);font-size:18px;max-width:700px;line-height:1.5}
-.toolbar{position:sticky;top:15px;z-index:100;display:flex;gap:15px;padding:12px;margin:30px 0;background:rgba(10,26,47,.8);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
-.search{flex:1;display:flex;align-items:center;padding:0 15px;background:var(--soft);border-radius:15px}.search input{width:100%;background:none;border:none;padding:12px 0;color:white;font-size:16px;outline:none}
-.filters{display:flex;gap:8px}.btn{border:none;background:var(--soft);color:var(--muted);padding:10px 18px;border-radius:12px;cursor:pointer;font-weight:600;transition:.2s}.btn:hover{background:rgba(255,255,255,.15);color:white}.btn.active{background:var(--blue);color:var(--bg0)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
-.card{background:var(--glass);border:1px solid var(--line);border-radius:28px;padding:24px;position:relative;transition:0.3s cubic-bezier(0.2,0,0,1);display:flex;flex-direction:column;gap:16px}
-.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.4);box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start}
-.prio-tag{font-size:10px;text-transform:uppercase;padding:4px 8px;border-radius:6px;font-weight:900;letter-spacing:1px}
-.prio-high{background:var(--prio-high);color:white}.prio-mid{background:var(--prio-mid);color:white}.prio-low{background:var(--prio-low);color:var(--bg0)}
-.card-num{font-size:14px;font-weight:800;color:var(--gold);opacity:.8}
-.card-title{font-size:18px;font-weight:700;line-height:1.3;margin:4px 0}
-.card-laws{display:flex;flex-direction:column;gap:10px}
-.law-item{background:rgba(0,0,0,.2);border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,.05)}
-.law-name{font-size:13px;font-weight:750;color:var(--blue);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-.law-name a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px}.law-name a:hover{text-decoration:underline}
-.law-arts{font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}
-.strategy{margin-top:auto;padding-top:16px;border-top:1px solid var(--soft);display:flex;justify-content:space-between;align-items:center}
-.progress-select{background:var(--soft);border:1px solid var(--line);color:white;padding:6px 10px;border-radius:10px;font-size:12px;outline:none;cursor:pointer}
-.progress-0{border-color:rgba(255,255,255,.2)}.progress-1{border-color:var(--blue);color:var(--blue)}.progress-2{border-color:var(--prio-low);color:var(--prio-low)}
-.imprescindible{display:block;margin-top:8px;font-size:12px;color:var(--gold);font-weight:600;background:rgba(255,216,138,.1);padding:6px 10px;border-radius:8px}
-@media(max-width:768px){.grid{grid-template-columns:1fr}.toolbar{flex-direction:column}.filters{width:100%;overflow-x:auto;padding-bottom:5px}}
+
+:root[data-theme="light"] {
+  --bg: #f5f7fa;
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-hover: rgba(255, 255, 255, 0.9);
+  --line: rgba(0, 0, 0, 0.05);
+  --text: #1d1d1f;
+  --text-muted: rgba(0, 0, 0, 0.5);
+  --accent: #0071e3;
+  --gold: #bf8f00;
+  --liquid-1: rgba(0, 113, 227, 0.1);
+  --liquid-2: rgba(255, 149, 0, 0.1);
+  --shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; transition: background-color 0.4s, color 0.4s, border-color 0.4s; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fluent Backgrounds */
+.liquid {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+  animation: drift 20s infinite alternate;
+}
+.l1 { width: 600px; height: 600px; background: var(--liquid-1); top: -200px; left: -100px; }
+.l2 { width: 500px; height: 500px; background: var(--liquid-2); bottom: -100px; right: -100px; animation-delay: -5s; }
+
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(50px, 30px) scale(1.1); }
+}
+
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 24px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.brand h1 {
+  font-size: 42px;
+  letter-spacing: -1.5px;
+  margin: 0;
+  font-weight: 800;
+}
+.brand p {
+  color: var(--text-muted);
+  margin: 8px 0 0;
+  font-size: 18px;
+}
+
+/* Theme Toggle */
+.toggle {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 8px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  backdrop-filter: blur(10px);
+}
+.toggle span {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.toggle .active {
+  background: var(--accent);
+  color: white;
+}
+
+/* Search & Filters */
+.nav-bar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+.search-box {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 14px 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+}
+.search-box input {
+  background: none;
+  border: none;
+  color: var(--text);
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+}
+.filter-tabs {
+  display: flex;
+  background: var(--surface);
+  padding: 6px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+}
+.tab {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+.tab.active {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* Fluent Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  padding: 30px;
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  background: var(--surface-hover);
+  transform: scale(1.02);
+  transition: 0.4s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+.badge-high { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
+.badge-mid { background: rgba(255, 159, 10, 0.15); color: #ff9f0a; }
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.law-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.law-item {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.law-item a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.law-item a:hover { text-decoration: underline; }
+.law-item .arts {
+  display: block;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.focus-box {
+  background: rgba(0, 162, 255, 0.05);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border-left: 4px solid var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.footer-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prog-btn {
+  background: var(--line);
+  border: none;
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  header { flex-direction: column; gap: 20px; }
+  .nav-bar { flex-direction: column; align-items: stretch; }
+  .grid { grid-template-columns: 1fr; }
+}
 </style>
-</head><body>
-<div class="liquid b1"></div><div class="liquid b2"></div>
+</head>
+<body>
+
+<div class="liquid l1"></div>
+<div class="liquid l2"></div>
+
 <main class="app">
-  <header class="hero">
-    <span class="eyebrow">Melilla C1/C2 · Strategist</span>
-    <h1>Mapa Normativo al Grano</h1>
-    <p class="lead">Lo que <strong>realmente</strong> tienes que estudiar. Prioridades de examen, enlaces directos a leyes y control de tu progreso personal.</p>
+  <header>
+    <div class="brand">
+      <h1>TemarioCAM</h1>
+      <p>Estrategia y Enfoque</p>
+    </div>
+    <div class="toggle" id="themeToggle">
+      <span data-v="light">Claro</span>
+      <span data-v="dark" class="active">Oscuro</span>
+    </div>
   </header>
 
-  <div class="toolbar">
-    <div class="filters">
-      <button class="btn active" data-exam="all">Todo</button>
-      <button class="btn" data-exam="c1">C1</button>
-      <button class="btn" data-exam="c2">C2</button>
+  <div class="nav-bar">
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Busca leyes o temas..." />
     </div>
-    <div class="search">
-      <input type="text" id="search" placeholder="Buscar por tema o ley..." />
+    <div class="filter-tabs">
+      <button class="tab active" data-exam="all">Todo</button>
+      <button class="tab" data-exam="c1">C1</button>
+      <button class="tab" data-exam="c2">C2</button>
     </div>
   </div>
 
@@ -68,110 +296,95 @@ const LAW_URLS = {
   'Ley 40/2015': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-10566',
   'TREBEP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-11719',
   'LCSP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2017-12902',
-  'LRBRL': 'https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392',
-  'TRLRHL': 'https://www.boe.es/buscar/act.php?id=BOE-A-2004-4244',
-  'Estatuto de Autonomía de Melilla': 'https://www.boe.es/buscar/act.php?id=BOE-A-1995-6544',
-  'LO 3/2007': 'https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115',
-  'LO 3/1981': 'https://www.boe.es/buscar/act.php?id=BOE-A-1981-10325'
+  'Estatuto de Autonomía de Melilla': 'https://www.boe.es/buscar/act.php?id=BOE-A-1995-6544'
 };
 
 const DATA = [
-  {id:'c1-t1', exam:'c1', num:'T1', title:'Constitución: Derechos y Deberes', prio:'high', focus:'Arts. 14, 15-29 (Derechos Fundamentales)', laws:[
-    {n:'Constitución Española', arts:'Título Preliminar, Título I (Cap. I, II) y Título II'}
-  ]},
-  {id:'c1-t5', exam:'c1', num:'T5', title:'Fuentes del Derecho y Reglamento', prio:'mid', focus:'Jerarquía normativa y potestad reglamentaria', laws:[
-    {n:'Ley 39/2015', arts:'Arts. 127-133'},
-    {n:'Ley 40/2015', arts:'Arts. 128-133'}
-  ]},
-  {id:'c1-t6', exam:'c1', num:'T6', title:'Estatuto de Autonomía de Melilla', prio:'high', focus:'Art. 21.1 (Materias de competencia exclusiva)', laws:[
-    {n:'Estatuto de Autonomía de Melilla', arts:'Íntegro (Enfoque en Org. Institucional)'}
-  ]},
-  {id:'c1-t10', exam:'c1', num:'T10', title:'El Interesado y Representación', prio:'high', focus:'Arts. 3-6 (Capacidad y representación)', laws:[
-    {n:'Ley 39/2015', arts:'Arts. 3-12'}
-  ]},
-  {id:'c1-t19', exam:'c1', num:'T19', title:'Contratos del Sector Público', prio:'high', focus:'Umbrales SARA y tipos de contratos', laws:[
-    {n:'LCSP', arts:'Arts. 1-27 (Ámbito y tipos)'}
-  ]},
-  {id:'c1-t25', exam:'c1', num:'T25', title:'Contratos Menores', prio:'high', focus:'Límites: 40k (Obras) / 15k (Servicios)', laws:[
-    {n:'LCSP', arts:'Art. 118'}
-  ]},
-  {id:'c1-t28', exam:'c1', num:'T28', title:'TREBEP: Clases de Personal', prio:'high', focus:'Arts. 8-12 (Funcionario, Interino, Laboral)', laws:[
-    {n:'TREBEP', arts:'Arts. 1-13, 55-62'}
-  ]}
+  {id:'t1', exam:'c1', num:'T1', title:'Constitución y Derechos', prio:'high', focus:'Enfoque total en arts. 14 a 29 (Derechos Fundamentales).', laws:[{n:'Constitución Española', arts:'Título I'}]},
+  {id:'t6', exam:'c1', num:'T6', title:'Estatuto de Melilla', prio:'high', focus:'Memorizar art. 21.1 (Materias exclusivas).', laws:[{n:'Estatuto de Autonomía de Melilla', arts:'Títulos I y II'}]},
+  {id:'t10', exam:'c1', num:'T10', title:'Interesado y Representación', prio:'mid', focus:'Diferencia clara entre art. 4, 5 y 6.', laws:[{n:'Ley 39/2015', arts:'Arts. 3-12'}]},
+  {id:'t19', exam:'c1', num:'T19', title:'Contratos del Sector Público', prio:'high', focus:'Umbrales SARA (Obras > 5.5M / Serv > 221k).', laws:[{n:'LCSP', arts:'Arts. 1-27'}]},
+  {id:'t25', exam:'c1', num:'T25', title:'Contratos Menores', prio:'high', focus:'Límites 15k/40k y prohibición de fraccionamiento.', laws:[{n:'LCSP', arts:'Art. 118'}]},
+  {id:'t28', exam:'c1', num:'T28', title:'Personal al Servicio AAPP', prio:'mid', focus:'Requisitos de acceso (Art. 56).', laws:[{n:'TREBEP', arts:'Arts. 1-13'}]}
 ];
 
-const getUrl = (name) => {
-  for(let key in LAW_URLS) if(name.includes(key)) return LAW_URLS[key];
-  return null;
+let state = {
+  theme: localStorage.getItem('theme') || 'dark',
+  exam: 'all',
+  q: '',
+  progress: JSON.parse(localStorage.getItem('progress') || '{}')
+};
+
+function setUI() {
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.querySelectorAll('#themeToggle span').forEach(s => {
+    s.classList.toggle('active', s.dataset.v === state.theme);
+  });
 }
 
-let state = { exam: 'all', q: '', progress: JSON.parse(localStorage.getItem('temario_progress') || '{}') };
-
 function render() {
+  const grid = document.getElementById('grid');
   const filtered = DATA.filter(d => {
-    const matchExam = state.exam === 'all' || d.exam === state.exam;
-    const matchSearch = d.title.toLowerCase().includes(state.q.toLowerCase()) || d.num.toLowerCase().includes(state.q.toLowerCase());
-    return matchExam && matchSearch;
+    return (state.exam === 'all' || d.exam === state.exam) && 
+           (d.title.toLowerCase().includes(state.q.toLowerCase()) || d.num.toLowerCase().includes(state.q.toLowerCase()));
   });
 
-  const grid = document.getElementById('grid');
   grid.innerHTML = filtered.map(item => {
-    const prog = state.progress[item.id] || 0;
-    const prioLabel = {high:'Alta Prioridad', mid:'Media', low:'Baja'}[item.prio];
-    
+    const prog = state.progress[item.id] || 'Pendiente';
     return `
       <article class="card">
-        <div class="card-top">
-          <span class="card-num">${item.num} · ${item.exam.toUpperCase()}</span>
-          <span class="prio-tag prio-${item.prio}">${prioLabel}</span>
+        <div class="card-meta">
+          <span style="font-weight: 800; font-size: 14px; opacity: 0.5">${item.num} · ${item.exam.toUpperCase()}</span>
+          <span class="badge badge-${item.prio}">${item.prio === 'high' ? 'Crítico' : 'Importante'}</span>
         </div>
-        <h3 class="card-title">${item.title}</h3>
-        <div class="card-laws">
-          ${item.laws.map(l => {
-            const url = getUrl(l.n);
-            return `
-              <div class="law-item">
-                <div class="law-name">
-                  ${url ? `<a href="${url}" target="_blank">${l.n} ↗</a>` : l.n}
-                </div>
-                <div class="law-arts">${l.arts}</div>
-              </div>
-            `;
-          }).join('')}
+        <h2 class="card-title">${item.title}</h2>
+        <div class="law-list">
+          ${item.laws.map(l => `
+            <div class="law-item">
+              <a href="${LAW_URLS[l.n] || '#'}" target="_blank">${l.n} ↗</a>
+              <span class="arts">${l.arts}</span>
+            </div>
+          `).join('')}
         </div>
-        ${item.focus ? `<span class="imprescindible">🎯 Al grano: ${item.focus}</span>` : ''}
-        <div class="strategy">
-          <select class="progress-select progress-${prog}" onchange="updateProgress('${item.id}', this.value)">
-            <option value="0" ${prog == 0 ? 'selected' : ''}>⭕ Pendiente</option>
-            <option value="1" ${prog == 1 ? 'selected' : ''}>🔷 Leído / Resumido</option>
-            <option value="2" ${prog == 2 ? 'selected' : ''}>✅ Dominado</option>
-          </select>
+        <div class="focus-box">🎯 Al grano: ${item.focus}</div>
+        <div class="footer-actions">
+          <button class="prog-btn" onclick="toggleProg('${item.id}')">${prog}</button>
         </div>
       </article>
     `;
   }).join('');
 }
 
-window.updateProgress = (id, val) => {
-  state.progress[id] = val;
-  localStorage.setItem('temario_progress', JSON.stringify(state.progress));
+window.toggleProg = (id) => {
+  const steps = ['Pendiente', 'Leído', 'Dominado'];
+  let cur = steps.indexOf(state.progress[id] || 'Pendiente');
+  state.progress[id] = steps[(cur + 1) % 3];
+  localStorage.setItem('progress', JSON.stringify(state.progress));
   render();
 };
 
-document.querySelectorAll('[data-exam]').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('[data-exam]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state.exam = btn.dataset.exam;
-    render();
-  };
-});
+document.getElementById('themeToggle').onclick = (e) => {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', state.theme);
+  setUI();
+};
 
 document.getElementById('search').oninput = (e) => {
   state.q = e.target.value;
   render();
 };
 
+document.querySelectorAll('.tab').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    t.classList.add('active');
+    state.exam = t.dataset.exam;
+    render();
+  };
+});
+
+setUI();
 render();
 </script>
-</body></html>
+</body>
+</html>
