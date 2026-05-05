@@ -101,6 +101,15 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   .modal-content { padding: 40px; }
   .grid { grid-template-columns: 1fr; padding: 24px; }
 }
+
+.block-container.drag-over { border-color: var(--melilla-gold); background: rgba(255, 215, 0, 0.05); }
+.card[draggable="true"] { cursor: grab; }
+.card[draggable="true"]:active { cursor: grabbing; }
+.card.dragging { opacity: 0.4; transform: scale(0.95); }
+
+.edit-btn { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-muted); display: flex; align-items: center; gap: 8px; backdrop-filter: var(--glass-blur); }
+.edit-btn.active { border-color: var(--melilla-gold); color: var(--melilla-gold); }
+
 </style>
 </head>
 <body>
@@ -110,7 +119,11 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 <main class="app">
   <header>
     <div class="brand"><h1>TemarioCAM</h1><p><span>🏛️</span> Melilla Strategic Hub</p></div>
-    <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <button class="edit-btn" id="resetBtn" style="display:none">Restablecer Orden</button>
+      <button class="edit-btn" id="editToggle"><span>🔓</span> Editar Orden</button>
+      <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
+    </div>
   </header>
 
   <div class="nav-bar">
@@ -401,7 +414,7 @@ const BLOCKS = [
   { 
     id: 'b-melilla', 
     name: 'Ciudad Autónoma de Melilla', 
-    range: {
+    defaultRange: {
       c1: [6,7, 32,37], 
       c2: [10,15, 'E6','E6', 'E8','E11']
     }, 
@@ -411,7 +424,7 @@ const BLOCKS = [
   { 
     id: 'b-estado', 
     name: 'Organización del Estado', 
-    range: {
+    defaultRange: {
       c1: [1,4], 
       c2: [1,8]
     }, 
@@ -421,7 +434,7 @@ const BLOCKS = [
   { 
     id: 'b-admin', 
     name: 'Derecho Administrativo', 
-    range: {
+    defaultRange: {
       c1: [5,5, 9,27], 
       c2: [9,9, 'E1','E5', 'E7','E7', 'E12','E14']
     }, 
@@ -431,7 +444,7 @@ const BLOCKS = [
   { 
     id: 'b-financiera', 
     name: 'Gestión Financiera', 
-    range: {
+    defaultRange: {
       c1: [38,42], 
       c2: ['E15','E16']
     }, 
@@ -441,7 +454,7 @@ const BLOCKS = [
   { 
     id: 'b-personal', 
     name: 'Función Pública', 
-    range: {
+    defaultRange: {
       c1: [8,8, 28,31], 
       c2: [16,16, 'E17','E17']
     }, 
@@ -455,11 +468,39 @@ const ALL_DATA = [
   ...C2.map(x => ({...x, exam:'c2', id:'c2-'+x.num, examName:'Auxiliar C2'}))
 ];
 
+function getInitialGrouping() {
+  const saved = localStorage.getItem('userGrouping');
+  if (saved) return JSON.parse(saved);
+  
+  const mapping = {};
+  ALL_DATA.forEach(item => {
+    const block = BLOCKS.find(b => {
+      const isC1 = item.exam === 'c1';
+      const r = isC1 ? b.defaultRange.c1 : b.defaultRange.c2;
+      const n = item.num;
+      for(let i=0; i<r.length; i+=2) {
+        if(typeof r[i] === 'number') {
+          const val = parseInt(n.replace(/\D/g, ''));
+          if(val >= r[i] && val <= r[i+1]) return true;
+        } else {
+          if(n === r[i] || (n >= r[i] && n <= r[i+1])) return true;
+        }
+      }
+      return false;
+    });
+    mapping[item.id] = block ? block.id : 'b-admin';
+  });
+  return mapping;
+}
+
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
   exam: 'all', q: '',
-  openBlocks: new Set(['b-melilla', 'b-estado', 'b-admin', 'b-financiera', 'b-personal'])
+  openBlocks: new Set(['b-melilla', 'b-estado', 'b-admin', 'b-financiera', 'b-personal']),
+  userGrouping: getInitialGrouping(),
+  editMode: false
 };
+
 
 function parseArts(text) {
   const parts = text.split(/\s\+\s/);
@@ -481,33 +522,15 @@ function render() {
   const filtered = ALL_DATA.filter(d => (state.exam === 'all' || d.exam === state.exam) && (d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase()));
 
   const grouped = BLOCKS.map(b => ({
-    ...b, items: filtered.filter(item => {
-      const isC1 = item.exam === 'c1';
-      const r = isC1 ? b.range.c1 : b.range.c2;
-      const n = item.num;
-      for(let i=0; i<r.length; i+=2) {
-        if(typeof r[i] === 'number') {
-          const val = parseInt(n.replace(/\D/g, ''));
-          if(val >= r[i] && val <= r[i+1]) return true;
-        } else {
-          const valStr = n;
-          const startStr = r[i];
-          const endStr = r[i+1];
-          if(valStr === startStr) return true;
-          if(valStr.startsWith('E') && startStr.startsWith('E')) {
-             const v = parseInt(valStr.substring(1));
-             const s = parseInt(startStr.substring(1));
-             const e = parseInt(endStr.substring(1));
-             if(v >= s && v <= e) return true;
-          }
-        }
-      }
-      return false;
-    })
-  })).filter(b => b.items.length > 0);
+    ...b, items: filtered.filter(item => state.userGrouping[item.id] === b.id)
+  })).filter(b => b.items.length > 0 || state.editMode);
 
   container.innerHTML = grouped.map(block => `
-    <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}">
+    <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}" 
+         id="${block.id}"
+         ondragover="handleDragOver(event, '${block.id}')" 
+         ondragleave="handleDragLeave(event, '${block.id}')"
+         ondrop="handleDrop(event, '${block.id}')">
       <div class="block-header" onclick="toggleBlock('${block.id}')">
         <div class="icon-wrap">${block.icon}<h3 style="color:${block.accent}">${block.name}</h3></div>
         <span style="font-size: 11px; font-weight: 900; opacity: 0.5; letter-spacing:1px; color:var(--text)">${state.openBlocks.has(block.id) ? 'CERRAR' : 'ABRIR'}</span>
@@ -515,17 +538,69 @@ function render() {
       <div class="block-content" style="${state.openBlocks.has(block.id) ? 'display:block' : 'display:none'}">
         <div class="grid">
           ${block.items.map(item => `
-            <article class="card" onclick="openModal('${item.id}')">
+            <article class="card" 
+                     draggable="${state.editMode}" 
+                     ondragstart="handleDragStart(event, '${item.id}')"
+                     ondragend="handleDragEnd(event)"
+                     onclick="${state.editMode ? '' : `openModal('${item.id}')`}">
               <div class="card-num" style="color:${block.accent}">${item.num} · NÚCLEO</div>
               <h2 class="card-title">${item.enunciado}</h2>
               <div style="margin-top:auto; font-size:11px; font-weight:800; opacity:0.6;">${item.examName}</div>
             </article>
           `).join('')}
+          ${state.editMode && block.items.length === 0 ? `<div style="grid-column: 1/-1; padding:40px; text-align:center; opacity:0.3; border: 2px dashed var(--line); border-radius:32px;">Suelta un tema aquí</div>` : ''}
         </div>
       </div>
     </div>
   `).join('');
+
+  document.getElementById('resetBtn').style.display = state.editMode ? 'block' : 'none';
 }
+
+window.handleDragStart = (e, id) => {
+  e.dataTransfer.setData('text/plain', id);
+  e.currentTarget.classList.add('dragging');
+};
+
+window.handleDragEnd = (e) => {
+  e.currentTarget.classList.remove('dragging');
+};
+
+window.handleDragOver = (e, blockId) => {
+  if (!state.editMode) return;
+  e.preventDefault();
+  document.getElementById(blockId).classList.add('drag-over');
+};
+
+window.handleDragLeave = (e, blockId) => {
+  document.getElementById(blockId).classList.remove('drag-over');
+};
+
+window.handleDrop = (e, blockId) => {
+  if (!state.editMode) return;
+  e.preventDefault();
+  document.getElementById(blockId).classList.remove('drag-over');
+  const itemId = e.dataTransfer.getData('text/plain');
+  state.userGrouping[itemId] = blockId;
+  localStorage.setItem('userGrouping', JSON.stringify(state.userGrouping));
+  render();
+};
+
+document.getElementById('editToggle').onclick = () => {
+  state.editMode = !state.editMode;
+  document.getElementById('editToggle').innerHTML = state.editMode ? '<span>🔒</span> Bloquear Orden' : '<span>🔓</span> Editar Orden';
+  document.getElementById('editToggle').classList.toggle('active', state.editMode);
+  render();
+};
+
+document.getElementById('resetBtn').onclick = () => {
+  if (confirm('¿Restablecer el orden estratégico original?')) {
+    localStorage.removeItem('userGrouping');
+    state.userGrouping = getInitialGrouping();
+    render();
+  }
+};
+
 
 window.toggleBlock = (id) => {
   if (state.openBlocks.has(id)) state.openBlocks.delete(id);
