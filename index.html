@@ -820,10 +820,17 @@ render();
       </div>
 
       <div class="chart-section" style="grid-column: span 2;">
-        <div class="chart-title">📊 Densidad de Bloques Estratégicos</div>
-        <div id="blockStatsChart" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
-          <!-- Estadísticas de bloques -->
+        <div class="chart-title">🧭 Balance del Temario (General vs Específica)</div>
+        <div id="partBalanceChart" style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Balance filled by JS -->
         </div>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-title">📊 Densidad de Bloques Estratégicos</div>
+      <div id="blockStatsChart" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+        <!-- Estadísticas de bloques -->
       </div>
     </div>
   </div>
@@ -855,8 +862,13 @@ function calculateStats() {
   const lawCounts = {};
   const typeCounts = { 'Leyes Orgánicas': 0, 'Reales Decretos Legislativos': 0, 'Leyes Ordinarias': 0, 'Reglamentos/Otros': 0 };
   let totalArticles = 0;
+  let generalCount = 0;
+  let specificCount = 0;
 
   allThemes.forEach(theme => {
+    if (theme.num.startsWith('T')) generalCount++;
+    else if (theme.num.startsWith('E')) specificCount++;
+
     theme.leyes.forEach(law => {
       const name = law.n;
       lawCounts[name] = (lawCounts[name] || 0) + 1;
@@ -901,6 +913,19 @@ function calculateStats() {
       <div style="font-size: 13px; font-weight: 700; color: var(--melilla-gold); margin-top: 5px;">${Math.round((count/Object.values(typeCounts).reduce((a,b)=>a+b,0))*100)}% del temario</div>
     </div>
   `).join('');
+
+  // Part Balance
+  const totalParts = generalCount + specificCount;
+  document.getElementById('partBalanceChart').innerHTML = `
+    <div class="bar-row">
+      <div class="bar-label"><span>Parte General (Temas T)</span><span>${generalCount} temas (${Math.round(generalCount/totalParts*100)}%)</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="${(generalCount/totalParts)*100}%" style="background: var(--melilla-gold)"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>Parte Específica (Temas E)</span><span>${specificCount} temas (${Math.round(specificCount/totalParts*100)}%)</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="${(specificCount/totalParts)*100}%" style="background: var(--melilla-blue)"></div></div>
+    </div>
+  `;
 
   // Block Stats
   document.getElementById('blockStatsChart').innerHTML = BLOCKS.map(block => {
