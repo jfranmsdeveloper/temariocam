@@ -107,7 +107,15 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .card[draggable="true"]:active { cursor: grabbing; }
 .card.dragging { opacity: 0.4; transform: scale(0.95); }
 
+.block-select {
+  background: var(--surface-hover); border: 1px solid var(--line); color: var(--text);
+  padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; outline: none;
+  width: 100%; margin-top: 10px; cursor: pointer; backdrop-filter: var(--glass-blur);
+}
+.block-select:focus { border-color: var(--melilla-gold); }
+
 .edit-btn { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-muted); display: flex; align-items: center; gap: 8px; backdrop-filter: var(--glass-blur); }
+
 .edit-btn.active { border-color: var(--melilla-gold); color: var(--melilla-gold); }
 
 </style>
@@ -545,8 +553,14 @@ function render() {
                      onclick="${state.editMode ? '' : `openModal('${item.id}')`}">
               <div class="card-num" style="color:${block.accent}">${item.num} · NÚCLEO</div>
               <h2 class="card-title">${item.enunciado}</h2>
+              ${state.editMode ? `
+                <select class="block-select" onchange="moveItem('${item.id}', this.value)" onclick="event.stopPropagation()">
+                  ${BLOCKS.map(b => `<option value="${b.id}" ${b.id === block.id ? 'selected' : ''}>Mover a ${b.name}</option>`).join('')}
+                </select>
+              ` : ''}
               <div style="margin-top:auto; font-size:11px; font-weight:800; opacity:0.6;">${item.examName}</div>
             </article>
+
           `).join('')}
           ${state.editMode && block.items.length === 0 ? `<div style="grid-column: 1/-1; padding:40px; text-align:center; opacity:0.3; border: 2px dashed var(--line); border-radius:32px;">Suelta un tema aquí</div>` : ''}
         </div>
@@ -581,10 +595,18 @@ window.handleDrop = (e, blockId) => {
   e.preventDefault();
   document.getElementById(blockId).classList.remove('drag-over');
   const itemId = e.dataTransfer.getData('text/plain');
+  moveItem(itemId, blockId);
+};
+
+window.moveItem = (itemId, blockId) => {
   state.userGrouping[itemId] = blockId;
   localStorage.setItem('userGrouping', JSON.stringify(state.userGrouping));
   render();
+  if (document.getElementById('modal').style.display === 'grid') {
+    openModal(itemId);
+  }
 };
+
 
 document.getElementById('editToggle').onclick = () => {
   state.editMode = !state.editMode;
@@ -610,11 +632,22 @@ window.toggleBlock = (id) => {
 
 window.openModal = (id) => {
   const item = ALL_DATA.find(d => d.id === id);
+  const currentBlockId = state.userGrouping[item.id];
   const body = document.getElementById('modalBody');
   body.innerHTML = `
     <div class="modal-header">
-      <span style="font-weight:900; color:var(--melilla-gold); letter-spacing:2px; font-size:12px;">ESTRATEGIA JURÍDICA · ${item.examName}</span>
-      <h2 style="margin:15px 0;">${item.num}: ${item.enunciado}</h2>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
+        <div style="flex:1; min-width:300px;">
+          <span style="font-weight:900; color:var(--melilla-gold); letter-spacing:2px; font-size:12px;">ESTRATEGIA JURÍDICA · ${item.examName}</span>
+          <h2 style="margin:15px 0;">${item.num}: ${item.enunciado}</h2>
+        </div>
+        <div style="width:250px;">
+          <span style="font-size:10px; font-weight:900; opacity:0.5; letter-spacing:1px; display:block; margin-bottom:5px;">ASIGNAR A BLOQUE ESTRATÉGICO</span>
+          <select class="block-select" onchange="moveItem('${item.id}', this.value)" style="margin:0;">
+            ${BLOCKS.map(b => `<option value="${b.id}" ${b.id === currentBlockId ? 'selected' : ''}>${b.name}</option>`).join('')}
+          </select>
+        </div>
+      </div>
     </div>
     <div class="laws-container">
       ${item.leyes.map(l => `
@@ -630,6 +663,7 @@ window.openModal = (id) => {
   document.getElementById('modal').style.display = 'grid';
   document.body.style.overflow = 'hidden';
 };
+
 
 window.closeModal = () => {
   document.getElementById('modal').style.display = 'none';
