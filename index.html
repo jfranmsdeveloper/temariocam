@@ -207,6 +207,52 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   <div id="content"></div>
 </main>
 
+<div id="analysisDashboard">
+  <div class="dash-container">
+    <div class="dash-header">
+      <div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 38px; color: var(--melilla-blue); margin:0;">Análisis Legislativo Estratégico</h2>
+        <p style="color: var(--text-muted); font-weight: 700; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px; font-size: 12px;">Inteligencia de Datos · Temario C1/C2 Ciudad Autónoma de Melilla</p>
+      </div>
+      <button class="close-dash" onclick="toggleDashboard()">Cerrar Dashboard</button>
+    </div>
+
+    <div class="dash-grid" id="kpiGrid">
+      <!-- KPIs dinámicos -->
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-title">🏆 Top Leyes Maestras (Impacto por Temas)</div>
+      <div id="topLawsChart">
+        <!-- Barras de impacto -->
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="chart-section" style="grid-column: span 2;">
+        <div class="chart-title">⚖️ Mix de Jerarquía Normativa</div>
+        <div id="normativeMix" class="norm-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <!-- Mix descriptivo -->
+        </div>
+      </div>
+
+      <div class="chart-section" style="grid-column: span 2;">
+        <div class="chart-title">🧭 Balance del Temario (General vs Específica)</div>
+        <div id="partBalanceChart" style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Balance filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-title">📊 Densidad de Bloques Estratégicos</div>
+      <div id="blockStatsChart" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+        <!-- Estadísticas de bloques -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">✕</span>
@@ -401,7 +447,6 @@ const C2 = [
 {parte:"Parte general",num:"T11",enunciado:"Estatuto de Melilla: Título II de las competencias.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 20–27 (las 25 materias)"}
 ]},
-{parte:"Parte general",num:"T12",enunciado:"Estatuto de Melilla: Título III Régimen jurídico.",leyes:[
 {parte:"Parte general",num:"T12",enunciado:"Estatuto de Autonomía de Melilla: Título III Régimen jurídico.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 28–32"}
 ]},
@@ -789,54 +834,8 @@ window.onclick = (e) => { if (e.target.id === 'modal') closeModal(); };
 
 setUI();
 render();
-</script>
-<div id="analysisDashboard">
-  <div class="dash-container">
-    <div class="dash-header">
-      <div>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 38px; color: var(--melilla-blue); margin:0;">Análisis Legislativo Estratégico</h2>
-        <p style="color: var(--text-muted); font-weight: 700; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px; font-size: 12px;">Inteligencia de Datos · Temario C1/C2 Ciudad Autónoma de Melilla</p>
-      </div>
-      <button class="close-dash" onclick="toggleDashboard()">Cerrar Dashboard</button>
-    </div>
+// Fin de lógica de interacción principal
 
-    <div class="dash-grid" id="kpiGrid">
-      <!-- KPIs dinámicos -->
-    </div>
-
-    <div class="chart-section">
-      <div class="chart-title">🏆 Top Leyes Maestras (Impacto por Temas)</div>
-      <div id="topLawsChart">
-        <!-- Barras de impacto -->
-      </div>
-    </div>
-
-    <div class="dash-grid">
-      <div class="chart-section" style="grid-column: span 2;">
-        <div class="chart-title">⚖️ Mix de Jerarquía Normativa</div>
-        <div id="normativeMix" class="norm-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-          <!-- Mix descriptivo -->
-        </div>
-      </div>
-
-      <div class="chart-section" style="grid-column: span 2;">
-        <div class="chart-title">🧭 Balance del Temario (General vs Específica)</div>
-        <div id="partBalanceChart" style="display: flex; flex-direction: column; gap: 20px;">
-          <!-- Balance filled by JS -->
-        </div>
-      </div>
-    </div>
-
-    <div class="chart-section">
-      <div class="chart-title">📊 Densidad de Bloques Estratégicos</div>
-      <div id="blockStatsChart" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
-        <!-- Estadísticas de bloques -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
 let dashboardActive = false;
 
 function toggleDashboard() {
