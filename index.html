@@ -129,15 +129,12 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 
 .edit-btn { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-muted); display: flex; align-items: center; gap: 8px; backdrop-filter: var(--glass-blur); }
 
-
-
 .edit-btn.active { border-color: var(--melilla-gold); color: var(--melilla-gold); }
 
   .analysis-btn { background: var(--melilla-blue); color: white; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,122,255,0.2); }
   .analysis-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,122,255,0.4); background: #0066d6; }
   .analysis-btn svg { width: 16px; height: 16px; fill: white; }
 
-  /* Liquid Glass 2026 Refinements */
   #analysisDashboard {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(50px) saturate(180%);
@@ -310,265 +307,265 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 
 <script>
 const C1 = [
-{parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[
+{parte:"Parte general",num:"T1",titulo:"Constitución Española: Características, Derechos y la Corona",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[
   {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9 (Título Preliminar) + arts. 10–55 (Título I: Capítulos I al V, incluyendo derechos fundamentales arts. 15–29, derechos y deberes arts. 30–38, principios rectores arts. 39–52, garantías arts. 53–54 y suspensión art. 55) + arts. 56–65 (Título II: La Corona) + arts. 166–169 (Título X: Reforma constitucional)"}
 ]},
-{parte:"Parte general",num:"T2",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales. Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes Generales.",leyes:[
+{parte:"Parte general",num:"T2",titulo:"Cortes Generales, Gobierno y Relaciones Institucionales",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales. Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes Generales.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 66–96 (Título III: Cortes Generales — Cámaras, elaboración de leyes y Tratados Internacionales) + arts. 97–107 (Título IV: Gobierno y Administración) + arts. 108–116 (Título V: Relaciones Gobierno–Cortes)"}
 ]},
-{parte:"Parte general",num:"T3",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial: composición y funcionamiento en la Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial.",leyes:[
+{parte:"Parte general",num:"T3",titulo:"Poder Judicial y Consejo General del Poder Judicial",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial: composición y funcionamiento en la Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 117–127 (Título VI: Poder Judicial)"},
   {n:"Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial",arts:"Arts. 558–565 (Libro VIII, Título I: atribuciones del Consejo General del Poder Judicial) + arts. 566–584 (Título II: Vocales, Presidente y Vicepresidente — núcleo del tema) + arts. 585–642 (Título III: órganos del Consejo General del Poder Judicial)"}
 ]},
-{parte:"Parte general",num:"T4",enunciado:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo.",leyes:[
+{parte:"Parte general",num:"T4",titulo:"Institución del Defensor del Pueblo",enunciado:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo.",leyes:[
   {n:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo",arts:"Íntegra: arts. 1–37 (Títulos I al V: nombramiento y cese, procedimiento, resoluciones, relaciones con las Cortes, medios) + Disposiciones Adicional, Transitoria y Final"}
 ]},
-{parte:"Parte general",num:"T5",enunciado:"Fuentes del Derecho Público. La ley: clases de leyes. El reglamento: concepto y clases.",leyes:[
+{parte:"Parte general",num:"T5",titulo:"Fuentes del Derecho: Leyes y Potestad Reglamentaria",enunciado:"Fuentes del Derecho Público. La ley: clases de leyes. El reglamento: concepto y clases.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 81–82 (leyes orgánicas y decretos legislativos), art. 86 (decretos-ley), art. 97 (potestad reglamentaria del Gobierno)"},
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 127–133 (Título VI: iniciativa legislativa y potestad reglamentaria)"},
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 128–133 (Título VI: potestad reglamentaria — jerarquía e inderogabilidad singular)"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Arts. 69–71 (Cap. IV y V del Título IV: elaboración de reglamentos del Consejo de Gobierno y reglamentos organizativos de las Consejerías)"}
 ]},
-{parte:"Parte general",num:"T6",enunciado:"Ley Orgánica 2/1995, de 13 de marzo, sobre el Estatuto de Autonomía de la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte general",num:"T6",titulo:"Estatuto de Autonomía de la Ciudad de Melilla",enunciado:"Ley Orgánica 2/1995, de 13 de marzo, sobre el Estatuto de Autonomía de la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Íntegra: arts. 1–4 (Título Preliminar) + arts. 5–19 (Título I: organización institucional — Asamblea, Presidente, Consejo de Gobierno) + arts. 20–27 (Título II: competencias, incluido art. 21.1 con las 25 materias) + arts. 28–32 (Título III: régimen jurídico) + art. 33 (Título IV: cooperación con el Estado) + arts. 34–40 (Título V: régimen económico y financiero) + art. 41 (Título VI: reforma) + Disposiciones Adicionales 1ª–6ª, Transitorias 1ª–4ª y Finales"}
 ]},
-{parte:"Parte general",num:"T7",enunciado:"El Régimen local español: principios, clases de entidades locales, el Municipio, término municipal, población, empadronamiento, organización (Título II Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local), competencias y servicios mínimos.",leyes:[
+{parte:"Parte general",num:"T7",titulo:"Régimen Local: Municipio, Población y Competencias",enunciado:"El Régimen local español: principios, clases de entidades locales, el Municipio, término municipal, población, empadronamiento, organización (Título II Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local), competencias y servicios mínimos.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 137–142 (Título VIII, Cap. II: Administración Local — autonomía municipal y provincial)"},
   {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Art. 1 (Título Preliminar) + arts. 2–10 (Título I: disposiciones generales y clases de entidades) + arts. 11–18 (Título II, Cap. I: territorio y población — empadronamiento arts. 15–16) + arts. 19–24 bis (Título II, Cap. II: organización municipal — Alcalde art. 21, Pleno art. 22, Junta de Gobierno Local art. 23) + arts. 25–28 (Título II, Cap. III: competencias propias art. 25, servicios mínimos obligatorios art. 26, delegación art. 27)"}
 ]},
-{parte:"Parte general",num:"T8",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y Título I: El principio de igualdad y la tutela contra la discriminación.",leyes:[
+{parte:"Parte general",num:"T8",titulo:"Igualdad Efectiva entre Mujeres y Hombres",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y Título I: El principio de igualdad y la tutela contra la discriminación.",leyes:[
   {n:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",arts:"Arts. 1–2 (Título Preliminar: objeto y ámbito) + arts. 3–13 (Título I: principio de igualdad, discriminación directa e indirecta art. 6, acoso sexual art. 7, acciones positivas art. 11, tutela judicial art. 12, prueba art. 13). También: art. 53 y DA 1ª (presencia equilibrada en Tribunales de Selección)"}
 ]},
-{parte:"Parte específica",num:"T9",enunciado:"La potestad organizatoria de la Administración: órganos administrativos, competencia y sus técnicas de traslación, órganos colegiados.",leyes:[
+{parte:"Parte específica",num:"T9",titulo:"Organización Administrativa, Competencia y Órganos Colegiados",enunciado:"La potestad organizatoria de la Administración: órganos administrativos, competencia y sus técnicas de traslación, órganos colegiados.",leyes:[
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 5–7 (Sección 1ª: órganos administrativos) + arts. 8–14 (Sección 2ª: competencia — delegación art. 9, avocación art. 10, encomiendas art. 11, delegación de firma art. 12, suplencia art. 13) + arts. 15–22 (Sección 3ª: órganos colegiados — funcionamiento arts. 15–18, órganos Administración General del Estado arts. 19–22)"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Arts. 47–67 (Título IV, Cap. II: órganos de la Administración — Secretarios Técnicos y Directores Generales arts. 50–57, órganos inferiores arts. 61–64, órganos colegiados arts. 66–67) + arts. 72–79 (Cap. VI: ejercicio de competencias — delegación art. 73, avocación art. 74, encomienda art. 75, delegación de firma art. 76, suplencia art. 77)"}
 ]},
-{parte:"Parte específica",num:"T10",enunciado:"Las personas ante la Administración: derechos y obligaciones. El interesado: concepto, capacidad de obrar y representación. Identificación de los interesados y sus derechos en el procedimiento.",leyes:[
+{parte:"Parte específica",num:"T10",titulo:"Interesados en el Procedimiento: Derechos y Representación",enunciado:"Las personas ante la Administración: derechos y obligaciones. El interesado: concepto, capacidad de obrar y representación. Identificación de los interesados y sus derechos en el procedimiento.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 3–8 (Título I, Cap. I: capacidad de obrar art. 3, concepto de interesado art. 4, representación arts. 5–6, identificación art. 9) + arts. 9–12 (Cap. II: identificación y firma electrónica) + art. 53 (derechos del interesado en el procedimiento)"}
 ]},
-{parte:"Parte específica",num:"T11",enunciado:"El acto administrativo. Concepto. Elementos. Clases.",leyes:[
+{parte:"Parte específica",num:"T11",titulo:"El Acto Administrativo: Concepto, Elementos y Clases",enunciado:"El acto administrativo. Concepto. Elementos. Clases.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 34–36 (Título III, Cap. I: producción y contenido del acto art. 34, motivación art. 35, forma art. 36)"},
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 1–4 (Cap. I: disposiciones generales — principios de actuación de las Administraciones Públicas)"}
 ]},
-{parte:"Parte específica",num:"T12",enunciado:"La notificación: contenido, plazo y práctica en papel y electrónica. Notificación infructuosa. La publicación. Demora y retroactividad de la eficacia.",leyes:[
+{parte:"Parte específica",num:"T12",titulo:"Eficacia del Acto: Notificación, Publicación y Plazos",enunciado:"La notificación: contenido, plazo y práctica en papel y electrónica. Notificación infructuosa. La publicación. Demora y retroactividad de la eficacia.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Art. 37 (inderogabilidad singular) + arts. 38–39 (ejecutividad y efectos del acto) + arts. 40–46 (Cap. II, Sección sobre notificaciones: condiciones generales art. 41, notificación en papel art. 42, electrónica art. 43, infructuosa art. 44, publicación art. 45, indicación de recursos art. 46)"}
 ]},
-{parte:"Parte específica",num:"T13",enunciado:"Invalidez del acto administrativo: nulidad de pleno derecho y anulabilidad. Conservación del acto. Revocación. Rectificación de errores. Revisión de oficio. Declaración de lesividad.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 47–52 (Título III, Cap. III: nulidad de pleno derecho art. 47, anulabilidad art. 48, conversión art. 49, conservación art. 51, convalidación art. 52) + arts. 106–111 (Título V, Cap. I: revisión de oficio art. 106, declaración de lesividad art. 107, suspensión art. 108, revocación y rectificación art. 109, límites art. 110, competencia art. 111)"}
+{parte:"Parte específica",num:"T13",titulo:"Invalidez, Revisión y Revocación de Actos Administrativos",enunciado:"Invalidez del acto administrativo: nulidad de pleno derecho y anulabilidad. Conservación del acto. Revocación. Rectificación de errores. Revisión de oficio. Declaración de lesividad.",leyes:[
+  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 47–52 (Título III, Cap. III: nulidad de pleno derecho art. 47, anulabilidad art. 48, convalidación art. 52) + arts. 106–111 (Título V, Cap. I: revisión de oficio art. 106, declaración de lesividad art. 107, suspensión art. 108, revocación y rectificación art. 109, límites art. 110, competencia art. 111)"}
 ]},
-{parte:"Parte específica",num:"T14",enunciado:"Normas de actuación de las Administraciones Públicas: registro, archivo, colaboración y comparecencia. Términos y plazos: cómputo, ampliación y tramitación de urgencia.",leyes:[
+{parte:"Parte específica",num:"T14",titulo:"Normas de Actuación: Registro, Archivo y Cómputo de Plazos",enunciado:"Normas de actuación de las Administraciones Públicas: registro, archivo, colaboración y comparecencia. Términos y plazos: cómputo, ampliación y tramitación de urgencia.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 13–28 (Título II, Cap. I: derechos de las personas art. 13, registro art. 16, archivo art. 17, colaboración art. 18, comparecencia art. 19, comunicaciones entre Administraciones Públicas arts. 20–27) + arts. 29–33 (Cap. II: términos y plazos — cómputo art. 30, ampliación art. 32, tramitación de urgencia art. 33)"}
 ]},
-{parte:"Parte específica",num:"T15",enunciado:"Las fases del procedimiento administrativo: iniciación, ordenación, instrucción y terminación.",leyes:[
+{parte:"Parte específica",num:"T15",titulo:"Fases del Procedimiento: Iniciación, Instrucción y Terminación",enunciado:"Las fases del procedimiento administrativo: iniciación, ordenación, instrucción y terminación.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 54–69 (Título IV, Cap. II: iniciación — de oficio arts. 54–65, a solicitud arts. 66–69) + arts. 70–74 (Cap. III: ordenación) + arts. 75–83 (Cap. IV: instrucción — prueba arts. 77–78, informes arts. 79–81, participación arts. 82–83) + arts. 84–95 (Cap. V: terminación — resolución arts. 87–88, desistimiento y renuncia arts. 93–94, caducidad art. 95)"}
 ]},
-{parte:"Parte específica",num:"T16",enunciado:"La obligación de resolver. Suspensión y ampliación del plazo para resolver. La falta de resolución expresa: el silencio administrativo.",leyes:[
+{parte:"Parte específica",num:"T16",titulo:"Obligación de Resolver y Silencio Administrativo",enunciado:"La obligación de resolver. Suspensión y ampliación del plazo para resolver. La falta de resolución expresa: el silencio administrativo.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Art. 21 (obligación de resolver y plazo máximo) + art. 22 (suspensión del plazo) + art. 23 (ampliación del plazo para resolver) + art. 24 (silencio administrativo en procedimientos iniciados a solicitud) + art. 25 (silencio en procedimientos iniciados de oficio) + art. 26 (falta de resolución en recursos)"}
 ]},
-{parte:"Parte específica",num:"T17",enunciado:"Recursos administrativos. La coacción administrativa: autotutela ejecutiva. Ejecución forzosa de actos administrativos: medios y principios.",leyes:[
+{parte:"Parte específica",num:"T17",titulo:"Recursos Administrativos y Ejecución Forzosa de Actos",enunciado:"Recursos administrativos. La coacción administrativa: autotutela ejecutiva. Ejecución forzosa de actos administrativos: medios y principios.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 112–120 (Título V, Cap. II: principios de los recursos — reglas generales, suspensión, audiencia) + arts. 121–122 (recurso de alzada) + arts. 123–124 (recurso potestativo de reposición) + arts. 125–126 (recurso extraordinario de revisión) + arts. 97–105 (Título IV, Cap. VII: ejecución — ejecutoriedad art. 98, medios de ejecución forzosa art. 100, apremio sobre patrimonio art. 101, ejecución subsidiaria art. 102, multa coercitiva art. 103, compulsión sobre personas art. 104)"}
 ]},
-{parte:"Parte específica",num:"T18",enunciado:"La potestad sancionadora: concepto y significado. Principios del ejercicio. Especialidades del procedimiento sancionador.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 25–31 (Cap. III del Título Preliminar: principios de la potestad sancionadora — legalidad art. 25, irretroactividad art. 26, tipicidad art. 27, responsabilidad art. 28, proporcionalidad art. 29, prescripción art. 30, concurrrencia art. 31)"},
+{parte:"Parte específica",num:"T18",titulo:"Potestad Sancionadora: Principios y Procedimiento Especial",enunciado:"La potestad sancionadora: concepto y significado. Principios del ejercicio. Especialidades del procedimiento sancionador.",leyes:[
+  {n:"Ley 40/2015, de 1 de octubre, de Régimen Juriddico del Sector Público",arts:"Arts. 25–31 (Cap. III del Título Preliminar: principios de la potestad sancionadora — legalidad art. 25, irretroactividad art. 26, tipicidad art. 27, responsabilidad art. 28, proporcionalidad art. 29, prescripción art. 30, concurrrencia art. 31)"},
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 63–69 (en Título IV: garantías del procedimiento sancionador — procedimiento iniciado de oficio, derechos del presunto responsable, medidas provisionales, resolución)"}
 ]},
-{parte:"Parte específica",num:"T19",enunciado:"Contratos del sector público: objeto y ámbito de la Ley de Contratos del Sector Público. Tipos de contratos. Contratos sujetos a regulación armonizada.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–11 (Título Preliminar: objeto, ámbito subjetivo, negocios y contratos excluidos) + arts. 12–18 (tipos de contratos: obras, concesión de obras, concesión de servicios, suministro, servicios y mixtos) + arts. 19–23 (Sujeto a Regulación Armonizada: umbrales obras 5.538.000 €, servicios 221.000 €) + arts. 24–27 (contratos administrativos y privados)"}
+{parte:"Parte específica",num:"T19",titulo:"Contratos del Sector Público: Tipos y Ámbito de Aplicación",enunciado:"Contratos del sector público: objeto y ámbito de la Ley de Contratos del Sector Público. Tipos de contratos. Contratos sujetos a regulación armonizada.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–11 (Título Preliminar: objeto, ámbito subjetivo, negocios y contratos excluidos) + arts. 12–18 (tipos de contratos: obras, concesión de obras, concesión de servicios, suministro, servicios y mixtos) + arts. 19–23 (Sujeto a Regulación Armonizada: umbrales obras 5.538.000 €, servicios 221.000 €) + arts. 24–27 (contratos administrativos y privados)"}
 ]},
-{parte:"Parte específica",num:"T20",enunciado:"Disposiciones generales sobre contratación del sector público: libertad de pactos, contenido mínimo, perfección y forma del contrato.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 28–43 (principios generales, libertad de pactos, perfeccionamiento y nulidad)"}
+{parte:"Parte específica",num:"T20",titulo:"Disposiciones Generales, Perfección y Forma de los Contratos",enunciado:"Disposiciones generales sobre contratación del sector público: libertad de pactos, contenido mínimo, perfección y forma del contrato.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 28–43 (principios generales, libertad de pactos, perfeccionamiento y nulidad)"}
 ]},
-{parte:"Parte específica",num:"T21",enunciado:"Las partes en los contratos del sector público. Órganos de contratación. Capacidad y solvencia del empresario. Competencia en entidades locales.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 61–98 (órganos de contratación, capacidad, prohibiciones, solvencia)"}
+{parte:"Parte específica",num:"T21",titulo:"Órganos de Contratación y Capacidad del Empresario",enunciado:"Las partes en los contratos del sector público. Órganos de contratación. Capacidad y solvencia del empresario. Competencia en entidades locales.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 61–98 (órganos de contratación, capacidad, prohibiciones, solvencia)"}
 ]},
-{parte:"Parte específica",num:"T22",enunciado:"Objeto, presupuesto base de licitación, valor estimado, precio y revisión. Garantías exigibles. Preparación de contratos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 99–130 (objeto, precio, garantías, preparación del expediente)"}
+{parte:"Parte específica",num:"T22",titulo:"Objeto, Precio, Garantías y Preparación de los Contratos",enunciado:"Objeto, presupuesto base de licitación, valor estimado, precio y revisión. Garantías exigibles. Preparación de contratos.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 99–130 (objeto, precio, garantías, preparación del expediente)"}
 ]},
-{parte:"Parte específica",num:"T23",enunciado:"Adjudicación de los contratos de las Administraciones públicas: normas generales y procedimientos de adjudicación.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 131–187 (normas de adjudicación, procedimientos abierto, restringido, negociado)"}
+{parte:"Parte específica",num:"T23",titulo:"Procedimientos de Adjudicación en la Contratación Pública",enunciado:"Adjudicación de los contratos de las Administraciones públicas: normas generales y procedimientos de adjudicación.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 131–187 (normas de adjudicación, procedimientos abierto, restringido, negociado)"}
 ]},
-{parte:"Parte específica",num:"T24",enunciado:"Efectos de los contratos. Prerrogativas de la Administración pública en los contratos administrativos. Ejecución de los contratos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 188–213 (prerrogativas, ejecución, modificación y resolución)"}
+{parte:"Parte específica",num:"T24",titulo:"Efectos, Prerogativas y Ejecución de los Contratos",enunciado:"Efectos de los contratos. Prerrogativas de la Administración pública en los contratos administrativos. Ejecución de los contratos.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 188–213 (prerrogativas, ejecución, modificación y resolución)"}
 ]},
-{parte:"Parte específica",num:"T25",enunciado:"Los contratos menores. Regulación, límites y procedimiento de adjudicación. Instrucciones de la Oficina Independiente de Regulación y Supervisión de la Contratación. Los contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Art. 118 (contratos menores: obras < 40k, resto < 15k) + art. 332 (Oficina Independiente de Regulación y Supervisión de la Contratación)"},
+{parte:"Parte específica",num:"T25",titulo:"Contratos Menores: Regulación y Régimen en Melilla",enunciado:"Los contratos menores. Regulación, límites y procedimiento de adjudicación. Instrucciones de la Oficina Independiente de Regulación y Supervisión de la Contratación. Los contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Art. 118 (contratos menores: obras < 40k, resto < 15k) + art. 332 (Oficina Independiente de Regulación y Supervisión de la Contratación)"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Art. 112 (contratación administrativa de la Ciudad Autónoma de Melilla)"}
 ]},
-{parte:"Parte específica",num:"T26",enunciado:"Actividad subvencional: tipos de subvenciones, procedimientos de concesión y gestión, reintegro de subvenciones.",leyes:[
+{parte:"Parte específica",num:"T26",titulo:"Actividad Subvencional: Concesión, Gestión y Reintegro",enunciado:"Actividad subvencional: tipos de subvenciones, procedimientos de concesión y gestión, reintegro de subvenciones.",leyes:[
   {n:"Ley 38/2003, de 17 de noviembre, General de Subvenciones",arts:"Arts. 1–10 (principios) + arts. 22–34 (concesión) + arts. 36–43 (reintegro)"}
 ]},
-{parte:"Parte específica",num:"T27",enunciado:"La responsabilidad patrimonial de la Administración: caracteres, presupuestos, daños resarcibles, procedimiento especial.",leyes:[
+{parte:"Parte específica",num:"T27",titulo:"Responsabilidad Patrimonial de la Administración Pública",enunciado:"La responsabilidad patrimonial de la Administración: caracteres, presupuestos, daños resarcibles, procedimiento especial.",leyes:[
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 32–37 (principios responsabilidad)"},
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 61, 65, 67, 81, 91, 96 (especialidades procedimiento)"}
 ]},
-{parte:"Parte específica",num:"T28",enunciado:"Los empleados públicos: clases y régimen jurídico. El acceso a los empleos públicos. La extinción de la condición de empleado público.",leyes:[
+{parte:"Parte específica",num:"T28",titulo:"Empleados Públicos: Clases, Acceso y Extinción",enunciado:"Los empleados públicos: clases y régimen jurídico. El acceso a los empleos públicos. La extinción de la condición de empleado público.",leyes:[
   {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 1–13 (clases) + arts. 55–68 (acceso y pérdida condición)"}
 ]},
-{parte:"Parte específica",num:"T29",enunciado:"El régimen de provisión de puestos de trabajo: sistemas de provisión. Las situaciones administrativas de los funcionarios locales.",leyes:[
+{parte:"Parte específica",num:"T29",titulo:"Provisión de Puestos y Situaciones Administrativas",enunciado:"El régimen de provisión de puestos de trabajo: sistemas de provisión. Las situaciones administrativas de los funcionarios locales.",leyes:[
   {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 78–92 (provisión y situaciones)"}
 ]},
-{parte:"Parte específica",num:"T30",enunciado:"Los derechos de los funcionarios públicos: derechos individuales y colectivos. Sindicación y huelga. Negociación colectiva.",leyes:[
+{parte:"Parte específica",num:"T30",titulo:"Derechos de los Funcionarios: Individuales y Colectivos",enunciado:"Los derechos de los funcionarios públicos: derechos individuales y colectivos. Sindicación y huelga. Negociación colectiva.",leyes:[
   {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 14–15 (derechos) + arts. 31–46 (negociación)"}
 ]},
-{parte:"Parte específica",num:"T31",enunciado:"Los deberes de los funcionarios públicos. El régimen disciplinario en el Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público. El régimen de incompatibilidades.",leyes:[
+{parte:"Parte específica",num:"T31",titulo:"Deberes, Régimen Disciplinario e Incompatibilidades",enunciado:"Los deberes de los funcionarios públicos. El régimen disciplinario en el Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público. El régimen de incompatibilidades.",leyes:[
   {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 52–54 (deberes) + arts. 93–98 (disciplina)"},
   {n:"Ley 53/1984, de 26 de diciembre, de Incompatibilidades",arts:"Arts. 1–22"}
 ]},
-{parte:"Parte específica",num:"T32",enunciado:"La intervención administrativa local en la actividad privada. Las autorizaciones administrativas. El régimen de las licencias.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 84–85 (intervención)"},
+{parte:"Parte específica",num:"T32",titulo:"Intervención Local en la Actividad Privada y Licencias",enunciado:"La intervención administrativa local en la actividad privada. Las autorizaciones administrativas. El régimen de las licencias.",leyes:[
+  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 84–85 (intervención)"},
   {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 1–22 (policía y licencias)"}
 ]},
-{parte:"Parte específica",num:"T33",enunciado:"El Presidente de la Ciudad Autónoma de Melilla. Naturaleza y atribuciones. Cuestión de confianza y Moción de Censura.",leyes:[
+{parte:"Parte específica",num:"T33",titulo:"El Presidente de Melilla: Atribuciones y Control",enunciado:"El Presidente de la Ciudad Autónoma de Melilla. Naturaleza y atribuciones. Cuestión de confianza y Moción de Censura.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 14–15"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 5–11"}
 ]},
-{parte:"Parte específica",num:"T34",enunciado:"El Consejo de Gobierno. Naturaleza, composición, funcionamiento y atribuciones. Los Consejeros.",leyes:[
+{parte:"Parte específica",num:"T34",titulo:"El Consejo de Gobierno de Melilla: Organización y Funcionamiento",enunciado:"El Consejo de Gobierno. Naturaleza, composición, funcionamiento y atribuciones. Los Consejeros.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 16–19"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 12–35"}
 ]},
-{parte:"Parte específica",num:"T35",enunciado:"La Asamblea de la Ciudad de Melilla. Elecciones y singularidades. Las Comisiones. Atribuciones de la Asamblea.",leyes:[
+{parte:"Parte específica",num:"T35",titulo:"La Asamblea de Melilla: Elecciones y Atribuciones",enunciado:"La Asamblea de la Ciudad de Melilla. Elecciones y singularidades. Las Comisiones. Atribuciones de la Asamblea.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 6–13"},
   {n:"Reglamento de la Asamblea de Melilla",arts:"Organización y Comisiones"}
 ]},
-{parte:"Parte específica",num:"T36",enunciado:"La Administración de la Ciudad Autónoma de Melilla. Singularidades de su organización. La función directiva.",leyes:[
+{parte:"Parte específica",num:"T36",titulo:"Administración de Melilla: Organización y Función Directiva",enunciado:"La Administración de la Ciudad Autónoma de Melilla. Singularidades de su organización. La función directiva.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Art. 20, 28"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 47–67, 97–107"}
 ]},
-{parte:"Parte específica",num:"T37",enunciado:"El patrimonio de las entidades locales: bienes y derechos, clases, dominio público, patrimoniales, comunales.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 79–83"},
+{parte:"Parte específica",num:"T37",titulo:"Patrimonio de las Entidades Locales: Bienes y Derechos",enunciado:"El patrimonio de las entidades locales: bienes y derechos, clases, dominio público, patrimoniales, comunales.",leyes:[
+  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 79–83"},
   {n:"Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio)",arts:"Arts. 1–135"}
 ]},
-{parte:"Parte específica",num:"T38",enunciado:"El presupuesto en las entidades locales: concepto y contenido. Elaboración y aprobación.",leyes:[
+{parte:"Parte específica",num:"T38",titulo:"Presupuesto Local: Elaboración, Aprobación y Contenido",enunciado:"El presupuesto en las entidades locales: concepto y contenido. Elaboración y aprobación.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 162–169"}
 ]},
-{parte:"Parte específica",num:"T39",enunciado:"La estructura presupuestaria. Los créditos del presupuesto de gastos. Las modificaciones de crédito.",leyes:[
+{parte:"Parte específica",num:"T39",titulo:"Estructura Presupuestaria y Modificaciones de Crédito",enunciado:"La estructura presupuestaria. Los créditos del presupuesto de gastos. Las modificaciones de crédito.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Art. 167, 172, 177–182"}
 ]},
-{parte:"Parte específica",num:"T40",enunciado:"La ejecución del presupuesto de gastos e ingresos: sus fases. Pagos a justificar. Anticipos de caja fija.",leyes:[
+{parte:"Parte específica",num:"T40",titulo:"Ejecución del Presupuesto: Fases de Gastos e Ingresos",enunciado:"La ejecución del presupuesto de gastos e ingresos: sus fases. Pagos a justificar. Anticipos de caja fija.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 183–193"}
 ]},
-{parte:"Parte específica",num:"T41",enunciado:"El control interno en las Entidades del Sector Público Local.",leyes:[
+{parte:"Parte específica",num:"T41",titulo:"Control Interno en el Sector Público Local",enunciado:"El control interno en las Entidades del Sector Público Local.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 213–222"},
   {n:"Real Decreto 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control interno en las entidades del Sector Público Local",arts:"Arts. 1–39"}
 ]},
-{parte:"Parte específica",num:"T42",enunciado:"Tasas y precios públicos. Las contribuciones especiales.",leyes:[
+{parte:"Parte específica",num:"T42",titulo:"Tasas, Precios Públicos y Contribuciones Especiales",enunciado:"Tasas y precios públicos. Las contribuciones especiales.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 20–47"}
 ]}
 ];
 
 const C2 = [
-{parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar.",leyes:[
+{parte:"Parte general",num:"T1",titulo:"La Constitución Española: Características y Título Preliminar",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar.",leyes:[
   {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9"}
 ]},
-{parte:"Parte general",num:"T2",enunciado:"La Constitución Española de 1978: Título I De los derechos y deberes fundamentales.",leyes:[
+{parte:"Parte general",num:"T2",titulo:"Constitución Española: Derechos y Deberes Fundamentales",enunciado:"La Constitución Española de 1978: Título I De los derechos y deberes fundamentales.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 10–55"}
 ]},
-{parte:"Parte general",num:"T3",enunciado:"La Constitución Española de 1978: Título II De la Corona.",leyes:[
+{parte:"Parte general",num:"T3",titulo:"La Corona en la Constitución Española",enunciado:"La Constitución Española de 1978: Título II De la Corona.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 56–65"}
 ]},
-{parte:"Parte general",num:"T4",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales.",leyes:[
+{parte:"Parte general",num:"T4",titulo:"Las Cortes Generales en la Constitución Española",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 66–96"}
 ]},
-{parte:"Parte general",num:"T5",enunciado:"La Constitución Española de 1978: Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes.",leyes:[
+{parte:"Parte general",num:"T5",titulo:"El Gobierno y sus Relaciones con las Cortes",enunciado:"La Constitución Española de 1978: Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 97–116"}
 ]},
-{parte:"Parte general",num:"T6",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial.",leyes:[
+{parte:"Parte general",num:"T6",titulo:"Poder Judicial y Consejo General del Poder Judicial",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 117–127"},
   {n:"Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial",arts:"Arts. 558–642"}
 ]},
-{parte:"Parte general",num:"T7",enunciado:"La Constitución Española de 1978: Título VIII Organización territorial. Acceso a autonomía de Melilla.",leyes:[
+{parte:"Parte general",num:"T7",titulo:"Organización Territorial y Autonomía de Melilla",enunciado:"La Constitución Española de 1978: Título VIII Organización territorial. Acceso a autonomía de Melilla.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 137–158"},
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Art. 1"}
 ]},
-{parte:"Parte general",num:"T8",enunciado:"Tribunal Constitucional y Reforma Constitucional.",leyes:[
+{parte:"Parte general",num:"T8",titulo:"Tribunal Constitucional y Reforma de la Constitución",enunciado:"Tribunal Constitucional y Reforma Constitucional.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 159–169"},
   {n:"Ley Orgánica 2/1979, de 3 de octubre, del Tribunal Constitucional",arts:"Arts. 1–26"}
 ]},
-{parte:"Parte general",num:"T9",enunciado:"Fuentes del Derecho Público. La ley y el reglamento.",leyes:[
+{parte:"Parte general",num:"T9",titulo:"Fuentes del Derecho: La Ley y el Reglamento",enunciado:"Fuentes del Derecho Público. La ley y el reglamento.",leyes:[
   {n:"Constitución Española de 1978",arts:"Arts. 81–82, 86, 97"},
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 127–133"},
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 128–133"}
 ]},
-{parte:"Parte general",num:"T10",enunciado:"Estatuto de Melilla: Título Preliminar y Título I.",leyes:[
+{parte:"Parte general",num:"T10",titulo:"Estatuto de Melilla: Organización Institucional",enunciado:"Estatuto de Melilla: Título Preliminar y Título I.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 1–19"}
 ]},
-{parte:"Parte general",num:"T11",enunciado:"Estatuto de Melilla: Título II de las competencias.",leyes:[
+{parte:"Parte general",num:"T11",titulo:"Estatuto de Melilla: Competencias de la Ciudad",enunciado:"Estatuto de Melilla: Título II de las competencias.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 20–27 (las 25 materias)"}
 ]},
-{parte:"Parte general",num:"T12",enunciado:"Estatuto de Autonomía de Melilla: Título III Régimen jurídico.",leyes:[
+{parte:"Parte general",num:"T12",titulo:"Estatuto de Melilla: Régimen Jurídico",enunciado:"Estatuto de Autonomía de Melilla: Título III Régimen jurídico.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 28–32"}
 ]},
-{parte:"Parte general",num:"T13",enunciado:"Estatuto de Autonomía de Melilla: Título IV, V y VI.",leyes:[
+{parte:"Parte general",num:"T13",titulo:"Estatuto de Melilla: Economía, Cooperación y Reforma",enunciado:"Estatuto de Autonomía de Melilla: Título IV, V y VI.",leyes:[
   {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 33–41"}
 ]},
-{parte:"Parte general",num:"T14",enunciado:"Organización administrativa de la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte general",num:"T14",titulo:"Organización Administrativa de la Ciudad de Melilla",enunciado:"Organización administrativa de la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 1–4, 47–67, 72–79"}
 ]},
-{parte:"Parte general",num:"T15",enunciado:"Régimen local y Municipio: concepto y elementos.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 1–14"}
+{parte:"Parte general",num:"T15",titulo:"Régimen Local: El Municipio y sus Elementos",enunciado:"Régimen local y Municipio: concepto y elementos.",leyes:[
+  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 1–14"}
 ]},
-{parte:"Parte general",num:"T16",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y I.",leyes:[
+{parte:"Parte general",num:"T16",titulo:"Igualdad Efectiva entre Mujeres y Hombres",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y I.",leyes:[
   {n:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",arts:"Arts. 1–13"}
 ]},
-{parte:"Parte específica",num:"E1",enunciado:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas: objeto, capacidad, interesado, plazos.",leyes:[
+{parte:"Parte específica",num:"E1",titulo:"LPACAP: Capacidad, Interesados y Cómputo de Plazos",enunciado:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas: objeto, capacidad, interesado, plazos.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 1–33"}
 ]},
-{parte:"Parte específica",num:"E2",enunciado:"El acto administrativo: concepto y eficacia.",leyes:[
+{parte:"Parte específica",num:"E2",titulo:"El Acto Administrativo: Concepto y Eficacia",enunciado:"El acto administrativo: concepto y eficacia.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 34–46"}
 ]},
-{parte:"Parte específica",num:"E3",enunciado:"El procedimiento administrativo: fases. Procedimiento en Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E3",titulo:"Fases del Procedimiento Administrativo en Melilla",enunciado:"El procedimiento administrativo: fases. Procedimiento en Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 53–95"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 82–86"}
 ]},
-{parte:"Parte específica",num:"E4",enunciado:"Nulidad y revisión de actos. Órganos en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E4",titulo:"Nulidad y Revisión de Actos en Melilla",enunciado:"Nulidad y revisión de actos. Órganos en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 47–52, 106–111"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 87–91"}
 ]},
-{parte:"Parte específica",num:"E5",enunciado:"Recursos administrativos en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E5",titulo:"Recursos Administrativos en la Ciudad de Melilla",enunciado:"Recursos administrativos en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 112–126"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 92–96"}
 ]},
-{parte:"Parte específica",num:"E6",enunciado:"Acción administrativa en el Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955).",leyes:[
+{parte:"Parte específica",num:"E6",titulo:"Reglamento de Servicios de las Corporaciones Locales",enunciado:"Acción administrativa en el Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955).",leyes:[
   {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 1–137"}
 ]},
-{parte:"Parte específica",num:"E7",enunciado:"Responsabilidad patrimonial en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E7",titulo:"Responsabilidad Patrimonial en la Administración de Melilla",enunciado:"Responsabilidad patrimonial en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 32–37"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 111"}
 ]},
-{parte:"Parte específica",num:"E8",enunciado:"Patrimonio local en el Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio).",leyes:[
+{parte:"Parte específica",num:"E8",titulo:"Patrimonio Local y Gestión de Bienes Municipales",enunciado:"Patrimonio local en el Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio).",leyes:[
   {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 79–83"},
   {n:"Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio)",arts:"Arts. 1–135"}
 ]},
-{parte:"Parte específica",num:"E9",enunciado:"Término municipal, población y organización.",leyes:[
+{parte:"Parte específica",num:"E9",titulo:"Término Municipal, Población y Organización Local",enunciado:"Término municipal, población y organización.",leyes:[
   {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 11–28"}
 ]},
-{parte:"Parte específica",num:"E10",enunciado:"Licencias: naturaleza y procedimiento.",leyes:[
+{parte:"Parte específica",num:"E10",titulo:"Licencias Administrativas: Naturaleza y Procedimiento",enunciado:"Licencias: naturaleza y procedimiento.",leyes:[
   {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 84, 84 bis"},
   {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 18–22"}
 ]},
-{parte:"Parte específica",num:"E11",enunciado:"Ordenanzas locales en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E11",titulo:"Ordenanzas Locales en la Ciudad de Melilla",enunciado:"Ordenanzas locales en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 49–50"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 69–71"}
 ]},
-{parte:"Parte específica",num:"E12",enunciado:"Contratos del Sector Público: tipos y órganos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–23, 61–63, 318"},
+{parte:"Parte específica",num:"E12",titulo:"Contratos del Sector Público: Tipos y Órganos",enunciado:"Contratos del Sector Público: tipos y órganos.",leyes:[
+  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–23, 61–63, 318"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 112"}
 ]},
-{parte:"Parte específica",num:"E13",enunciado:"Contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E13",titulo:"Contratos Menores en la Ciudad de Melilla",enunciado:"Contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 118, 332"},
   {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 112"}
 ]},
-{parte:"Parte específica",num:"E14",enunciado:"Órganos, competencia, abstención y recusación.",leyes:[
+{parte:"Parte específica",num:"E14",titulo:"Órganos Administrativos: Competencia, Abstención y Recusación",enunciado:"Órganos, competencia, abstención y recusación.",leyes:[
   {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 5–24"}
 ]},
-{parte:"Parte específica",num:"E15",enunciado:"Recursos municipales: tasas y precios públicos.",leyes:[
+{parte:"Parte específica",num:"E15",titulo:"Recursos Municipales: Tasas y Precios Públicos",enunciado:"Recursos municipales: tasas y precios públicos.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 2, 20–47"}
 ]},
-{parte:"Parte específica",num:"E16",enunciado:"Ordenanzas fiscales en la Ciudad Autónoma de Melilla.",leyes:[
+{parte:"Parte específica",num:"E16",titulo:"Ordenanzas Fiscales en Melilla: Contenido y Elaboración",enunciado:"Ordenanzas fiscales en la Ciudad Autónoma de Melilla.",leyes:[
   {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 15–19"},
   {n:"Ordenanzas de Melilla",arts:"Contenido y elaboración"}
 ]},
-{parte:"Parte específica",num:"E17",enunciado:"Estatuto Básico del Empleado Público: derechos, deberes y disciplina.",leyes:[
+{parte:"Parte específica",num:"E17",titulo:"Estatuto del Empleado Público: Derechos y Disciplina",enunciado:"Estatuto Básico del Empleado Público: derechos, deberes y disciplina.",leyes:[
   {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 1–15, 21–30, 47–68, 93–98"}
 ]}
 ];
@@ -586,12 +583,9 @@ const ALL_DATA = [
   ...C2.map(x => ({...x, exam:'c2', id:'c2-'+x.num, examName:'Auxiliar C2'}))
 ];
 
-// Fin de C2
-
 function getInitialGrouping() {
   const saved = localStorage.getItem('userGrouping');
   if (saved) return JSON.parse(saved);
-  
   const mapping = {};
   ALL_DATA.forEach(item => {
     const block = BLOCKS.find(b => {
@@ -624,7 +618,6 @@ let state = {
 function parseArts(text) {
   const parts = text.split(/\s\+\s/);
   return `<div class="law-breakdown">${parts.map(p => {
-    
     const regex = /(?:art[s]?\.?|artículo[s]?)\s*(\d+)(?:\s*[–-]\s*(\d+))?(?:\s+(bis|ter|quater))?/gi;
     let articles = new Set();
     let match;
@@ -639,9 +632,7 @@ function parseArts(text) {
       }
     }
     let artsArray = Array.from(articles).sort((a,b) => parseInt(a) - parseInt(b));
-
     let descText = p.replace(/(Título\s+[IVXLC]+|Capítulo\s+[IVXLC]+)/gi, '<strong style="color:var(--melilla-blue)">$1</strong>');
-    
     return `
       <div class="breakdown-chunk">
         <div class="chunk-desc">${descText}</div>
@@ -662,24 +653,18 @@ function parseArts(text) {
 
 function render() {
   const container = document.getElementById('content');
-  const filtered = ALL_DATA.filter(d => (state.exam === 'all' || d.exam === state.exam) && (d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase()));
-
+  const filtered = ALL_DATA.filter(d => (state.exam === 'all' || d.exam === state.exam) && (d.titulo + d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase()));
   const grouped = BLOCKS.map(b => {
     let items = filtered.filter(item => state.userGrouping[item.id] === b.id);
-    
-    // Auto-sort items by number
     items.sort((a, b) => {
       const na = parseInt(a.num.replace(/\D/g, ''));
       const nb = parseInt(b.num.replace(/\D/g, ''));
       if (na !== nb) return na - nb;
       return a.exam.localeCompare(b.exam);
     });
-
     const general = items.filter(i => i.num.startsWith('T'));
     const especifica = items.filter(i => i.num.startsWith('E'));
-    
     return { ...b, general, especifica, hasItems: items.length > 0 };
-
   }).filter(b => b.hasItems || state.editMode);
 
   container.innerHTML = grouped.map(block => {
@@ -692,7 +677,7 @@ function render() {
                    ondragend="handleDragEnd(event)"
                    onclick="${state.editMode ? '' : `openModal('${item.id}')`}">
             <div class="card-num" style="color:${block.accent}">${item.num} · NÚCLEO</div>
-            <h2 class="card-title">${item.enunciado}</h2>
+            <h2 class="card-title">${item.titulo}</h2>
             ${state.editMode ? `
               <select class="block-select" onchange="moveItem('${item.id}', this.value)" onclick="event.stopPropagation()">
                 ${BLOCKS.map(b => `<option value="${b.id}" ${b.id === block.id ? 'selected' : ''}>Mover a ${b.name}</option>`).join('')}
@@ -703,7 +688,6 @@ function render() {
         `).join('')}
       </div>
     `;
-
     return `
       <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}" 
            id="${block.id}"
@@ -725,87 +709,28 @@ function render() {
       </div>
     `;
   }).join('');
-
-
   document.getElementById('resetBtn').style.display = state.editMode ? 'block' : 'none';
 }
 
-window.handleDragStart = (e, id) => {
-  e.dataTransfer.setData('text/plain', id);
-  e.currentTarget.classList.add('dragging');
-};
-
-window.handleDragEnd = (e) => {
-  e.currentTarget.classList.remove('dragging');
-};
-
-window.handleDragOver = (e, blockId) => {
-  if (!state.editMode) return;
-  e.preventDefault();
-  document.getElementById(blockId).classList.add('drag-over');
-};
-
-window.handleDragLeave = (e, blockId) => {
-  document.getElementById(blockId).classList.remove('drag-over');
-};
-
-window.handleDrop = (e, blockId) => {
-  if (!state.editMode) return;
-  e.preventDefault();
-  document.getElementById(blockId).classList.remove('drag-over');
-  const itemId = e.dataTransfer.getData('text/plain');
-  moveItem(itemId, blockId);
-};
-
-window.moveItem = (itemId, blockId) => {
-  state.userGrouping[itemId] = blockId;
-  localStorage.setItem('userGrouping', JSON.stringify(state.userGrouping));
-  render();
-  if (document.getElementById('modal').style.display === 'grid') {
-    openModal(itemId);
-  }
-};
-
-
-document.getElementById('editToggle').onclick = () => {
-  state.editMode = !state.editMode;
-  document.getElementById('editToggle').innerHTML = state.editMode ? '<span>🔒</span> Bloquear Orden' : '<span>🔓</span> Editar Orden';
-  document.getElementById('editToggle').classList.toggle('active', state.editMode);
-  render();
-};
-
-document.getElementById('resetBtn').onclick = () => {
-  if (confirm('¿Restablecer el orden estratégico original?')) {
-    localStorage.removeItem('userGrouping');
-    state.userGrouping = getInitialGrouping();
-    render();
-  }
-};
-
-
-window.toggleBlock = (id) => {
-  if (state.openBlocks.has(id)) state.openBlocks.delete(id);
-  else state.openBlocks.add(id);
-  render();
-};
-
-window.sortBlock = (id) => {
-  // Logic is now automatic in render
-  render();
-};
-
-
-
+window.handleDragStart = (e, id) => { e.dataTransfer.setData('text/plain', id); e.currentTarget.classList.add('dragging'); };
+window.handleDragEnd = (e) => { e.currentTarget.classList.remove('dragging'); };
+window.handleDragOver = (e, blockId) => { if (!state.editMode) return; e.preventDefault(); document.getElementById(blockId).classList.add('drag-over'); };
+window.handleDragLeave = (e, blockId) => { document.getElementById(blockId).classList.remove('drag-over'); };
+window.handleDrop = (e, blockId) => { if (!state.editMode) return; e.preventDefault(); document.getElementById(blockId).classList.remove('drag-over'); const itemId = e.dataTransfer.getData('text/plain'); moveItem(itemId, blockId); };
+window.moveItem = (itemId, blockId) => { state.userGrouping[itemId] = blockId; localStorage.setItem('userGrouping', JSON.stringify(state.userGrouping)); render(); if (document.getElementById('modal').style.display === 'grid') { openModal(itemId); } };
+document.getElementById('editToggle').onclick = () => { state.editMode = !state.editMode; document.getElementById('editToggle').innerHTML = state.editMode ? '<span>🔒</span> Bloquear Orden' : '<span>🔓</span> Editar Orden'; document.getElementById('editToggle').classList.toggle('active', state.editMode); render(); };
+document.getElementById('resetBtn').onclick = () => { if (confirm('¿Restablecer el orden estratégico original?')) { localStorage.removeItem('userGrouping'); state.userGrouping = getInitialGrouping(); render(); } };
+window.toggleBlock = (id) => { if (state.openBlocks.has(id)) state.openBlocks.delete(id); else state.openBlocks.add(id); render(); };
 window.openModal = (id) => {
   const item = ALL_DATA.find(d => d.id === id);
   const currentBlockId = state.userGrouping[item.id];
   const block = BLOCKS.find(b => b.id === currentBlockId);
   const body = document.getElementById('modalBody');
-  
   body.innerHTML = `
     <div class="modal-header-mini">
       <div class="modal-title-wrap">
-        <h2>${item.enunciado}</h2>
+        <h2>${item.titulo}</h2>
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0 0 15px 0; font-weight: 600; line-height: 1.4;">${item.enunciado}</p>
         <div class="modal-meta">
           <span><span style="color:var(--melilla-gold)">ID:</span> ${item.num}</span>
           <span><span style="color:var(--melilla-blue)">MODALIDAD:</span> ${item.examName}</span>
@@ -823,9 +748,7 @@ window.openModal = (id) => {
       ${item.leyes.map(l => `
         <div class="law-mini-card">
           <div class="law-mini-title"><span>⚖️</span> ${l.n}</div>
-          <div class="law-mini-content">
-            ${parseArts(l.arts)}
-          </div>
+          <div class="law-mini-content">${parseArts(l.arts)}</div>
         </div>
       `).join('')}
     </div>
@@ -833,44 +756,15 @@ window.openModal = (id) => {
   document.getElementById('modal').style.display = 'grid';
   document.body.style.overflow = 'hidden';
 };
-
-
-window.closeModal = () => {
-  document.getElementById('modal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-};
-
-function setUI() {
-  document.documentElement.setAttribute('data-theme', state.theme);
-  document.querySelectorAll('#themeToggle span').forEach(s => s.classList.toggle('active', s.dataset.v === state.theme));
-}
-
-document.getElementById('themeToggle').onclick = () => {
-  state.theme = state.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', state.theme);
-  setUI();
-};
-
+window.closeModal = () => { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; };
+function setUI() { document.documentElement.setAttribute('data-theme', state.theme); document.querySelectorAll('#themeToggle span').forEach(s => s.classList.toggle('active', s.dataset.v === state.theme)); }
+document.getElementById('themeToggle').onclick = () => { state.theme = state.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', state.theme); setUI(); };
 document.getElementById('search').oninput = (e) => { state.q = e.target.value; render(); };
-
-document.querySelectorAll('.tab').forEach(t => {
-  t.onclick = () => {
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    t.classList.add('active');
-    state.exam = t.dataset.exam;
-    render();
-  };
-});
-
+document.querySelectorAll('.tab').forEach(t => { t.onclick = () => { document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); t.classList.add('active'); state.exam = t.dataset.exam; render(); }; });
 window.onclick = (e) => { if (e.target.id === 'modal') closeModal(); };
-
-setUI();
-render();
-// Fin de lógica de interacción principal
 
 let dashboardActive = false;
 let charts = {};
-
 function toggleDashboard() {
   const dash = document.getElementById('analysisDashboard');
   dashboardActive = !dashboardActive;
@@ -878,15 +772,8 @@ function toggleDashboard() {
   if (dashboardActive) {
     calculateStats();
     document.body.style.overflow = 'hidden';
-    // Trigger animations
-    setTimeout(() => {
-      document.querySelectorAll('.bar-fill').forEach(el => {
-        el.style.width = el.getAttribute('data-w');
-      });
-    }, 100);
-  } else {
-    document.body.style.overflow = '';
-  }
+    setTimeout(() => { document.querySelectorAll('.bar-fill').forEach(el => { el.style.width = el.getAttribute('data-w'); }); }, 100);
+  } else { document.body.style.overflow = ''; }
 }
 
 function calculateStats() {
@@ -894,213 +781,54 @@ function calculateStats() {
   const lawCounts = {};
   const typeCounts = { 'Leyes Orgánicas': 0, 'Reales Decretos Legislativos': 0, 'Leyes Ordinarias': 0, 'Reglamentos/Otros': 0 };
   let totalArticles = 0;
-  let generalCount = 0;
-  let specificCount = 0;
-
-  // New specific stats for charts
   const lawArticleCounts = {};
   const blockArticleCounts = {};
-
-  // Initialize blockArticleCounts
   BLOCKS.forEach(b => blockArticleCounts[b.id] = { name: b.name, articles: 0 });
-
   allThemes.forEach(theme => {
-    if (theme.num.startsWith('T')) generalCount++;
-    else if (theme.num.startsWith('E')) specificCount++;
-
     const blockId = state.userGrouping[theme.id];
-
     theme.leyes.forEach(law => {
       const name = law.n;
       lawCounts[name] = (lawCounts[name] || 0) + 1;
-      
       if (name.includes('Orgánica')) typeCounts['Leyes Orgánicas']++;
       else if (name.includes('Real Decreto Legislativo')) typeCounts['Reales Decretos Legislativos']++;
       else if (name.includes('Ley')) typeCounts['Leyes Ordinarias']++;
       else typeCounts['Reglamentos/Otros']++;
-
       const matches = law.arts.match(/\d+/g);
       const articleCount = matches ? matches.length : 0;
       totalArticles += articleCount;
       lawArticleCounts[name] = (lawArticleCounts[name] || 0) + articleCount;
-      if(blockId && blockArticleCounts[blockId]) {
-         blockArticleCounts[blockId].articles += articleCount;
-      }
+      if(blockId && blockArticleCounts[blockId]) blockArticleCounts[blockId].articles += articleCount;
     });
   });
-
-  // Calculate estimated study time (assume 5 mins per article)
   const estimatedHours = Math.round((totalArticles * 5) / 60);
-
-  // KPIs
   const uniqueLaws = Object.keys(lawCounts).length;
   document.getElementById('kpiGrid').innerHTML = `
-    <div class="kpi-card">
-      <div class="kpi-value">${allThemes.length}</div>
-      <div class="kpi-label">Temas a Estudiar</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-value">${uniqueLaws}</div>
-      <div class="kpi-label">Normas Únicas</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-value">${totalArticles}</div>
-      <div class="kpi-label">Artículos a Memorizar</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-value" style="color: #FF3B30">~${estimatedHours}h</div>
-      <div class="kpi-label">Estudio Estimado</div>
-    </div>
+    <div class="kpi-card"><div class="kpi-value">${allThemes.length}</div><div class="kpi-label">Temas</div></div>
+    <div class="kpi-card"><div class="kpi-value">${uniqueLaws}</div><div class="kpi-label">Normas</div></div>
+    <div class="kpi-card"><div class="kpi-value">${totalArticles}</div><div class="kpi-label">Artículos</div></div>
+    <div class="kpi-card"><div class="kpi-value" style="color: #FF3B30">~${estimatedHours}h</div><div class="kpi-label">Estudio</div></div>
     <div class="kpi-card" style="background: rgba(0, 122, 255, 0.05); border-color: rgba(0, 122, 255, 0.3);">
       <div style="font-size: 14px; font-weight: 900; color: var(--melilla-blue); margin-bottom: 5px;">🎯 ESTRATEGIA</div>
-      <div style="font-size: 11px; line-height: 1.4; font-weight: 600; color: #555;">
-        Concéntrate en <b>${Object.entries(lawArticleCounts).sort((a,b) => b[1]-a[1])[0][0]}</b>, representa la mayor carga legislativa.
-      </div>
+      <div style="font-size: 11px; line-height: 1.4; font-weight: 600; color: #555;">Prioriza <b>${Object.entries(lawArticleCounts).sort((a,b) => b[1]-a[1])[0][0].substring(0,25)}...</b></div>
     </div>
   `;
-
-  // Destroy existing charts to prevent duplication
   Object.values(charts).forEach(chart => chart.destroy());
   charts = {};
-
-  // 1. Top Laws Bar Chart
   const topLaws = Object.entries(lawArticleCounts).sort((a,b) => b[1] - a[1]).slice(0, 8);
   const topLawsCtx = document.getElementById('topLawsChartCanvas').getContext('2d');
-  charts.topLaws = new Chart(topLawsCtx, {
-    type: 'bar',
-    data: {
-      labels: topLaws.map(l => l[0].length > 45 ? l[0].substring(0,45)+'...' : l[0]),
-      datasets: [{
-        label: 'Artículos',
-        data: topLaws.map(l => l[1]),
-        backgroundColor: 'rgba(0, 122, 255, 0.7)',
-        borderRadius: 8,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      indexAxis: 'y',
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            afterLabel: function(context) {
-              const val = context.raw;
-              return 'Tiempo aprox: ' + Math.round((val*5)/60) + ' horas';
-            }
-          }
-        }
-      },
-      scales: {
-        x: { grid: { display: false } },
-        y: { grid: { display: false }, ticks: { font: { size: 10 } } }
-      }
-    }
-  });
-
-  // 2. Block Radar Chart
+  charts.topLaws = new Chart(topLawsCtx, { type: 'bar', data: { labels: topLaws.map(l => l[0].substring(0,30)+'...'), datasets: [{ label: 'Artículos', data: topLaws.map(l => l[1]), backgroundColor: 'rgba(0, 122, 255, 0.7)', borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } } });
   const radarCtx = document.getElementById('blockRadarCanvas').getContext('2d');
-  charts.radar = new Chart(radarCtx, {
-    type: 'radar',
-    data: {
-      labels: Object.values(blockArticleCounts).map(b => b.name),
-      datasets: [{
-        label: 'Volumen de Artículos',
-        data: Object.values(blockArticleCounts).map(b => b.articles),
-        backgroundColor: 'rgba(255, 215, 0, 0.4)',
-        borderColor: 'rgba(255, 215, 0, 1)',
-        pointBackgroundColor: 'rgba(255, 215, 0, 1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(255, 215, 0, 1)'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        r: {
-          ticks: { display: false },
-          pointLabels: { font: { size: 10, weight: 'bold' } }
-        }
-      },
-      plugins: { legend: { display: false } }
-    }
-  });
-
-  // 3. Normative Mix Doughnut Chart
+  charts.radar = new Chart(radarCtx, { type: 'radar', data: { labels: Object.values(blockArticleCounts).map(b => b.name), datasets: [{ label: 'Artículos', data: Object.values(blockArticleCounts).map(b => b.articles), backgroundColor: 'rgba(255, 215, 0, 0.4)', borderColor: 'rgba(255, 215, 0, 1)' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false } } }, plugins: { legend: { display: false } } } });
   const mixCtx = document.getElementById('normativeMixCanvas').getContext('2d');
-  charts.mix = new Chart(mixCtx, {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(typeCounts),
-      datasets: [{
-        data: Object.values(typeCounts),
-        backgroundColor: [
-          '#FF3B30', // Leyes Orgánicas
-          '#FF9500', // Reales Decretos Leg
-          '#007AFF', // Leyes Ordinarias
-          '#34C759'  // Reglamentos
-        ],
-        borderWidth: 0,
-        hoverOffset: 4
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '70%',
-      plugins: {
-        legend: { position: 'bottom', labels: { font: { size: 11, weight: 'bold' }, padding: 15 } }
-      }
-    }
-  });
-
-  // 4. All Laws Horizontal Bar Chart (Dynamically sized)
+  charts.mix = new Chart(mixCtx, { type: 'doughnut', data: { labels: Object.keys(typeCounts), datasets: [{ data: Object.values(typeCounts), backgroundColor: ['#FF3B30', '#FF9500', '#007AFF', '#34C759'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom' } } } });
   const allLaws = Object.entries(lawArticleCounts).sort((a,b) => b[1] - a[1]);
-  const allLawsContainer = document.getElementById('allLawsInner');
-  if (allLawsContainer) {
-    // Set height based on number of laws (e.g. 35px per law)
-    allLawsContainer.style.height = (allLaws.length * 35) + 'px';
+  const allLawsInner = document.getElementById('allLawsInner');
+  if (allLawsInner) {
+    allLawsInner.style.height = (allLaws.length * 35) + 'px';
     const allLawsCtx = document.getElementById('allLawsChartCanvas').getContext('2d');
-    charts.allLaws = new Chart(allLawsCtx, {
-      type: 'bar',
-      data: {
-        labels: allLaws.map(l => l[0].length > 60 ? l[0].substring(0,60)+'...' : l[0]),
-        datasets: [{
-          label: 'Artículos',
-          data: allLaws.map(l => l[1]),
-          backgroundColor: 'rgba(0, 122, 255, 0.5)',
-          borderColor: 'rgba(0, 122, 255, 1)',
-          borderWidth: 1,
-          borderRadius: 4,
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        indexAxis: 'y',
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              afterLabel: function(context) {
-                return 'Tiempo aprox: ' + Math.round((context.raw*5)/60) + ' horas';
-              }
-            }
-          }
-        },
-        scales: {
-          x: { grid: { display: true, color: 'rgba(0,0,0,0.05)' } },
-          y: { grid: { display: false }, ticks: { font: { size: 11, weight: 'bold' } } }
-        }
-      }
-    });
+    charts.allLaws = new Chart(allLawsCtx, { type: 'bar', data: { labels: allLaws.map(l => l[0].substring(0,50)+'...'), datasets: [{ label: 'Artículos', data: allLaws.map(l => l[1]), backgroundColor: 'rgba(0, 122, 255, 0.5)', borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } } });
   }
 }
-
-setUI();
-render();
+setUI(); render();
 </script>
 </body></html>
