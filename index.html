@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TemarioCAM — Mapa Normativo Estratégico</title>
+<title>TemarioCAM — Mapa Normativo Detallado</title>
 <style>
 :root[data-theme="dark"] {
   --bg: #05070a;
@@ -33,7 +33,7 @@
   --shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
 
-* { box-sizing: border-box; transition: background-color 0.4s, color 0.4s, border-color 0.4s, transform 0.3s; }
+* { box-sizing: border-box; transition: background-color 0.4s, color 0.4s, border-color 0.4s; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -50,56 +50,57 @@ body {
 
 @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(50px, 30px) scale(1.1); } }
 
-.app { max-width: 1300px; margin: auto; padding: 40px 24px; }
+.app { max-width: 1400px; margin: auto; padding: 40px 24px; }
 
-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; }
-.brand h1 { font-size: 42px; letter-spacing: -1.5px; margin: 0; font-weight: 800; }
-.brand p { color: var(--text-muted); margin: 8px 0 0; font-size: 18px; }
+header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+.brand h1 { font-size: 38px; letter-spacing: -1.5px; margin: 0; font-weight: 800; }
+.brand p { color: var(--text-muted); margin: 6px 0 0; font-size: 16px; }
 
-.toggle { background: var(--surface); border: 1px solid var(--line); padding: 8px; border-radius: 14px; cursor: pointer; display: flex; gap: 4px; backdrop-filter: blur(10px); }
-.toggle span { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.toggle { background: var(--surface); border: 1px solid var(--line); padding: 6px; border-radius: 12px; cursor: pointer; display: flex; gap: 4px; backdrop-filter: blur(10px); }
+.toggle span { padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; }
 .toggle .active { background: var(--accent); color: white; }
 
-.nav-bar { display: flex; gap: 16px; margin-bottom: 40px; align-items: center; position: sticky; top: 20px; z-index: 100; }
-.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 14px 20px; border-radius: 18px; backdrop-filter: blur(25px); }
+.nav-bar { display: flex; gap: 16px; margin-bottom: 40px; align-items: center; position: sticky; top: 15px; z-index: 100; }
+.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 12px 18px; border-radius: 16px; backdrop-filter: blur(25px); }
 .search-box input { background: none; border: none; color: var(--text); width: 100%; font-size: 16px; outline: none; }
-.filter-tabs { display: flex; background: var(--surface); padding: 6px; border-radius: 18px; border: 1px solid var(--line); backdrop-filter: blur(25px); }
-.tab { border: none; background: none; color: var(--text-muted); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.filter-tabs { display: flex; background: var(--surface); padding: 5px; border-radius: 16px; border: 1px solid var(--line); backdrop-filter: blur(25px); }
+.tab { border: none; background: none; color: var(--text-muted); padding: 8px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; }
 .tab.active { background: var(--surface-hover); color: var(--text); }
 
-/* Grouping Styles */
-.block-group { margin-bottom: 60px; }
+/* Blocks */
+.block-group { margin-bottom: 50px; }
 .block-header { 
-  font-size: 13px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
-  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px; opacity: 0.8;
 }
 .block-header::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; }
 
 .card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 32px; padding: 30px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 24px;
   backdrop-filter: blur(30px) saturate(180%); box-shadow: var(--shadow);
-  display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 16px; position: relative;
 }
-.card:hover { background: var(--surface-hover); transform: translateY(-5px); }
+.card:hover { border-color: var(--accent); transform: translateY(-3px); }
 
-.card-meta { display: flex; justify-content: space-between; align-items: center; }
-.card-num { font-size: 13px; font-weight: 900; color: var(--gold); }
-.badge { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 8px; }
-.badge-high { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
-.badge-mid { background: rgba(255, 159, 10, 0.15); color: #ff9f0a; }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.card-num { font-size: 12px; font-weight: 900; color: var(--gold); background: rgba(255, 204, 0, 0.1); padding: 4px 8px; border-radius: 6px; }
+.badge { font-size: 9px; font-weight: 800; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); color: var(--text-muted); }
 
-.card-title { font-size: 20px; font-weight: 750; line-height: 1.3; margin: 0; }
-.law-list { display: flex; flex-direction: column; gap: 12px; }
-.law-item { font-size: 14px; }
-.law-name { color: var(--accent); font-weight: 700; text-decoration: none; margin-bottom: 4px; display: block; }
-.law-arts { color: var(--text-muted); line-height: 1.5; }
+.card-title { font-size: 17px; font-weight: 750; line-height: 1.35; margin: 0; color: var(--text); }
 
-.focus-box { background: rgba(0, 162, 255, 0.05); padding: 14px; border-radius: 18px; border-left: 4px solid var(--accent); font-size: 13px; }
-.footer-actions { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
-.prog-btn { background: var(--surface-hover); border: 1px solid var(--line); color: var(--text); padding: 8px 16px; border-radius: 14px; font-size: 12px; font-weight: 650; cursor: pointer; }
-.prog-Dominado { border-color: #34c759; color: #34c759; }
+.law-section { display: flex; flex-direction: column; gap: 10px; }
+.law-item { background: rgba(0,0,0,0.15); padding: 14px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.05); }
+.law-name { font-size: 12px; color: var(--accent); font-weight: 800; text-decoration: none; display: block; margin-bottom: 6px; }
+.law-name:hover { text-decoration: underline; }
+.law-arts { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+
+[data-theme="light"] .law-item { background: rgba(255,255,255,0.5); }
+[data-theme="light"] .law-arts { color: #333; }
+
+.prog-footer { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.prog-select { background: var(--surface-hover); border: 1px solid var(--line); color: var(--text); padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; outline: none; cursor: pointer; }
 
 @media (max-width: 768px) {
   header { flex-direction: column; gap: 20px; }
@@ -114,16 +115,16 @@ header { display: flex; justify-content: space-between; align-items: flex-start;
 
 <main class="app">
   <header>
-    <div class="brand"><h1>TemarioCAM</h1><p>Mapa Normativo Estratégico</p></div>
+    <div class="brand"><h1>TemarioCAM</h1><p>Mapa Normativo Detallado — C1 / C2</p></div>
     <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
   </header>
 
   <div class="nav-bar">
-    <div class="search-box"><input type="text" id="search" placeholder="Busca leyes o temas..." /></div>
+    <div class="search-box"><input type="text" id="search" placeholder="Busca por tema, ley o artículo..." /></div>
     <div class="filter-tabs">
       <button class="tab active" data-exam="all">Todo</button>
-      <button class="tab" data-exam="c1">C1</button>
-      <button class="tab" data-exam="c2">C2</button>
+      <button class="tab" data-exam="c1">Administrativo C1</button>
+      <button class="tab" data-exam="c2">Auxiliar C2</button>
     </div>
   </div>
 
@@ -138,31 +139,89 @@ const LAW_URLS = {
   'TREBEP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-11719',
   'LCSP': 'https://www.boe.es/buscar/act.php?id=BOE-A-2017-12902',
   'Estatuto': 'https://www.boe.es/buscar/act.php?id=BOE-A-1995-6544',
-  'TRLRHL': 'https://www.boe.es/buscar/act.php?id=BOE-A-2004-4244'
+  'TRLRHL': 'https://www.boe.es/buscar/act.php?id=BOE-A-2004-4244',
+  'LRBRL': 'https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392',
+  'LO 3/2007': 'https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115',
+  'LO 3/1981': 'https://www.boe.es/buscar/act.php?id=BOE-A-1981-10325'
 };
 
+const C1 = [
+  {parte:"Parte general",num:"T1",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[{n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9 (Título Preliminar) + arts. 10–55 (Título I: Capítulos I al V) + arts. 56–65 (Título II) + arts. 166–169 (Título X)"}]},
+  {parte:"Parte general",num:"T2",enunciado:"La CE 1978: Título III De las Cortes Generales. Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes Generales.",leyes:[{n:"Constitución Española de 1978",arts:"Arts. 66–96 (Título III) + arts. 97–107 (Título IV) + arts. 108–116 (Título V)"}]},
+  {parte:"Parte general",num:"T3",enunciado:"La CE 1978: Título VI del Poder Judicial. El CGPJ: composición y funcionamiento en la LO 6/1985.",leyes:[{n:"Constitución Española de 1978",arts:"Arts. 117–127 (Título VI)"},{n:"LO 6/1985 (LOPJ)",arts:"Arts. 558–642"}]},
+  {parte:"Parte general",num:"T4",enunciado:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo.",leyes:[{n:"LO 3/1981 del Defensor del Pueblo",arts:"Arts. 1–37"}]},
+  {parte:"Parte general",num:"T5",enunciado:"Fuentes del Derecho Público. La ley: clases de leyes. El reglamento: concepto y clases.",leyes:[{n:"Constitución Española",arts:"Arts. 81–82, 86, 97"},{n:"Ley 39/2015",arts:"Arts. 127–133"},{n:"Ley 40/2015",arts:"Arts. 128–133"}]},
+  {parte:"Parte general",num:"T6",enunciado:"Ley Orgánica 2/1995: Estatuto de Autonomía de Melilla.",leyes:[{n:"LO 2/1995 Estatuto de Melilla",arts:"Arts. 1–41 + Disposiciones"}]},
+  {parte:"Parte general",num:"T7",enunciado:"Régimen local español: principios, entidades, Municipio, población, organización y competencias.",leyes:[{n:"Constitución Española",arts:"Arts. 137–142"},{n:"Ley 7/1985 (LRBRL)",arts:"Arts. 1–28"}]},
+  {parte:"Parte general",num:"T8",enunciado:"LO 3/2007 para la igualdad efectiva de mujeres y hombres.",leyes:[{n:"LO 3/2007 Igualdad",arts:"Arts. 1–13, 53"}]},
+  {parte:"Parte específica",num:"T9",enunciado:"Potestad organizatoria: órganos administrativos, competencia, técnicas de traslación, órganos colegiados.",leyes:[{n:"Ley 40/2015",arts:"Arts. 5–22"}]},
+  {parte:"Parte específica",num:"T10",enunciado:"Personas ante la Administración: derechos y obligaciones. El interesado: concepto, capacidad y representación.",leyes:[{n:"Ley 39/2015",arts:"Arts. 3–12, 53"}]},
+  {parte:"Parte específica",num:"T11",enunciado:"El acto administrativo. Concepto. Elementos. Clases.",leyes:[{n:"Ley 39/2015",arts:"Arts. 34–36"},{n:"Ley 40/2015",arts:"Arts. 1–4"}]},
+  {parte:"Parte específica",num:"T12",enunciado:"La notificación: contenido, plazo y práctica. Publicación. Eficacia.",leyes:[{n:"Ley 39/2015",arts:"Arts. 37–46"}]},
+  {parte:"Parte específica",num:"T13",enunciado:"Invalidez del acto: nulidad y anulabilidad. Revisión de oficio. Revocación.",leyes:[{n:"Ley 39/2015",arts:"Arts. 47–52, 106–111"}]},
+  {parte:"Parte específica",num:"T14",enunciado:"Actuación de AAPP: registro, archivo, colaboración. Términos y plazos.",leyes:[{n:"Ley 39/2015",arts:"Arts. 13–33"}]},
+  {parte:"Parte específica",num:"T15",enunciado:"Fases del procedimiento: iniciación, ordenación, instrucción y terminación.",leyes:[{n:"Ley 39/2015",arts:"Arts. 54–95"}]},
+  {parte:"Parte específica",num:"T16",enunciado:"Obligación de resolver. Silencio administrativo.",leyes:[{n:"Ley 39/2015",arts:"Arts. 21–26"}]},
+  {parte:"Parte específica",num:"T17",enunciado:"Recursos administrativos. Ejecución forzosa.",leyes:[{n:"Ley 39/2015",arts:"Arts. 112–126, 97–105"}]},
+  {parte:"Parte específica",num:"T18",enunciado:"Potestad sancionadora: principios y especialidades.",leyes:[{n:"Ley 40/2015",arts:"Arts. 25–31"},{n:"Ley 39/2015",arts:"Arts. 63–69"}]},
+  {parte:"Parte específica",num:"T19",enunciado:"Contratos del sector público: objeto, ámbito y tipos. SARA.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 1–27"}]},
+  {parte:"Parte específica",num:"T20",enunciado:"Disposiciones generales de contratación: perfección y forma.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 28–43"}]},
+  {parte:"Parte específica",num:"T21",enunciado:"Partes en los contratos: órganos, capacidad y solvencia.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 61–98, 316–322"}]},
+  {parte:"Parte específica",num:"T22",enunciado:"Objeto, precio y garantías. Preparación: expediente y pliegos.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 99–130"}]},
+  {parte:"Parte específica",num:"T23",enunciado:"Adjudicación de contratos: normas y procedimientos.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 131–187"}]},
+  {parte:"Parte específica",num:"T24",enunciado:"Efectos, prerrogativas y ejecución de contratos.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Arts. 188–213"}]},
+  {parte:"Parte específica",num:"T25",enunciado:"Los contratos menores. Límites e instrucciones OIReScon.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Art. 118, 332"}]},
+  {parte:"Parte específica",num:"T26",enunciado:"Actividad subvencional: tipos y procedimientos.",leyes:[{n:"Ley 38/2003 Subvenciones",arts:"Arts. 1–43"}]},
+  {parte:"Parte específica",num:"T27",enunciado:"Responsabilidad patrimonial: principios y procedimiento.",leyes:[{n:"Ley 40/2015",arts:"Arts. 32–37"},{n:"Ley 39/2015",arts:"Arts. 61, 65, 81, 91"}]},
+  {parte:"Parte específica",num:"T28",enunciado:"Empleados públicos: clases, acceso y extinción.",leyes:[{n:"RDL 5/2015 (TREBEP)",arts:"Arts. 1–13, 55–68"}]},
+  {parte:"Parte específica",num:"T29",enunciado:"Provisión de puestos y situaciones administrativas.",leyes:[{n:"RDL 5/2015 (TREBEP)",arts:"Arts. 78–92"}]},
+  {parte:"Parte específica",num:"T30",enunciado:"Derechos individuales y colectivos. Negociación colectiva.",leyes:[{n:"RDL 5/2015 (TREBEP)",arts:"Arts. 14–15, 31–46"}]},
+  {parte:"Parte específica",num:"T31",enunciado:"Deberes y régimen disciplinario. Incompatibilidades.",leyes:[{n:"RDL 5/2015 (TREBEP)",arts:"Arts. 52–54, 93–98"},{n:"Ley 53/1984",arts:"Íntegra"}]},
+  {parte:"Parte específica",num:"T32",enunciado:"Intervención administrativa local. Licencias.",leyes:[{n:"Ley 7/1985",arts:"Art. 84"},{n:"Reglamento Servicios Corporaciones Locales",arts:"Arts. 1–22"}]},
+  {parte:"Parte específica",num:"T33",enunciado:"El Presidente de Melilla. Naturaleza y atribuciones.",leyes:[{n:"Estatuto Melilla",arts:"Arts. 14–15"}]},
+  {parte:"Parte específica",num:"T34",enunciado:"El Consejo de Gobierno de Melilla. Consejeros.",leyes:[{n:"Estatuto Melilla",arts:"Arts. 16–19"}]},
+  {parte:"Parte específica",num:"T35",enunciado:"La Asamblea de Melilla. Comisiones y atribuciones.",leyes:[{n:"Estatuto Melilla",arts:"Arts. 6–13"}]},
+  {parte:"Parte específica",num:"T36",enunciado:"Administración de Melilla. Función directiva.",leyes:[{n:"Estatuto Melilla",arts:"Art. 28"}]},
+  {parte:"Parte específica",num:"T37",enunciado:"Patrimonio local: bienes, dominio público y patrimoniales.",leyes:[{n:"Ley 7/1985",arts:"Arts. 79–83"},{n:"Reglamento Bienes Entidades Locales",arts:"Íntegro"}]},
+  {parte:"Parte específica",num:"T38",enunciado:"Presupuesto local: elaboración, aprobación y prórroga.",leyes:[{n:"RDL 2/2004 (TRLRHL)",arts:"Arts. 162–169"}]},
+  {parte:"Parte específica",num:"T39",enunciado:"Estructura presupuestaria y créditos. Modificaciones.",leyes:[{n:"RDL 2/2004 (TRLRHL)",arts:"Arts. 167, 172–182"}]},
+  {parte:"Parte específica",num:"T40",enunciado:"Ejecución del presupuesto: fases y pagos a justificar.",leyes:[{n:"RDL 2/2004 (TRLRHL)",arts:"Arts. 183–193"}]},
+  {parte:"Parte específica",num:"T41",enunciado:"Control interno en el Sector Público Local.",leyes:[{n:"RDL 2/2004 (TRLRHL)",arts:"Arts. 213–222"},{n:"RD 424/2017",arts:"Íntegro"}]},
+  {parte:"Parte específica",num:"T42",enunciado:"Tasas, precios públicos y contribuciones especiales.",leyes:[{n:"RDL 2/2004 (TRLRHL)",arts:"Arts. 20–47"}]}
+];
+
+const C2 = [
+  {parte:"Parte general",num:"T1",enunciado:"Constitución Española: características, estructura y Título Preliminar.",leyes:[{n:"Constitución Española",arts:"Arts. 1–9"}]},
+  {parte:"Parte general",num:"T2",enunciado:"Constitución Española: Título I Derechos y Deberes.",leyes:[{n:"Constitución Española",arts:"Arts. 10–55"}]},
+  {parte:"Parte general",num:"T7",enunciado:"Constitución Española: Organización territorial. Acceso a autonomía de Melilla.",leyes:[{n:"Constitución Española",arts:"Arts. 137–158"},{n:"Estatuto Melilla",arts:"Art. 1"}]},
+  {parte:"Parte específica",num:"E1",enunciado:"Ley 39/2015: objeto, capacidad, interesado, plazos.",leyes:[{n:"Ley 39/2015",arts:"Arts. 1–33"}]},
+  {parte:"Parte específica",num:"E2",enunciado:"El acto administrativo: concepto, eficacia y requisitos.",leyes:[{n:"Ley 39/2015",arts:"Arts. 34–46"}]},
+  {parte:"Parte específica",num:"E13",enunciado:"Los contratos menores: límites y adjudicación.",leyes:[{n:"Ley 9/2017 (LCSP)",arts:"Art. 118, 332"}]}
+];
+
+// Combine all with metadata
+const ALL_DATA = [
+  ...C1.map(x => ({...x, exam:'c1', examName:'Administrativo C1'})),
+  ...C2.map(x => ({...x, exam:'c2', examName:'Auxiliar C2'}))
+];
+
 const BLOCKS = [
-  { id: 'b1', name: 'Bloque I: Derecho Constitucional y Organización' },
-  { id: 'b2', name: 'Bloque II: Derecho Administrativo y Procedimiento' },
-  { id: 'b3', name: 'Bloque III: Gestión de Personal y Contratación' },
-  { id: 'b4', name: 'Bloque IV: Haciendas Locales y Organización CAM' }
+  { id: 'gen', name: 'Bloque I: Organización del Estado y Melilla (Parte General)' },
+  { id: 'adm', name: 'Bloque II: Derecho Administrativo y Procedimiento (Parte Específica)' },
+  { id: 'con', name: 'Bloque III: Contratación y Función Pública' },
+  { id: 'hac', name: 'Bloque IV: Haciendas Locales y Organización CAM' }
 ];
 
-const DATA = [
-  {id:'c1-t1', bloque:'b1', exam:'c1', num:'T1', title:'La Constitución Española', prio:'high', focus:'Arts. 1-55. Especial atención a Derechos Fundamentales (14-29).', laws:[{n:'Constitución', arts:'Título Preliminar y Título I'}]},
-  {id:'c1-t6', bloque:'b1', exam:'c1', num:'T6', title:'Estatuto de Autonomía de Melilla', prio:'high', focus:'Art. 21.1 (Competencias exclusivas) y Organización Institucional.', laws:[{n:'Estatuto', arts:'Íntegro'}]},
-  {id:'c1-t10', bloque:'b2', exam:'c1', num:'T10', title:'El Interesado y Representación', prio:'high', focus:'Capacidad (Art. 3) y Acreditación de representación (Art. 5).', laws:[{n:'Ley 39/2015', arts:'Arts. 3-12'}]},
-  {id:'c1-t11', bloque:'b2', exam:'c1', num:'T11', title:'Términos y Plazos', prio:'mid', focus:'Cómputo en días hábiles/naturales y horas (Art. 30).', laws:[{n:'Ley 39/2015', arts:'Arts. 29-33'}]},
-  {id:'c1-t12', bloque:'b2', exam:'c1', num:'T12', title:'Actos Administrativos', prio:'high', focus:'Motivación (Art. 35) y Notificación (Arts. 40-44).', laws:[{n:'Ley 39/2015', arts:'Arts. 34-46'}]},
-  {id:'c1-t19', bloque:'b3', exam:'c1', num:'T19', title:'Contratos del Sector Público', prio:'high', focus:'Tipos de contratos y Umbrales SARA (actualizados).', laws:[{n:'LCSP', arts:'Arts. 1-27'}]},
-  {id:'c1-t25', bloque:'b3', exam:'c1', num:'T25', title:'Contratos Menores', prio:'high', focus:'Límites (15k/40k) y prohibición de fraccionamiento.', laws:[{n:'LCSP', arts:'Art. 118'}]},
-  {id:'c1-t28', bloque:'b3', exam:'c1', num:'T28', title:'Personal al Servicio de AAPP (TREBEP)', prio:'high', focus:'Clases de personal (Arts. 8-12) y Requisitos de acceso (Art. 56).', laws:[{n:'TREBEP', arts:'Arts. 1-13, 55-62'}]},
-  {id:'c1-t29', bloque:'b4', exam:'c1', num:'T29', title:'Haciendas Locales: Recursos', prio:'mid', focus:'Tasas vs Precios Públicos (Concepto y diferencia).', laws:[{n:'TRLRHL', arts:'Arts. 2, 20-27, 41-47'}]},
-  {id:'c2-t1', bloque:'b1', exam:'c2', num:'T1', title:'Constitución: Derechos y Deberes', prio:'high', focus:'Título I completo.', laws:[{n:'Constitución', arts:'Título I'}]},
-  {id:'c2-t10', bloque:'b2', exam:'c2', num:'T10', title:'Procedimiento Administrativo Común', prio:'high', focus:'Derechos del interesado (Art. 13).', laws:[{n:'Ley 39/2015', arts:'Arts. 13-28'}]}
-];
-
-// Nota: He incluido los temas principales recuperados. Se pueden añadir los 75 temas siguiendo este patrón.
+function getBloque(item) {
+  if (item.parte === "Parte general") return 'gen';
+  const n = parseInt(item.num.substring(1));
+  if (item.exam === 'c1') {
+    if (n >= 9 && n <= 18) return 'adm';
+    if (n >= 19 && n <= 32) return 'con';
+    return 'hac';
+  }
+  return 'adm';
+}
 
 let state = {
   theme: localStorage.getItem('theme') || 'dark',
@@ -171,23 +230,18 @@ let state = {
   progress: JSON.parse(localStorage.getItem('progress') || '{}')
 };
 
-function getUrl(name) {
-  for (let k in LAW_URLS) if (name.includes(k)) return LAW_URLS[k];
-  return '#';
-}
-
 function render() {
   const container = document.getElementById('content');
-  const filtered = DATA.filter(d => {
+  const filtered = ALL_DATA.filter(d => {
     const matchExam = state.exam === 'all' || d.exam === state.exam;
-    const txt = (d.title + d.num + d.focus).toLowerCase();
+    const txt = (d.enunciado + d.num + d.num + d.parte).toLowerCase();
     const matchSearch = txt.includes(state.q.toLowerCase());
     return matchExam && matchSearch;
   });
 
   const grouped = BLOCKS.map(b => ({
     ...b,
-    items: filtered.filter(item => item.bloque === b.id)
+    items: filtered.filter(item => getBloque(item) === b.id)
   })).filter(b => b.items.length > 0);
 
   container.innerHTML = grouped.map(block => `
@@ -198,22 +252,25 @@ function render() {
           const prog = state.progress[item.id] || 'Pendiente';
           return `
             <article class="card">
-              <div class="card-meta">
+              <div class="card-top">
                 <span class="card-num">${item.num} · ${item.exam.toUpperCase()}</span>
-                <span class="badge badge-${item.prio}">${item.prio === 'high' ? 'Crítico' : 'Importante'}</span>
+                <span class="badge">${item.parte}</span>
               </div>
-              <h2 class="card-title">${item.title}</h2>
-              <div class="law-list">
-                ${item.laws.map(l => `
+              <h2 class="card-title">${item.enunciado}</h2>
+              <div class="law-section">
+                ${item.leyes.map(l => `
                   <div class="law-item">
-                    <a href="${getUrl(l.n)}" class="law-name" target="_blank">${l.n} ↗</a>
-                    <span class="law-arts">${l.arts}</span>
+                    <a href="${LAW_URLS[Object.keys(LAW_URLS).find(k => l.n.includes(k))] || '#'}" class="law-name" target="_blank">${l.n} ↗</a>
+                    <div class="law-arts">${l.arts}</div>
                   </div>
                 `).join('')}
               </div>
-              <div class="focus-box">🎯 Al grano: ${item.focus}</div>
-              <div class="footer-actions">
-                <button class="prog-btn prog-${prog}" onclick="toggleProg('${item.id}')">${prog}</button>
+              <div class="prog-footer">
+                <select class="prog-select" onchange="updateProg('${item.id}', this.value)">
+                  <option value="Pendiente" ${prog === 'Pendiente' ? 'selected' : ''}>⭕ Pendiente</option>
+                  <option value="Leído" ${prog === 'Leído' ? 'selected' : ''}>🔷 Leído / Resumido</option>
+                  <option value="Dominado" ${prog === 'Dominado' ? 'selected' : ''}>✅ Dominado</option>
+                </select>
               </div>
             </article>
           `;
@@ -221,16 +278,10 @@ function render() {
       </div>
     </section>
   `).join('');
-
-  if (grouped.length === 0) {
-    container.innerHTML = '<div style="text-align:center; padding: 40px; opacity: 0.5;">No se han encontrado temas con esos filtros.</div>';
-  }
 }
 
-window.toggleProg = (id) => {
-  const steps = ['Pendiente', 'Leído', 'Dominado'];
-  let cur = steps.indexOf(state.progress[id] || 'Pendiente');
-  state.progress[id] = steps[(cur + 1) % 3];
+window.updateProg = (id, val) => {
+  state.progress[id] = val;
   localStorage.setItem('progress', JSON.stringify(state.progress));
   render();
 };
