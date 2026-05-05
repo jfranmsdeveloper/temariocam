@@ -198,21 +198,21 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   .modal-meta { font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 1.5px; display: flex; gap: 15px; }
 
   .law-mini-card { 
-    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); 
-    border-radius: 20px; padding: 20px; margin-bottom: 0px; height: 100%;
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.08); 
+    border-radius: 20px; padding: 25px; margin-bottom: 0px; height: 100%;
   }
-  .law-mini-title { font-size: 14px; font-weight: 900; color: var(--melilla-gold); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-  .law-mini-content { font-size: 13px; line-height: 1.6; color: #444; }
+  .law-mini-title { font-size: 15px; font-weight: 900; color: var(--melilla-gold); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .law-mini-content { font-size: 14px; line-height: 1.6; color: #333; }
   
   .art-pill-label { cursor: pointer; display: block; }
   .art-pill-label input[type="checkbox"] { display: none; }
-  .art-pill { background: white; border: 1px solid var(--melilla-blue); color: var(--melilla-blue); border-radius: 8px; padding: 6px 4px; text-align: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 5px rgba(0,122,255,0.08); transition: all 0.2s cubic-bezier(0.1, 0.8, 0.2, 1); }
+  .art-pill { background: white; border: 1px solid var(--melilla-blue); color: var(--melilla-blue); border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 12px; font-weight: 800; box-shadow: 0 2px 5px rgba(0,122,255,0.08); transition: all 0.2s cubic-bezier(0.1, 0.8, 0.2, 1); }
   .art-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,122,255,0.15); }
   .art-pill-label input[type="checkbox"]:checked + .art-pill { background: var(--melilla-blue); color: white; border-color: var(--melilla-blue); box-shadow: 0 4px 10px rgba(0,122,255,0.3); transform: scale(0.95); }
-  .law-breakdown { display: flex; flex-direction: column; gap: 15px; }
-  .breakdown-chunk { background: rgba(0,0,0,0.02); border-radius: 16px; padding: 15px; border: 1px solid rgba(0,0,0,0.04); }
-  .chunk-desc { font-size: 13px; color: #444; margin-bottom: 12px; line-height: 1.5; }
-  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; }
+  .law-breakdown { display: flex; flex-direction: column; gap: 24px; }
+  .breakdown-chunk { background: rgba(0,0,0,0.02); border-radius: 16px; padding: 20px; border: 1px solid rgba(0,0,0,0.08); }
+  .chunk-desc { font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.6; }
+  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 10px; }
   
   .close-dash { 
     background: var(--melilla-blue); color: white; border: none; padding: 12px 25px; 
@@ -286,6 +286,15 @@ header { display: flex; justify-content: space-between; align-items: center; mar
         <div class="chart-title">⚖️ Mix Normativo</div>
         <div style="position: relative; height: 350px; display: flex; justify-content: center;">
           <canvas id="normativeMixCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-section" style="margin-top: 30px;">
+      <div class="chart-title">📈 Inventario Total de Leyes (Prioridad Estratégica)</div>
+      <div id="allLawsContainer" style="overflow-y: auto; height: 600px; padding-right: 15px;">
+        <div style="position: relative;" id="allLawsInner">
+          <canvas id="allLawsChartCanvas"></canvas>
         </div>
       </div>
     </div>
@@ -1047,6 +1056,48 @@ function calculateStats() {
       }
     }
   });
+
+  // 4. All Laws Horizontal Bar Chart (Dynamically sized)
+  const allLaws = Object.entries(lawArticleCounts).sort((a,b) => b[1] - a[1]);
+  const allLawsContainer = document.getElementById('allLawsInner');
+  if (allLawsContainer) {
+    // Set height based on number of laws (e.g. 35px per law)
+    allLawsContainer.style.height = (allLaws.length * 35) + 'px';
+    const allLawsCtx = document.getElementById('allLawsChartCanvas').getContext('2d');
+    charts.allLaws = new Chart(allLawsCtx, {
+      type: 'bar',
+      data: {
+        labels: allLaws.map(l => l[0].length > 60 ? l[0].substring(0,60)+'...' : l[0]),
+        datasets: [{
+          label: 'Artículos',
+          data: allLaws.map(l => l[1]),
+          backgroundColor: 'rgba(0, 122, 255, 0.5)',
+          borderColor: 'rgba(0, 122, 255, 1)',
+          borderWidth: 1,
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              afterLabel: function(context) {
+                return 'Tiempo aprox: ' + Math.round((context.raw*5)/60) + ' horas';
+              }
+            }
+          }
+        },
+        scales: {
+          x: { grid: { display: true, color: 'rgba(0,0,0,0.05)' } },
+          y: { grid: { display: false }, ticks: { font: { size: 11, weight: 'bold' } } }
+        }
+      }
+    });
+  }
 }
 
 setUI();
