@@ -1,834 +1,463 @@
-<!doctype html>
-<html lang="es" data-theme="dark">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TemarioCAM — Melilla Strategic Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root[data-theme="dark"] {
-  --melilla-blue: #007AFF;
-  --melilla-gold: #FFD700;
-  --bg: #030509;
-  --surface: rgba(255, 255, 255, 0.03);
-  --surface-hover: rgba(255, 255, 255, 0.07);
-  --line: rgba(255, 255, 255, 0.1);
-  --text: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.5);
-  --glass-blur: blur(60px);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temario Unificado — Melilla 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --surface: rgba(255, 255, 255, 0.7);
+            --surface-opaque: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent-blue: #0078d4;
+            
+            /* Pastel Palette */
+            --b1: #0ea5e9; --b1-bg: #f0f9ff;
+            --b2: #f43f5e; --b2-bg: #fff1f2;
+            --b3: #f59e0b; --b3-bg: #fffbeb;
+            --b4: #8b5cf6; --b4-bg: #f5f3ff;
+            --b5: #10b981; --b5-bg: #ecfdf5;
+            --b6: #ec4899; --b6-bg: #fdf2f8;
 
-:root[data-theme="light"] {
-  --melilla-blue: #007AFF;
-  --melilla-gold: #D4AF37;
-  --bg: #F0F4F8;
-  --surface: rgba(255, 255, 255, 0.6);
-  --surface-hover: rgba(255, 255, 255, 0.85);
-  --line: rgba(0, 0, 0, 0.04);
-  --text: #0A1128;
-  --text-muted: #546E7A;
-  --glass-blur: blur(40px);
-}
+            --radius-lg: 32px;
+            --radius-md: 20px;
+            --radius-sm: 12px;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 0 2px 10px rgba(0, 0, 0, 0.01);
+            --blur: blur(30px);
+        }
 
-* { box-sizing: border-box; transition: all 0.5s cubic-bezier(0.1, 0.8, 0.2, 1); }
-body {
-  margin: 0; min-height: 100vh; font-family: 'Inter', sans-serif;
-  background-color: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-.liquid { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; pointer-events: none; opacity: 0.4; animation: drift 25s infinite alternate; }
-.l1 { width: 800px; height: 800px; background: radial-gradient(circle, var(--melilla-blue) 0%, transparent 70%); top: -300px; left: -200px; }
-.l2 { width: 600px; height: 600px; background: radial-gradient(circle, #AF52DE 0%, transparent 70%); bottom: -200px; right: -200px; animation-delay: -10s; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-@keyframes drift { from { transform: translate(0,0) rotate(0deg); } to { transform: translate(100px, 50px) rotate(30deg); } }
+        .ambient-light {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
+        }
+        .blob {
+            position: absolute; width: 80vw; height: 80vw; border-radius: 50%; filter: blur(120px); opacity: 0.15;
+            animation: drift 30s infinite alternate linear;
+        }
+        @keyframes drift {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(180deg); }
+        }
 
-.app { max-width: 1400px; margin: auto; padding: 60px 24px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 24px; }
 
-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
-.brand h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; margin: 0; letter-spacing: -3px; color: var(--melilla-blue); }
-.brand p { color: var(--text-muted); margin: 8px 0 0; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        header { text-align: center; margin-bottom: 100px; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px;
+            background: white; border-radius: 100px; font-size: 13px; font-weight: 700;
+            color: #0369a1; margin-bottom: 32px; box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03); text-transform: uppercase; letter-spacing: 1px;
+        }
 
-.toggle { background: var(--surface); border: 1px solid var(--line); padding: 4px; border-radius: 16px; cursor: pointer; display: flex; backdrop-filter: var(--glass-blur); }
-.toggle span { padding: 6px 16px; border-radius: 12px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-.toggle .active { background: var(--melilla-blue); color: white; }
+        h1 {
+            font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 24px;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header-sub { font-size: 18px; color: var(--text-muted); font-weight: 500; max-width: 600px; margin: 0 auto; }
+        .header-sub strong { color: var(--text-main); font-weight: 700; }
 
-.nav-bar { display: flex; gap: 20px; margin-bottom: 50px; position: sticky; top: 30px; z-index: 1000; }
-.search-box { flex: 1; background: var(--surface); border: 1px solid var(--line); padding: 18px 24px; border-radius: 24px; backdrop-filter: var(--glass-blur); }
-.search-box input { background: none; border: none; color: var(--text); width: 100%; font-size: 18px; outline: none; font-weight: 600; }
+        /* Nav */
+        .nav-container { position: sticky; top: 24px; z-index: 1000; margin-bottom: 80px; padding: 10px; }
+        .nav-glass {
+            display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+            padding: 12px; background: rgba(255, 255, 255, 0.6); backdrop-filter: var(--blur);
+            border-radius: 100px; border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .nav-link {
+            padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 700;
+            text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+        }
+        .nav-link:hover { transform: translateY(-2px); color: var(--text-main); }
+        .nav-link.active { background: white; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-.filter-tabs { display: flex; background: var(--surface); padding: 4px; border-radius: 20px; border: 1px solid var(--line); backdrop-filter: var(--glass-blur); }
-.tab { border: none; background: none; color: var(--text-muted); padding: 10px 24px; border-radius: 16px; cursor: pointer; font-weight: 800; font-size: 14px; }
-.tab.active { background: var(--surface-hover); color: var(--text); }
+        /* Block Section */
+        .block-section { margin-bottom: 120px; scroll-margin-top: 120px; }
+        .block-info { margin-bottom: 48px; position: relative; }
+        .block-info .tag { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; color: var(--accent-color); }
+        .block-info h2 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .block-info .norms { 
+            font-size: 15px; font-weight: 600; color: var(--text-muted); padding: 12px 24px; 
+            background: var(--accent-bg); border-radius: 100px; display: inline-flex; align-items: center; gap: 10px;
+        }
 
-.block-container { margin-bottom: 24px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); backdrop-filter: var(--glass-blur); overflow: hidden; }
-.block-header { padding: 35px 45px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-.block-header h3 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
-.block-header .icon-wrap { display: flex; align-items: center; gap: 20px; }
-.block-header .icon-wrap svg { width: 32px; height: 32px; }
+        /* Topic Card */
+        .topic-card {
+            background: var(--surface); backdrop-filter: var(--blur); border-radius: var(--radius-lg);
+            padding: 48px; border: 1px solid rgba(255, 255, 255, 0.5); margin-bottom: 32px;
+            box-shadow: var(--shadow); transition: all 0.4s ease;
+        }
+        .topic-card:hover { transform: translateY(-4px); background: white; box-shadow: 0 20px 60px rgba(0,0,0,0.06); }
+        
+        .topic-header { margin-bottom: 32px; }
+        .topic-header .t-tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 8px; display: block; }
+        .topic-header h3 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; padding: 45px; border-top: 1px solid var(--line); }
+        .subtopic-grid { display: grid; gap: 16px; }
+        .subtopic-item {
+            padding: 24px; background: rgba(255, 255, 255, 0.4); border-radius: var(--radius-md);
+            border: 1px solid rgba(0,0,0,0.01); transition: all 0.2s ease;
+        }
+        .subtopic-item:hover { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .sub-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #1e293b; display: flex; gap: 12px; }
+        .sub-num { color: var(--accent-color); font-weight: 800; }
+        .sub-law { 
+            font-size: 13px; font-weight: 600; color: var(--text-muted); 
+            display: flex; align-items: center; gap: 8px;
+        }
+        .law-pill { 
+            background: var(--accent-bg); color: var(--accent-color); 
+            padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800;
+        }
 
-.card {
-  background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 32px; padding: 35px;
-  display: flex; flex-direction: column; gap: 20px; cursor: pointer;
-}
-.card:hover { transform: scale(1.02) translateY(-10px); background: rgba(255,255,255,0.05); }
-.card-num { font-size: 14px; font-weight: 900; color: var(--melilla-gold); letter-spacing: 2px; }
-.card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin: 0; line-height: 1.25; }
+        /* Summary Table */
+        .summary-card { background: white; border-radius: var(--radius-lg); padding: 60px; box-shadow: var(--shadow); margin-top: 100px; }
+        .summary-card h2 { text-align: center; margin-bottom: 48px; font-size: 32px; font-weight: 800; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 20px; font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #f1f5f9; }
+        td { padding: 20px; border-bottom: 1px solid #f1f5f9; font-size: 15px; font-weight: 500; }
+        .b-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
 
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(25px); z-index: 2000; display: none; place-items: center; padding: 24px; }
-.modal-content {
-  background: var(--bg); border: 1px solid var(--line); border-radius: 50px;
-  width: 100%; max-width: 1100px; max-height: 90vh; overflow-y: auto;
-  position: relative; padding: 80px;
-}
-.close-modal { position: absolute; top: 40px; right: 40px; cursor: pointer; opacity: 0.4; font-size: 30px; }
+        footer { text-align: center; margin-top: 80px; padding-bottom: 80px; color: var(--text-muted); font-weight: 600; }
 
-.modal-header h2 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--melilla-blue); margin: 20px 0; }
-
-.law-block { margin-bottom: 50px; border-left: 6px solid var(--melilla-blue); padding-left: 40px; }
-.law-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--melilla-gold); margin-bottom: 30px; }
-
-.outline-list { list-style: none; padding: 0; }
-.outline-item { margin-bottom: 25px; position: relative; font-size: 18px; line-height: 1.6; }
-
-.sub-list { list-style: none; padding-left: 20px; margin-top: 15px; border-left: 2px solid var(--line); }
-.sub-item { font-size: 16px; color: var(--text-muted); margin-bottom: 12px; position: relative; }
-
-@media (max-width: 1024px) {
-  .modal-content { padding: 40px; }
-  .grid { grid-template-columns: 1fr; padding: 24px; }
-}
-
-.block-container.drag-over { border-color: var(--melilla-gold); background: rgba(255, 215, 0, 0.05); }
-.card[draggable="true"] { cursor: grab; }
-.card[draggable="true"]:active { cursor: grabbing; }
-.card.dragging { opacity: 0.4; transform: scale(0.95); }
-
-.block-select {
-  background: var(--surface-hover); border: 1px solid var(--line); color: var(--text);
-  padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; outline: none;
-  width: 100%; margin-top: 10px; cursor: pointer; backdrop-filter: var(--glass-blur);
-}
-.block-select:focus { border-color: var(--melilla-gold); }
-
-.sort-btn {
-  background: none; border: none; padding: 8px; cursor: pointer; opacity: 0.4;
-  display: flex; align-items: center; justify-content: center; border-radius: 8px;
-}
-.sort-btn:hover { opacity: 1; background: var(--surface-hover); }
-.sort-btn svg { width: 18px; height: 18px; fill: var(--text); }
-
-.sub-header {
-  padding: 20px 45px 10px;
-  font-size: 14px; font-weight: 900; letter-spacing: 2px;
-  color: var(--text-muted); text-transform: uppercase;
-  display: flex; align-items: center; gap: 15px;
-}
-.sub-header::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-.edit-btn { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-muted); display: flex; align-items: center; gap: 8px; backdrop-filter: var(--glass-blur); }
-
-.edit-btn.active { border-color: var(--melilla-gold); color: var(--melilla-gold); }
-
-  .analysis-btn { background: var(--melilla-blue); color: white; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,122,255,0.2); }
-  .analysis-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,122,255,0.4); background: #0066d6; }
-  .analysis-btn svg { width: 16px; height: 16px; fill: white; }
-
-  #analysisDashboard {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(50px) saturate(180%);
-    z-index: 3000; display: none; overflow-y: auto; padding: 60px 40px;
-    color: #1d1d1f;
-  }
-  #analysisDashboard.active { display: block; animation: dashFade 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  @keyframes dashFade { from { opacity:0; backdrop-filter: blur(0px); } to { opacity:1; backdrop-filter: blur(50px); } }
-  
-  .dash-container { max-width: 1400px; margin: 0 auto; }
-  .dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0; }
-  
-  .kpi-card { 
-    background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255,255,255,0.4); padding: 30px; border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); backdrop-filter: blur(10px);
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-  }
-  .kpi-value { font-size: 38px; font-weight: 900; color: var(--melilla-blue); margin-bottom: 4px; font-family: 'Playfair Display', serif; }
-  .kpi-label { font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 2px; }
-
-  .chart-section { 
-    background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255,255,255,0.6); border-radius: 40px; 
-    padding: 40px; margin-bottom: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-  }
-  .chart-title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: var(--melilla-blue); }
-  
-  .strategy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px; }
-
-  .bar-row { margin-bottom: 20px; }
-  .bar-label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted); }
-  .bar-track { height: 8px; background: rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; }
-  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--melilla-blue), #5AC8FA); border-radius: 10px; transition: width 1.5s ease-out; width: 0; }
-  
-  .priority-tag { padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 900; text-transform: uppercase; }
-  .priority-high { background: rgba(255, 59, 48, 0.1); color: #FF3B30; }
-  .priority-med { background: rgba(255, 149, 0, 0.1); color: #FF9500; }
-  .priority-low { background: rgba(52, 199, 89, 0.1); color: #34C759; }
-
-  .modal-overlay { 
-    background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); 
-    display: none; position: fixed; inset: 0; z-index: 5000; place-items: center; padding: 20px;
-  }
-  .modal-content {
-    background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.5); border-radius: 40px;
-    width: 100%; max-width: 1200px; max-height: 95vh; overflow-y: auto;
-    position: relative; padding: 40px; box-shadow: 0 50px 100px rgba(0,0,0,0.1);
-  }
-  .close-modal { 
-    position: absolute; top: 30px; right: 30px; cursor: pointer; 
-    width: 40px; height: 40px; background: rgba(0,0,0,0.05); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s;
-  }
-  .close-modal:hover { background: rgba(255, 59, 48, 0.1); color: #FF3B30; }
-
-  .modal-header-mini { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; }
-  .modal-title-wrap h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--melilla-blue); margin: 0 0 10px 0; line-height: 1.1; }
-  .modal-meta { font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 1.5px; display: flex; gap: 15px; }
-
-  .law-mini-card { 
-    background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.08); 
-    border-radius: 20px; padding: 25px; margin-bottom: 0px; height: 100%;
-  }
-  .law-mini-title { font-size: 15px; font-weight: 900; color: var(--melilla-gold); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
-  .law-mini-content { font-size: 14px; line-height: 1.6; color: #333; }
-  
-  .art-pill-label { cursor: pointer; display: block; }
-  .art-pill-label input[type="checkbox"] { display: none; }
-  .art-pill { background: white; border: 1px solid var(--melilla-blue); color: var(--melilla-blue); border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 12px; font-weight: 800; box-shadow: 0 2px 5px rgba(0,122,255,0.08); transition: all 0.2s cubic-bezier(0.1, 0.8, 0.2, 1); }
-  .art-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,122,255,0.15); }
-  .art-pill-label input[type="checkbox"]:checked + .art-pill { background: var(--melilla-blue); color: white; border-color: var(--melilla-blue); box-shadow: 0 4px 10px rgba(0,122,255,0.3); transform: scale(0.95); }
-  .law-breakdown { display: flex; flex-direction: column; gap: 24px; }
-  .breakdown-chunk { background: rgba(0,0,0,0.02); border-radius: 16px; padding: 20px; border: 1px solid rgba(0,0,0,0.08); }
-  .chunk-desc { font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.6; }
-  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 10px; }
-  
-  .close-dash { 
-    background: var(--melilla-blue); color: white; border: none; padding: 12px 25px; 
-    border-radius: 15px; font-weight: 800; cursor: pointer; transition: all 0.3s ease;
-    font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
-  }
-  .close-dash:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,122,255,0.3); }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .topic-card { padding: 32px 24px; }
+            .nav-glass { border-radius: 24px; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="liquid l1"></div><div class="liquid l2"></div>
-
-<main class="app">
-  <header>
-    <div class="brand"><h1>TemarioCAM</h1><p><span>🏛️</span> Melilla Strategic Hub</p></div>
-    <div style="display:flex; gap:12px; align-items:center;">
-      <button class="analysis-btn" onclick="toggleDashboard()">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-        Análisis Legislativo
-      </button>
-      <button class="edit-btn" id="resetBtn" style="display:none">Restablecer Orden</button>
-      <button class="edit-btn" id="editToggle" style="display:none"><span>🔓</span> Editar Orden</button>
-      <div class="toggle" id="themeToggle"><span data-v="light">Claro</span><span data-v="dark" class="active">Oscuro</span></div>
-    </div>
-  </header>
-
-  <div class="nav-bar">
-    <div class="search-box"><input type="text" id="search" placeholder="Busca en el mapa estratégico..." /></div>
-    <div class="filter-tabs">
-      <button class="tab active" data-exam="all">Todo</button>
-      <button class="tab" data-exam="c1">C1</button>
-      <button class="tab" data-exam="c2">C2</button>
-    </div>
-  </div>
-
-  <div id="content"></div>
-</main>
-
-<div id="analysisDashboard">
-  <div class="dash-container">
-    <div class="dash-header">
-      <div>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 38px; color: var(--melilla-blue); margin:0;">Análisis Legislativo Estratégico</h2>
-        <p style="color: var(--text-muted); font-weight: 700; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px; font-size: 12px;">Inteligencia de Datos · Temario C1/C2 Ciudad Autónoma de Melilla</p>
-      </div>
-      <button class="close-dash" onclick="toggleDashboard()">Cerrar Dashboard</button>
+    <div class="ambient-light">
+        <div class="blob" style="background: var(--b1); top: 0; left: 0;"></div>
+        <div class="blob" style="background: var(--b4); bottom: 0; right: 0;"></div>
     </div>
 
-    <div class="dash-grid" id="kpiGrid" style="grid-template-columns: repeat(5, 1fr);">
-      <!-- KPIs dinámicos -->
-    </div>
+    <div class="container">
+        <header>
+            <div class="badge">✨ Mayo 2026 Integrated</div>
+            <h1>TEMARIO UNIFICADO</h1>
+            <div class="header-sub">
+                Ciudad Autónoma de Melilla · <strong>C1 Administrativos & C2 Auxiliares</strong><br>
+                53 Temas · 6 Bloques · Estructura Fluent Design
+            </div>
+        </header>
 
-    <div class="strategy-grid">
-      <div class="chart-section" style="grid-column: span 2;">
-        <div class="chart-title">🚨 Leyes más Críticas (Top por Artículos)</div>
-        <div style="position: relative; height: 350px;">
-          <canvas id="topLawsChartCanvas"></canvas>
+        <div class="nav-container">
+            <div class="nav-glass">
+                <a href="#b1" class="nav-link">B1: Melilla</a>
+                <a href="#b2" class="nav-link">B2: Estado</a>
+                <a href="#b3" class="nav-link">B3: Local/DA</a>
+                <a href="#b4" class="nav-link">B4: Contratos</a>
+                <a href="#b5" class="nav-link">B5: Hacienda</a>
+                <a href="#b6" class="nav-link">B6: Personal</a>
+            </div>
         </div>
-      </div>
-      
-      <div class="chart-section">
-        <div class="chart-title">🎯 Perfil Estratégico por Bloques</div>
-        <div style="position: relative; height: 350px; display: flex; justify-content: center;">
-          <canvas id="blockRadarCanvas"></canvas>
-        </div>
-      </div>
 
-      <div class="chart-section">
-        <div class="chart-title">⚖️ Mix Normativo</div>
-        <div style="position: relative; height: 350px; display: flex; justify-content: center;">
-          <canvas id="normativeMixCanvas"></canvas>
+        <div id="syllabus-content"></div>
+
+        <div class="summary-card">
+            <h2>RESUMEN NORMATIVO</h2>
+            <table id="summary-table">
+                <thead>
+                    <tr><th>Bloque</th><th>Normas Principales</th></tr>
+                </thead>
+                <tbody id="summary-body"></tbody>
+            </table>
         </div>
-      </div>
+
+        <footer>
+            Total 53 Temas · 6 Bloques Estratégicos · 32 Normas Clave
+        </footer>
     </div>
 
-    <div class="chart-section" style="margin-top: 30px;">
-      <div class="chart-title">📈 Inventario Total de Leyes (Prioridad Estratégica)</div>
-      <div id="allLawsContainer" style="overflow-y: auto; height: 600px; padding-right: 15px;">
-        <div style="position: relative;" id="allLawsInner">
-          <canvas id="allLawsChartCanvas"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <script>
+        const syllabus = [
+            {
+                id: "b1", title: "MELILLA: ESTATUTO, GOBIERNO E INSTITUCIONES",
+                norms: "LO 2/1995 (EAM) · REGA · RAM · LO 5/1985",
+                color: "var(--b1)", bgColor: "var(--b1-bg)",
+                temas: [
+                    {
+                        num: 1, title: "Melilla: naturaleza jurídica, territorio y organización básica",
+                        subs: [
+                            { n: "1.1", t: "Qué es Melilla: ciudad, municipio y comunidad autónoma a la vez", l: "LO 2/1995 (EAM) — Arts. 1–5" },
+                            { n: "1.2", t: "Instituciones de autogobierno: Asamblea, Presidente y Consejo de Gobierno", l: "LO 2/1995 (EAM) — Arts. 6–7" },
+                            { n: "1.3", t: "La Asamblea: naturaleza, composición y atribuciones básicas", l: "LO 2/1995 (EAM) — Arts. 8–11" },
+                            { n: "1.4", t: "El Presidente: naturaleza, elección y atribuciones esenciales", l: "LO 2/1995 (EAM) — Arts. 12–14" },
+                            { n: "1.5", t: "El Consejo de Gobierno: naturaleza, composición y atribuciones básicas", l: "LO 2/1995 (EAM) — Arts. 15–19" },
+                            { n: "1.6", t: "Organización territorial del Estado: cómo encaja Melilla en la Constitución", l: "CE 1978 — Arts. 137–142, 144, 147–158" }
+                        ]
+                    },
+                    {
+                        num: 2, title: "Competencias de Melilla: qué puede hacer y qué no",
+                        subs: [
+                            { n: "2.1", t: "Competencias exclusivas: materias en las que Melilla decide sola", l: "LO 2/1995 (EAM) — Art. 20" },
+                            { n: "2.2", t: "Competencias compartidas y ejecutivas: cuando Melilla aplica normas del Estado", l: "LO 2/1995 (EAM) — Arts. 21–22" },
+                            { n: "2.3", t: "Competencias municipales y cláusula residual", l: "LO 2/1995 (EAM) — Arts. 23–24" },
+                            { n: "2.4", t: "Delegación y transferencia de competencias desde el Estado", l: "LO 2/1995 (EAM) — Arts. 25–26" }
+                        ]
+                    },
+                    {
+                        num: 3, title: "Régimen jurídico, economía y reforma del Estatuto",
+                        subs: [
+                            { n: "3.1", t: "Potestad reglamentaria: quién puede dictar normas y con qué límites", l: "LO 2/1995 (EAM) — Art. 27" },
+                            { n: "3.2", t: "Régimen de actos y acuerdos: impugnación y control jurisdiccional", l: "LO 2/1995 (EAM) — Arts. 28–32" },
+                            { n: "3.3", t: "Cooperación con el Estado en Melilla", l: "LO 2/1995 (EAM) — Art. 33" },
+                            { n: "3.4", t: "Hacienda de Melilla: recursos, presupuesto y régimen fiscal especial (IPSI)", l: "LO 2/1995 (EAM) — Arts. 34–40" },
+                            { n: "3.5", t: "Cómo se reforma el Estatuto: procedimiento y mayorías necesarias", l: "LO 2/1995 (EAM) — Art. 41" }
+                        ]
+                    },
+                    {
+                        num: 4, title: "El Presidente de Melilla: elección, poderes y control político",
+                        subs: [
+                            { n: "4.1", t: "Naturaleza, representación y elección del Presidente", l: "REGA — Arts. 2, 5–6" },
+                            { n: "4.2", t: "Atribuciones del Presidente: qué puede hacer y decidir", l: "LO 2/1995 (EAM) — Art. 13 · REGA — Art. 7" },
+                            { n: "4.3", t: "Delegación de atribuciones y sustitución del Presidente", l: "REGA — Arts. 8–9" },
+                            { n: "4.4", t: "Moción de censura: requisitos, procedimiento y efectos", l: "LO 2/1995 (EAM) — Art. 14 · REGA — Art. 11 · RAM — Arts. 91–100" },
+                            { n: "4.5", t: "Cuestión de confianza: cuándo se plantea y qué implica", l: "LO 2/1995 (EAM) — Art. 14 · REGA — Art. 10" },
+                            { n: "4.6", t: "Elección del Presidente de Melilla: sistema electoral aplicable", l: "LO 5/1985 (LOREG) — Arts. 162, 165–166, 169" }
+                        ]
+                    },
+                    {
+                        num: 5, title: "El Consejo de Gobierno: composición, sesiones y atribuciones",
+                        subs: [
+                            { n: "5.1", t: "Naturaleza, composición y convocatoria del Consejo de Gobierno", l: "REGA — Arts. 12–13" },
+                            { n: "5.2", t: "Desarrollo de las sesiones: deliberación, votación y actas", l: "REGA — Arts. 14–17" },
+                            { n: "5.3", t: "Atribuciones del Consejo de Gobierno y delegación de competencias", l: "LO 2/1995 (EAM) — Art. 16 · REGA — Arts. 18–22" },
+                            { n: "5.5", t: "Los Consejeros: nombramiento, atribuciones, suplencia e incompatibilidades", l: "LO 2/1995 (EAM) — Arts. 17–19 · REGA — Arts. 28–31" }
+                        ]
+                    },
+                    {
+                        num: 6, title: "La Asamblea de Melilla: organización, funciones y control político",
+                        subs: [
+                            { n: "6.1", t: "Naturaleza, sede, composición y sesión constituyente", l: "RAM — Arts. 1–4" },
+                            { n: "6.2", t: "Mesa de la Asamblea y Junta de Portavoces", l: "RAM — Arts. 5–8" },
+                            { n: "6.4", t: "Comisiones: permanentes, especiales y de investigación", l: "RAM — Arts. 16–22" },
+                            { n: "6.6", t: "Procedimiento legislativo y de control político", l: "RAM — Arts. 46–70" }
+                        ]
+                    },
+                    {
+                        num: 7, title: "La Administración de Melilla: estructura interna y organismos",
+                        subs: [
+                            { n: "7.1", t: "Organización de la Administración: Consejerías, Secretarías y Direcciones", l: "REGA — Arts. 46–52" },
+                            { n: "7.2", t: "Entes instrumentales: organismos autónomos, empresas y consorcios", l: "REGA — Arts. 53–57" },
+                            { n: "7.7", t: "Principios generales de organización y competencia administrativa", l: "Ley 40/2015 — Arts. 1–4" },
+                            { n: "7.9", t: "Delegación, avocación, encomienda de gestión y suplencia", l: "Ley 40/2015 — Arts. 8–14" }
+                        ]
+                    },
+                    {
+                        num: 8, title: "Cómo se crean las normas en Melilla: ordenanzas y reglamentos",
+                        subs: [
+                            { n: "8.1", t: "Potestad reglamentaria del Presidente y del Consejo de Gobierno", l: "REGA — Arts. 68–69" },
+                            { n: "8.3", t: "Ordenanzas municipales: procedimiento especial y publicación en BOME", l: "REGA — Arts. 76–79" },
+                            { n: "8.5", t: "Elaboración y aprobación de ordenanzas y reglamentos locales", l: "Ley 7/1985 (LRBRL) — Arts. 47–50" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "b2", title: "CONSTITUCIÓN, DERECHOS Y ORGANIZACIÓN DEL ESTADO",
+                norms: "CE 1978 · LOPJ · LOTC · Defensor del Pueblo · Igualdad",
+                color: "var(--b2)", bgColor: "var(--b2-bg)",
+                temas: [
+                    {
+                        num: 9, title: "La Constitución: estructura, principios fundamentales y reforma",
+                        subs: [
+                            { n: "9.1", t: "Preámbulo y Título Preliminar: qué tipo de Estado es España", l: "CE 1978 — Arts. 1–9" },
+                            { n: "9.3", t: "Reforma constitucional: procedimiento ordinario y agravado", l: "CE 1978 — Arts. 166–169" }
+                        ]
+                    },
+                    {
+                        num: 10, title: "Derechos fundamentales y libertades públicas",
+                        subs: [
+                            { n: "10.3", t: "Derechos de la Sección 1ª: vida, libertad, intimidad y expresión", l: "CE 1978 — Arts. 15–22" },
+                            { n: "10.5", t: "Garantías de los derechos fundamentales: amparo y Defensor del Pueblo", l: "CE 1978 — Arts. 53–54" }
+                        ]
+                    },
+                    {
+                        num: 11, title: "Derechos y deberes de los ciudadanos. Igualdad de género",
+                        subs: [
+                            { n: "11.1", t: "Derechos y deberes de los ciudadanos (Sección 2ª CE)", l: "CE 1978 — Arts. 30–38" },
+                            { n: "11.3", t: "Objeto, ámbito y principio de igualdad de trato (LO 3/2007)", l: "LO 3/2007 — Arts. 1–5" }
+                        ]
+                    },
+                    {
+                        num: 12, title: "La Corona, las Cortes Generales y la función legislativa",
+                        subs: [
+                            { n: "12.1", t: "La Corona: funciones del Rey, refrendo, sucesión y dotación", l: "CE 1978 — Arts. 56–65" },
+                            { n: "12.2", t: "Las Cámaras: composición, mandato e inviolabilidad parlamentaria", l: "CE 1978 — Arts. 66–80" }
+                        ]
+                    },
+                    {
+                        num: 13, title: "El Gobierno: composición, funciones y relación con el Parlamento",
+                        subs: [
+                            { n: "13.1", t: "El Gobierno en la Constitución: composición, investidura y cese", l: "CE 1978 — Arts. 97–102" },
+                            { n: "13.4", t: "Ley 50/1997 del Gobierno: organización y Consejo de Ministros", l: "Ley 50/1997 — Arts. 1–26" }
+                        ]
+                    },
+                    {
+                        num: 14, title: "El Poder Judicial y el Consejo General del Poder Judicial",
+                        subs: [
+                            { n: "14.1", t: "Principios del Poder Judicial en la Constitución", l: "CE 1978 — Arts. 117–127" },
+                            { n: "14.2", t: "El CGPJ: naturaleza, composición y atribuciones principales", l: "LO 6/1985 (LOPJ) — Arts. 559–574" }
+                        ]
+                    },
+                    {
+                        num: 15, title: "El Tribunal Constitucional y el Defensor del Pueblo",
+                        subs: [
+                            { n: "15.1", t: "El Tribunal Constitucional en la Constitución", l: "CE 1978 — Arts. 159–165" },
+                            { n: "15.7", t: "El Defensor del Pueblo: nombramiento, funciones e informes", l: "LO 3/1981 — Arts. 1–6, 9–18, 28–37" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "b3", title: "RÉGIMEN LOCAL Y DERECHO ADMINISTRATIVO",
+                norms: "Ley 7/1985 · ROF · Padrón · Bienes · Ley 39/2015 · Ley 40/2015",
+                color: "var(--b3)", bgColor: "var(--b3-bg)",
+                temas: [
+                    { num: 16, title: "El municipio: concepto, territorio, población y padrón", subs: [{ n: "16.1", t: "El municipio como entidad local básica", l: "Ley 7/1985 — Arts. 1–10" }] },
+                    { num: 17, title: "Organización municipal: órganos, competencias y servicios", subs: [{ n: "17.1", t: "Órganos necesarios de gobierno municipal", l: "Ley 7/1985 — Arts. 19–24 bis" }] },
+                    { num: 18, title: "La provincia, la isla y otras entidades locales", subs: [{ n: "18.1", t: "La provincia: naturaleza, órganos y competencias", l: "Ley 7/1985 — Arts. 31–45" }] },
+                    { num: 19, title: "Intervención local y servicio público", subs: [{ n: "19.4", t: "Gestión de servicios públicos locales", l: "RSCL 1955 — Arts. 41–85" }] },
+                    { num: 20, title: "El suelo: clasificación y régimen urbanístico", subs: [{ n: "20.3", t: "Situaciones básicas del suelo", l: "RDL 7/2015 — Art. 11" }] },
+                    { num: 21, title: "Las personas ante la Administración", subs: [{ n: "21.3", t: "Derechos de las personas", l: "Ley 39/2015 — Arts. 13–19" }] },
+                    { num: 22, title: "El acto administrativo: concepto y eficacia", subs: [{ n: "22.1", t: "Requisitos de los actos administrativos", l: "Ley 39/2015 — Arts. 34–36" }] },
+                    { num: 23, title: "Notificación, términos y plazos", subs: [{ n: "23.4", t: "Cómputo, ampliación y urgencia", l: "Ley 39/2015 — Arts. 29–33" }] },
+                    { num: 24, title: "Invalidez del acto: nulidad y anulabilidad", subs: [{ n: "24.1", t: "Nulidad de pleno derecho", l: "Ley 39/2015 — Art. 47" }] },
+                    { num: 25, title: "Fases del procedimiento: inicio e instrucción", subs: [{ n: "25.4", t: "Instrucción: alegaciones, prueba y audiencia", l: "Ley 39/2015 — Arts. 75–83" }] },
+                    { num: 26, title: "Terminación y silencio administrativo", subs: [{ n: "26.5", t: "Obligación de resolver y silencio", l: "Ley 39/2015 — Arts. 20–25" }] },
+                    { num: 27, title: "Recursos administrativos y revisión", subs: [{ n: "27.1", t: "Clases de recursos: alzada, reposición...", l: "Ley 39/2015 — Arts. 112–126" }] },
+                    { num: 28, title: "Ejecución forzosa y potestad sancionadora", subs: [{ n: "28.2", t: "Principios de la potestad sancionadora", l: "Ley 40/2015 — Arts. 25–31" }] },
+                    { num: 29, title: "Responsabilidad patrimonial de la Administración", subs: [{ n: "29.1", t: "Requisitos y daños resarcibles", l: "Ley 40/2015 — Arts. 32–37" }] },
+                    { num: 30, title: "Patrimonio de entidades locales: bienes", subs: [{ n: "30.1", t: "Clases de bienes: dominio público y patrimoniales", l: "Ley 7/1985 — Arts. 79–83" }] },
+                    { num: 31, title: "Transparencia y acceso a la información", subs: [{ n: "31.2", t: "Límites y procedimiento de acceso", l: "Ley 19/2013 — Arts. 12–24" }] }
+                ]
+            },
+            {
+                id: "b4", title: "CONTRATACIÓN PÚBLICA Y SUBVENCIONES",
+                norms: "Ley 9/2017 (LCSP) · OIRESCON · Ley 38/2003 · Umbrales SARA",
+                color: "var(--b4)", bgColor: "var(--b4-bg)",
+                temas: [
+                    { num: 32, title: "Contratos del sector público: tipos", subs: [{ n: "32.2", t: "Obras, suministro, servicios y concesiones", l: "Ley 9/2017 — Arts. 12–21" }] },
+                    { num: 33, title: "Perfección e invalidez de los contratos", subs: [{ n: "33.4", t: "Nulidad, anulabilidad y revisión", l: "Ley 9/2017 — Arts. 38–43" }] },
+                    { num: 34, title: "Órganos de contratación y empresarios", subs: [{ n: "34.3", t: "Solvencia y prohibiciones de contratar", l: "Ley 9/2017 — Arts. 69–76" }] },
+                    { num: 35, title: "Preparación: expediente y pliegos", subs: [{ n: "35.4", t: "Pliegos administrativos y técnicos", l: "Ley 9/2017 — Arts. 118–130" }] },
+                    { num: 36, title: "Adjudicación: normas y procedimientos", subs: [{ n: "36.2", t: "Abierto, simplificado y abreviado", l: "Ley 9/2017 — Arts. 156–158" }] },
+                    { num: 37, title: "Ejecución, modificación y extinción", subs: [{ n: "37.4", t: "Resolución del contrato: causas y efectos", l: "Ley 9/2017 — Arts. 202–213" }] },
+                    { num: 38, title: "Contratos menores y recurso especial", subs: [{ n: "38.1", t: "Definición y límites cuantitativos", l: "Ley 9/2017 — Art. 118" }] },
+                    { num: 39, title: "Subvenciones: concesión y reintegro", subs: [{ n: "39.6", t: "Causas y procedimiento de reintegro", l: "Ley 38/2003 — Arts. 36–43" }] }
+                ]
+            },
+            {
+                id: "b5", title: "GESTIÓN FINANCIERA Y HACIENDAS LOCALES",
+                norms: "TRLRHL · Control Interno · Ley 47/2003 · Bases CAM 2026",
+                color: "var(--b5)", bgColor: "var(--b5-bg)",
+                temas: [
+                    { num: 40, title: "Tasas, precios públicos y contribuciones", subs: [{ n: "40.3", t: "Tasas locales: hecho imponible y gestión", l: "RDLeg 2/2004 — Arts. 20–27" }] },
+                    { num: 41, title: "Impuestos municipales obligatorios", subs: [{ n: "41.1", t: "IBI: hecho imponible y gestión", l: "RDLeg 2/2004 — Arts. 60–77" }] },
+                    { num: 42, title: "El presupuesto local: elaboración", subs: [{ n: "42.3", t: "Aprobación, reclamaciones y prórroga", l: "RDLeg 2/2004 — Arts. 168–171" }] },
+                    { num: 43, title: "Créditos presupuestarios: modificaciones", subs: [{ n: "43.3", t: "Extraordinarios, suplementos y transferencias", l: "RDLeg 2/2004 — Arts. 177–179" }] },
+                    { num: 44, title: "Ejecución del presupuesto y tesorería", subs: [{ n: "44.1", t: "Fases del gasto: ADOKP", l: "RDLeg 2/2004 — Arts. 183–187" }] },
+                    { num: 45, title: "Control interno y función interventora", subs: [{ n: "45.2", t: "Fiscalización de ingresos, gastos y pagos", l: "RD 424/2017 — Arts. 7–28" }] }
+                ]
+            },
+            {
+                id: "b6", title: "GESTIÓN DE PERSONAL Y FUNCIÓN PÚBLICA",
+                norms: "TREBEP · Incompatibilidades · Selección AL · Ley 31/1984 · Igualdad",
+                color: "var(--b6)", bgColor: "var(--b6-bg)",
+                temas: [
+                    { num: 46, title: "Empleados públicos: clases (TREBEP)", subs: [{ n: "46.2", t: "Funcionarios, laborales y eventuales", l: "TREBEP — Arts. 8–13" }] },
+                    { num: 47, title: "Acceso al empleo: requisitos y sistemas", subs: [{ n: "47.4", t: "Oposición y concurso-oposición", l: "RD 896/1991 — Arts. 1–12" }] },
+                    { num: 48, title: "Carrera profesional y provisión", subs: [{ n: "48.4", t: "Concurso, libre designación y movilidad", l: "TREBEP — Arts. 78–84" }] },
+                    { num: 49, title: "Derechos y retribuciones", subs: [{ n: "49.2", t: "Retribuciones básicas y complementarias", l: "TREBEP — Arts. 21–26" }] },
+                    { num: 50, title: "Derechos colectivos y negociación", subs: [{ n: "50.2", t: "Mesas de Negociación: General y Sectoriales", l: "TREBEP — Arts. 34–39" }] },
+                    { num: 51, title: "Código de conducta y disciplina", subs: [{ n: "51.2", t: "Faltas disciplinarias: grados", l: "TREBEP — Arts. 93–95" }] },
+                    { num: 52, title: "Régimen de incompatibilidades", subs: [{ n: "52.2", t: "Actividades públicas y privadas", l: "Ley 53/1984 — Arts. 11–12" }] },
+                    { num: 53, title: "Igualdad de género y ética pública", subs: [{ n: "53.2", t: "Planes de igualdad y protocolos de acoso", l: "LO 3/2007 — Arts. 51–55" }] }
+                ]
+            }
+        ];
 
-<div class="modal-overlay" id="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal()">✕</span>
-    <div id="modalBody"></div>
-  </div>
-</div>
+        const content = document.getElementById('syllabus-content');
+        const summaryBody = document.getElementById('summary-body');
 
-<script>
-const C1 = [
-{parte:"Parte general",num:"T1",titulo:"Constitución Española: Características, Derechos y la Corona",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar. La Reforma Constitucional. Título I: De los derechos y deberes fundamentales. Título II: De la Corona.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9 (Título Preliminar) + arts. 10–55 (Título I: Capítulos I al V, incluyendo derechos fundamentales arts. 15–29, derechos y deberes arts. 30–38, principios rectores arts. 39–52, garantías arts. 53–54 y suspensión art. 55) + arts. 56–65 (Título II: La Corona) + arts. 166–169 (Título X: Reforma constitucional)"}
-]},
-{parte:"Parte general",num:"T2",titulo:"Cortes Generales, Gobierno y Relaciones Institucionales",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales. Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes Generales.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 66–96 (Título III: Cortes Generales — Cámaras, elaboración de leyes y Tratados Internacionales) + arts. 97–107 (Título IV: Gobierno y Administración) + arts. 108–116 (Título V: Relaciones Gobierno–Cortes)"}
-]},
-{parte:"Parte general",num:"T3",titulo:"Poder Judicial y Consejo General del Poder Judicial",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial: composición y funcionamiento en la Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 117–127 (Título VI: Poder Judicial)"},
-  {n:"Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial",arts:"Arts. 558–565 (Libro VIII, Título I: atribuciones del Consejo General del Poder Judicial) + arts. 566–584 (Título II: Vocales, Presidente y Vicepresidente — núcleo del tema) + arts. 585–642 (Título III: órganos del Consejo General del Poder Judicial)"}
-]},
-{parte:"Parte general",num:"T4",titulo:"Institución del Defensor del Pueblo",enunciado:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo.",leyes:[
-  {n:"Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo",arts:"Íntegra: arts. 1–37 (Títulos I al V: nombramiento y cese, procedimiento, resoluciones, relaciones con las Cortes, medios) + Disposiciones Adicional, Transitoria y Final"}
-]},
-{parte:"Parte general",num:"T5",titulo:"Fuentes del Derecho: Leyes y Potestad Reglamentaria",enunciado:"Fuentes del Derecho Público. La ley: clases de leyes. El reglamento: concepto y clases.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 81–82 (leyes orgánicas y decretos legislativos), art. 86 (decretos-ley), art. 97 (potestad reglamentaria del Gobierno)"},
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 127–133 (Título VI: iniciativa legislativa y potestad reglamentaria)"},
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 128–133 (Título VI: potestad reglamentaria — jerarquía e inderogabilidad singular)"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Arts. 69–71 (Cap. IV y V del Título IV: elaboración de reglamentos del Consejo de Gobierno y reglamentos organizativos de las Consejerías)"}
-]},
-{parte:"Parte general",num:"T6",titulo:"Estatuto de Autonomía de la Ciudad de Melilla",enunciado:"Ley Orgánica 2/1995, de 13 de marzo, sobre el Estatuto de Autonomía de la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Íntegra: arts. 1–4 (Título Preliminar) + arts. 5–19 (Título I: organización institucional — Asamblea, Presidente, Consejo de Gobierno) + arts. 20–27 (Título II: competencias, incluido art. 21.1 con las 25 materias) + arts. 28–32 (Título III: régimen jurídico) + art. 33 (Título IV: cooperación con el Estado) + arts. 34–40 (Título V: régimen económico y financiero) + art. 41 (Título VI: reforma) + Disposiciones Adicionales 1ª–6ª, Transitorias 1ª–4ª y Finales"}
-]},
-{parte:"Parte general",num:"T7",titulo:"Régimen Local: Municipio, Población y Competencias",enunciado:"El Régimen local español: principios, clases de entidades locales, el Municipio, término municipal, población, empadronamiento, organización (Título II Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local), competencias y servicios mínimos.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 137–142 (Título VIII, Cap. II: Administración Local — autonomía municipal y provincial)"},
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Art. 1 (Título Preliminar) + arts. 2–10 (Título I: disposiciones generales y clases de entidades) + arts. 11–18 (Título II, Cap. I: territorio y población — empadronamiento arts. 15–16) + arts. 19–24 bis (Título II, Cap. II: organización municipal — Alcalde art. 21, Pleno art. 22, Junta de Gobierno Local art. 23) + arts. 25–28 (Título II, Cap. III: competencias propias art. 25, servicios mínimos obligatorios art. 26, delegación art. 27)"}
-]},
-{parte:"Parte general",num:"T8",titulo:"Igualdad Efectiva entre Mujeres y Hombres",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y Título I: El principio de igualdad y la tutela contra la discriminación.",leyes:[
-  {n:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",arts:"Arts. 1–2 (Título Preliminar: objeto y ámbito) + arts. 3–13 (Título I: principio de igualdad, discriminación directa e indirecta art. 6, acoso sexual art. 7, acciones positivas art. 11, tutela judicial art. 12, prueba art. 13). También: art. 53 y DA 1ª (presencia equilibrada en Tribunales de Selección)"}
-]},
-{parte:"Parte específica",num:"T9",titulo:"Organización Administrativa, Competencia y Órganos Colegiados",enunciado:"La potestad organizatoria de la Administración: órganos administrativos, competencia y sus técnicas de traslación, órganos colegiados.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 5–7 (Sección 1ª: órganos administrativos) + arts. 8–14 (Sección 2ª: competencia — delegación art. 9, avocación art. 10, encomiendas art. 11, delegación de firma art. 12, suplencia art. 13) + arts. 15–22 (Sección 3ª: órganos colegiados — funcionamiento arts. 15–18, órganos Administración General del Estado arts. 19–22)"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Arts. 47–67 (Título IV, Cap. II: órganos de la Administración — Secretarios Técnicos y Directores Generales arts. 50–57, órganos inferiores arts. 61–64, órganos colegiados arts. 66–67) + arts. 72–79 (Cap. VI: ejercicio de competencias — delegación art. 73, avocación art. 74, encomienda art. 75, delegación de firma art. 76, suplencia art. 77)"}
-]},
-{parte:"Parte específica",num:"T10",titulo:"Interesados en el Procedimiento: Derechos y Representación",enunciado:"Las personas ante la Administración: derechos y obligaciones. El interesado: concepto, capacidad de obrar y representación. Identificación de los interesados y sus derechos en el procedimiento.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 3–8 (Título I, Cap. I: capacidad de obrar art. 3, concepto de interesado art. 4, representación arts. 5–6, identificación art. 9) + arts. 9–12 (Cap. II: identificación y firma electrónica) + art. 53 (derechos del interesado en el procedimiento)"}
-]},
-{parte:"Parte específica",num:"T11",titulo:"El Acto Administrativo: Concepto, Elementos y Clases",enunciado:"El acto administrativo. Concepto. Elementos. Clases.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 34–36 (Título III, Cap. I: producción y contenido del acto art. 34, motivación art. 35, forma art. 36)"},
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 1–4 (Cap. I: disposiciones generales — principios de actuación de las Administraciones Públicas)"}
-]},
-{parte:"Parte específica",num:"T12",titulo:"Eficacia del Acto: Notificación, Publicación y Plazos",enunciado:"La notificación: contenido, plazo y práctica en papel y electrónica. Notificación infructuosa. La publicación. Demora y retroactividad de la eficacia.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Art. 37 (inderogabilidad singular) + arts. 38–39 (ejecutividad y efectos del acto) + arts. 40–46 (Cap. II, Sección sobre notificaciones: condiciones generales art. 41, notificación en papel art. 42, electrónica art. 43, infructuosa art. 44, publicación art. 45, indicación de recursos art. 46)"}
-]},
-{parte:"Parte específica",num:"T13",titulo:"Invalidez, Revisión y Revocación de Actos Administrativos",enunciado:"Invalidez del acto administrativo: nulidad de pleno derecho y anulabilidad. Conservación del acto. Revocación. Rectificación de errores. Revisión de oficio. Declaración de lesividad.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 47–52 (Título III, Cap. III: nulidad de pleno derecho art. 47, anulabilidad art. 48, convalidación art. 52) + arts. 106–111 (Título V, Cap. I: revisión de oficio art. 106, declaración de lesividad art. 107, suspensión art. 108, revocación y rectificación art. 109, límites art. 110, competencia art. 111)"}
-]},
-{parte:"Parte específica",num:"T14",titulo:"Normas de Actuación: Registro, Archivo y Cómputo de Plazos",enunciado:"Normas de actuación de las Administraciones Públicas: registro, archivo, colaboración y comparecencia. Términos y plazos: cómputo, ampliación y tramitación de urgencia.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 13–28 (Título II, Cap. I: derechos de las personas art. 13, registro art. 16, archivo art. 17, colaboración art. 18, comparecencia art. 19, comunicaciones entre Administraciones Públicas arts. 20–27) + arts. 29–33 (Cap. II: términos y plazos — cómputo art. 30, ampliación art. 32, tramitación de urgencia art. 33)"}
-]},
-{parte:"Parte específica",num:"T15",titulo:"Fases del Procedimiento: Iniciación, Instrucción y Terminación",enunciado:"Las fases del procedimiento administrativo: iniciación, ordenación, instrucción y terminación.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 54–69 (Título IV, Cap. II: iniciación — de oficio arts. 54–65, a solicitud arts. 66–69) + arts. 70–74 (Cap. III: ordenación) + arts. 75–83 (Cap. IV: instrucción — prueba arts. 77–78, informes arts. 79–81, participación arts. 82–83) + arts. 84–95 (Cap. V: terminación — resolución arts. 87–88, desistimiento y renuncia arts. 93–94, caducidad art. 95)"}
-]},
-{parte:"Parte específica",num:"T16",titulo:"Obligación de Resolver y Silencio Administrativo",enunciado:"La obligación de resolver. Suspensión y ampliación del plazo para resolver. La falta de resolución expresa: el silencio administrativo.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Art. 21 (obligación de resolver y plazo máximo) + art. 22 (suspensión del plazo) + art. 23 (ampliación del plazo para resolver) + art. 24 (silencio administrativo en procedimientos iniciados a solicitud) + art. 25 (silencio en procedimientos iniciados de oficio) + art. 26 (falta de resolución en recursos)"}
-]},
-{parte:"Parte específica",num:"T17",titulo:"Recursos Administrativos y Ejecución Forzosa de Actos",enunciado:"Recursos administrativos. La coacción administrativa: autotutela ejecutiva. Ejecución forzosa de actos administrativos: medios y principios.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 112–120 (Título V, Cap. II: principios de los recursos — reglas generales, suspensión, audiencia) + arts. 121–122 (recurso de alzada) + arts. 123–124 (recurso potestativo de reposición) + arts. 125–126 (recurso extraordinario de revisión) + arts. 97–105 (Título IV, Cap. VII: ejecución — ejecutoriedad art. 98, medios de ejecución forzosa art. 100, apremio sobre patrimonio art. 101, ejecución subsidiaria art. 102, multa coercitiva art. 103, compulsión sobre personas art. 104)"}
-]},
-{parte:"Parte específica",num:"T18",titulo:"Potestad Sancionadora: Principios y Procedimiento Especial",enunciado:"La potestad sancionadora: concepto y significado. Principios del ejercicio. Especialidades del procedimiento sancionador.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Juriddico del Sector Público",arts:"Arts. 25–31 (Cap. III del Título Preliminar: principios de la potestad sancionadora — legalidad art. 25, irretroactividad art. 26, tipicidad art. 27, responsabilidad art. 28, proporcionalidad art. 29, prescripción art. 30, concurrrencia art. 31)"},
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 63–69 (en Título IV: garantías del procedimiento sancionador — procedimiento iniciado de oficio, derechos del presunto responsable, medidas provisionales, resolución)"}
-]},
-{parte:"Parte específica",num:"T19",titulo:"Contratos del Sector Público: Tipos y Ámbito de Aplicación",enunciado:"Contratos del sector público: objeto y ámbito de la Ley de Contratos del Sector Público. Tipos de contratos. Contratos sujetos a regulación armonizada.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–11 (Título Preliminar: objeto, ámbito subjetivo, negocios y contratos excluidos) + arts. 12–18 (tipos de contratos: obras, concesión de obras, concesión de servicios, suministro, servicios y mixtos) + arts. 19–23 (Sujeto a Regulación Armonizada: umbrales obras 5.538.000 €, servicios 221.000 €) + arts. 24–27 (contratos administrativos y privados)"}
-]},
-{parte:"Parte específica",num:"T20",titulo:"Disposiciones Generales, Perfección y Forma de los Contratos",enunciado:"Disposiciones generales sobre contratación del sector público: libertad de pactos, contenido mínimo, perfección y forma del contrato.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 28–43 (principios generales, libertad de pactos, perfeccionamiento y nulidad)"}
-]},
-{parte:"Parte específica",num:"T21",titulo:"Órganos de Contratación y Capacidad del Empresario",enunciado:"Las partes en los contratos del sector público. Órganos de contratación. Capacidad y solvencia del empresario. Competencia en entidades locales.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 61–98 (órganos de contratación, capacidad, prohibiciones, solvencia)"}
-]},
-{parte:"Parte específica",num:"T22",titulo:"Objeto, Precio, Garantías y Preparación de los Contratos",enunciado:"Objeto, presupuesto base de licitación, valor estimado, precio y revisión. Garantías exigibles. Preparación de contratos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 99–130 (objeto, precio, garantías, preparación del expediente)"}
-]},
-{parte:"Parte específica",num:"T23",titulo:"Procedimientos de Adjudicación en la Contratación Pública",enunciado:"Adjudicación de los contratos de las Administraciones públicas: normas generales y procedimientos de adjudicación.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 131–187 (normas de adjudicación, procedimientos abierto, restringido, negociado)"}
-]},
-{parte:"Parte específica",num:"T24",titulo:"Efectos, Prerogativas y Ejecución de los Contratos",enunciado:"Efectos de los contratos. Prerrogativas de la Administración pública en los contratos administrativos. Ejecución de los contratos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 188–213 (prerrogativas, ejecución, modificación y resolución)"}
-]},
-{parte:"Parte específica",num:"T25",titulo:"Contratos Menores: Regulación y Régimen en Melilla",enunciado:"Los contratos menores. Regulación, límites y procedimiento de adjudicación. Instrucciones de la Oficina Independiente de Regulación y Supervisión de la Contratación. Los contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Art. 118 (contratos menores: obras < 40k, resto < 15k) + art. 332 (Oficina Independiente de Regulación y Supervisión de la Contratación)"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla (BOME Extra. 2/2017)",arts:"Art. 112 (contratación administrativa de la Ciudad Autónoma de Melilla)"}
-]},
-{parte:"Parte específica",num:"T26",titulo:"Actividad Subvencional: Concesión, Gestión y Reintegro",enunciado:"Actividad subvencional: tipos de subvenciones, procedimientos de concesión y gestión, reintegro de subvenciones.",leyes:[
-  {n:"Ley 38/2003, de 17 de noviembre, General de Subvenciones",arts:"Arts. 1–10 (principios) + arts. 22–34 (concesión) + arts. 36–43 (reintegro)"}
-]},
-{parte:"Parte específica",num:"T27",titulo:"Responsabilidad Patrimonial de la Administración Pública",enunciado:"La responsabilidad patrimonial de la Administración: caracteres, presupuestos, daños resarcibles, procedimiento especial.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 32–37 (principios responsabilidad)"},
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 61, 65, 67, 81, 91, 96 (especialidades procedimiento)"}
-]},
-{parte:"Parte específica",num:"T28",titulo:"Empleados Públicos: Clases, Acceso y Extinción",enunciado:"Los empleados públicos: clases y régimen jurídico. El acceso a los empleos públicos. La extinción de la condición de empleado público.",leyes:[
-  {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 1–13 (clases) + arts. 55–68 (acceso y pérdida condición)"}
-]},
-{parte:"Parte específica",num:"T29",titulo:"Provisión de Puestos y Situaciones Administrativas",enunciado:"El régimen de provisión de puestos de trabajo: sistemas de provisión. Las situaciones administrativas de los funcionarios locales.",leyes:[
-  {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 78–92 (provisión y situaciones)"}
-]},
-{parte:"Parte específica",num:"T30",titulo:"Derechos de los Funcionarios: Individuales y Colectivos",enunciado:"Los derechos de los funcionarios públicos: derechos individuales y colectivos. Sindicación y huelga. Negociación colectiva.",leyes:[
-  {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 14–15 (derechos) + arts. 31–46 (negociación)"}
-]},
-{parte:"Parte específica",num:"T31",titulo:"Deberes, Régimen Disciplinario e Incompatibilidades",enunciado:"Los deberes de los funcionarios públicos. El régimen disciplinario en el Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público. El régimen de incompatibilidades.",leyes:[
-  {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 52–54 (deberes) + arts. 93–98 (disciplina)"},
-  {n:"Ley 53/1984, de 26 de diciembre, de Incompatibilidades",arts:"Arts. 1–22"}
-]},
-{parte:"Parte específica",num:"T32",titulo:"Intervención Local en la Actividad Privada y Licencias",enunciado:"La intervención administrativa local en la actividad privada. Las autorizaciones administrativas. El régimen de las licencias.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 84–85 (intervención)"},
-  {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 1–22 (policía y licencias)"}
-]},
-{parte:"Parte específica",num:"T33",titulo:"El Presidente de Melilla: Atribuciones y Control",enunciado:"El Presidente de la Ciudad Autónoma de Melilla. Naturaleza y atribuciones. Cuestión de confianza y Moción de Censura.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 14–15"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 5–11"}
-]},
-{parte:"Parte específica",num:"T34",titulo:"El Consejo de Gobierno de Melilla: Organización y Funcionamiento",enunciado:"El Consejo de Gobierno. Naturaleza, composición, funcionamiento y atribuciones. Los Consejeros.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 16–19"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 12–35"}
-]},
-{parte:"Parte específica",num:"T35",titulo:"La Asamblea de Melilla: Elecciones y Atribuciones",enunciado:"La Asamblea de la Ciudad de Melilla. Elecciones y singularidades. Las Comisiones. Atribuciones de la Asamblea.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 6–13"},
-  {n:"Reglamento de la Asamblea de Melilla",arts:"Organización y Comisiones"}
-]},
-{parte:"Parte específica",num:"T36",titulo:"Administración de Melilla: Organización y Función Directiva",enunciado:"La Administración de la Ciudad Autónoma de Melilla. Singularidades de su organización. La función directiva.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Art. 20, 28"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 47–67, 97–107"}
-]},
-{parte:"Parte específica",num:"T37",titulo:"Patrimonio de las Entidades Locales: Bienes y Derechos",enunciado:"El patrimonio de las entidades locales: bienes y derechos, clases, dominio público, patrimoniales, comunales.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 79–83"},
-  {n:"Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio)",arts:"Arts. 1–135"}
-]},
-{parte:"Parte específica",num:"T38",titulo:"Presupuesto Local: Elaboración, Aprobación y Contenido",enunciado:"El presupuesto en las entidades locales: concepto y contenido. Elaboración y aprobación.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 162–169"}
-]},
-{parte:"Parte específica",num:"T39",titulo:"Estructura Presupuestaria y Modificaciones de Crédito",enunciado:"La estructura presupuestaria. Los créditos del presupuesto de gastos. Las modificaciones de crédito.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Art. 167, 172, 177–182"}
-]},
-{parte:"Parte específica",num:"T40",titulo:"Ejecución del Presupuesto: Fases de Gastos e Ingresos",enunciado:"La ejecución del presupuesto de gastos e ingresos: sus fases. Pagos a justificar. Anticipos de caja fija.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 183–193"}
-]},
-{parte:"Parte específica",num:"T41",titulo:"Control Interno en el Sector Público Local",enunciado:"El control interno en las Entidades del Sector Público Local.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 213–222"},
-  {n:"Real Decreto 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control interno en las entidades del Sector Público Local",arts:"Arts. 1–39"}
-]},
-{parte:"Parte específica",num:"T42",titulo:"Tasas, Precios Públicos y Contribuciones Especiales",enunciado:"Tasas y precios públicos. Las contribuciones especiales.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 20–47"}
-]}
-];
+        syllabus.forEach(block => {
+            // Render Section
+            const section = document.createElement('section');
+            section.id = block.id;
+            section.className = 'block-section';
+            section.style.setProperty('--accent-color', block.color);
+            section.style.setProperty('--accent-bg', block.bgColor);
+            
+            section.innerHTML = `
+                <div class="block-info">
+                    <span class="tag">Bloque ${block.id.slice(1)}</span>
+                    <h2>${block.title}</h2>
+                    <div class="norms">${block.norms}</div>
+                </div>
+                <div class="topics-grid">
+                    ${block.temas.map(t => `
+                        <article class="topic-card">
+                            <div class="topic-header">
+                                <span class="t-tag">Tema ${t.num}</span>
+                                <h3>${t.title}</h3>
+                            </div>
+                            <div class="subtopic-grid">
+                                ${t.subs.map(s => `
+                                    <div class="subtopic-item">
+                                        <div class="sub-title"><span class="sub-num">${s.n}</span> ${s.t}</div>
+                                        <div class="sub-law">⚖️ <span class="law-pill">${s.l}</span></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </article>
+                    `).join('')}
+                </div>
+            `;
+            content.appendChild(section);
 
-const C2 = [
-{parte:"Parte general",num:"T1",titulo:"La Constitución Española: Características y Título Preliminar",enunciado:"La Constitución Española de 1978: características, estructura y Título Preliminar.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Preámbulo + arts. 1–9"}
-]},
-{parte:"Parte general",num:"T2",titulo:"Constitución Española: Derechos y Deberes Fundamentales",enunciado:"La Constitución Española de 1978: Título I De los derechos y deberes fundamentales.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 10–55"}
-]},
-{parte:"Parte general",num:"T3",titulo:"La Corona en la Constitución Española",enunciado:"La Constitución Española de 1978: Título II De la Corona.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 56–65"}
-]},
-{parte:"Parte general",num:"T4",titulo:"Las Cortes Generales en la Constitución Española",enunciado:"La Constitución Española de 1978: Título III De las Cortes Generales.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 66–96"}
-]},
-{parte:"Parte general",num:"T5",titulo:"El Gobierno y sus Relaciones con las Cortes",enunciado:"La Constitución Española de 1978: Título IV del Gobierno y de la Administración. Título V De las relaciones entre el Gobierno y las Cortes.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 97–116"}
-]},
-{parte:"Parte general",num:"T6",titulo:"Poder Judicial y Consejo General del Poder Judicial",enunciado:"La Constitución Española de 1978: Título VI del Poder Judicial. El Consejo General del Poder Judicial.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 117–127"},
-  {n:"Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial",arts:"Arts. 558–642"}
-]},
-{parte:"Parte general",num:"T7",titulo:"Organización Territorial y Autonomía de Melilla",enunciado:"La Constitución Española de 1978: Título VIII Organización territorial. Acceso a autonomía de Melilla.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 137–158"},
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Art. 1"}
-]},
-{parte:"Parte general",num:"T8",titulo:"Tribunal Constitucional y Reforma de la Constitución",enunciado:"Tribunal Constitucional y Reforma Constitucional.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 159–169"},
-  {n:"Ley Orgánica 2/1979, de 3 de octubre, del Tribunal Constitucional",arts:"Arts. 1–26"}
-]},
-{parte:"Parte general",num:"T9",titulo:"Fuentes del Derecho: La Ley y el Reglamento",enunciado:"Fuentes del Derecho Público. La ley y el reglamento.",leyes:[
-  {n:"Constitución Española de 1978",arts:"Arts. 81–82, 86, 97"},
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 127–133"},
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 128–133"}
-]},
-{parte:"Parte general",num:"T10",titulo:"Estatuto de Melilla: Organización Institucional",enunciado:"Estatuto de Melilla: Título Preliminar y Título I.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 1–19"}
-]},
-{parte:"Parte general",num:"T11",titulo:"Estatuto de Melilla: Competencias de la Ciudad",enunciado:"Estatuto de Melilla: Título II de las competencias.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 20–27 (las 25 materias)"}
-]},
-{parte:"Parte general",num:"T12",titulo:"Estatuto de Melilla: Régimen Jurídico",enunciado:"Estatuto de Autonomía de Melilla: Título III Régimen jurídico.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 28–32"}
-]},
-{parte:"Parte general",num:"T13",titulo:"Estatuto de Melilla: Economía, Cooperación y Reforma",enunciado:"Estatuto de Autonomía de Melilla: Título IV, V y VI.",leyes:[
-  {n:"Ley Orgánica 2/1995, de 13 de marzo, de Estatuto de Autonomía de Melilla",arts:"Arts. 33–41"}
-]},
-{parte:"Parte general",num:"T14",titulo:"Organización Administrativa de la Ciudad de Melilla",enunciado:"Organización administrativa de la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 1–4, 47–67, 72–79"}
-]},
-{parte:"Parte general",num:"T15",titulo:"Régimen Local: El Municipio y sus Elementos",enunciado:"Régimen local y Municipio: concepto y elementos.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 1–14"}
-]},
-{parte:"Parte general",num:"T16",titulo:"Igualdad Efectiva entre Mujeres y Hombres",enunciado:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. Título Preliminar y I.",leyes:[
-  {n:"Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",arts:"Arts. 1–13"}
-]},
-{parte:"Parte específica",num:"E1",titulo:"LPACAP: Capacidad, Interesados y Cómputo de Plazos",enunciado:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas: objeto, capacidad, interesado, plazos.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 1–33"}
-]},
-{parte:"Parte específica",num:"E2",titulo:"El Acto Administrativo: Concepto y Eficacia",enunciado:"El acto administrativo: concepto y eficacia.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 34–46"}
-]},
-{parte:"Parte específica",num:"E3",titulo:"Fases del Procedimiento Administrativo en Melilla",enunciado:"El procedimiento administrativo: fases. Procedimiento en Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 53–95"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 82–86"}
-]},
-{parte:"Parte específica",num:"E4",titulo:"Nulidad y Revisión de Actos en Melilla",enunciado:"Nulidad y revisión de actos. Órganos en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 47–52, 106–111"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 87–91"}
-]},
-{parte:"Parte específica",num:"E5",titulo:"Recursos Administrativos en la Ciudad de Melilla",enunciado:"Recursos administrativos en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas",arts:"Arts. 112–126"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 92–96"}
-]},
-{parte:"Parte específica",num:"E6",titulo:"Reglamento de Servicios de las Corporaciones Locales",enunciado:"Acción administrativa en el Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955).",leyes:[
-  {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 1–137"}
-]},
-{parte:"Parte específica",num:"E7",titulo:"Responsabilidad Patrimonial en la Administración de Melilla",enunciado:"Responsabilidad patrimonial en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 32–37"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 111"}
-]},
-{parte:"Parte específica",num:"E8",titulo:"Patrimonio Local y Gestión de Bienes Municipales",enunciado:"Patrimonio local en el Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio).",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 79–83"},
-  {n:"Reglamento de Bienes de las Entidades Locales (Real Decreto 1372/1986, de 13 de junio)",arts:"Arts. 1–135"}
-]},
-{parte:"Parte específica",num:"E9",titulo:"Término Municipal, Población y Organización Local",enunciado:"Término municipal, población y organización.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 11–28"}
-]},
-{parte:"Parte específica",num:"E10",titulo:"Licencias Administrativas: Naturaleza y Procedimiento",enunciado:"Licencias: naturaleza y procedimiento.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 84, 84 bis"},
-  {n:"Reglamento de Servicios de las Corporaciones Locales (Decreto de 17 de junio de 1955)",arts:"Arts. 18–22"}
-]},
-{parte:"Parte específica",num:"E11",titulo:"Ordenanzas Locales en la Ciudad de Melilla",enunciado:"Ordenanzas locales en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local",arts:"Arts. 49–50"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Arts. 69–71"}
-]},
-{parte:"Parte específica",num:"E12",titulo:"Contratos del Sector Público: Tipos y Órganos",enunciado:"Contratos del Sector Público: tipos y órganos.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 1–23, 61–63, 318"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 112"}
-]},
-{parte:"Parte específica",num:"E13",titulo:"Contratos Menores en la Ciudad de Melilla",enunciado:"Contratos menores en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",arts:"Arts. 118, 332"},
-  {n:"Reglamento del Gobierno y de la Administración de la Ciudad Autónoma de Melilla",arts:"Art. 112"}
-]},
-{parte:"Parte específica",num:"E14",titulo:"Órganos Administrativos: Competencia, Abstención y Recusación",enunciado:"Órganos, competencia, abstención y recusación.",leyes:[
-  {n:"Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público",arts:"Arts. 5–24"}
-]},
-{parte:"Parte específica",num:"E15",titulo:"Recursos Municipales: Tasas y Precios Públicos",enunciado:"Recursos municipales: tasas y precios públicos.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 2, 20–47"}
-]},
-{parte:"Parte específica",num:"E16",titulo:"Ordenanzas Fiscales en Melilla: Contenido y Elaboración",enunciado:"Ordenanzas fiscales en la Ciudad Autónoma de Melilla.",leyes:[
-  {n:"Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales",arts:"Arts. 15–19"},
-  {n:"Ordenanzas de Melilla",arts:"Contenido y elaboración"}
-]},
-{parte:"Parte específica",num:"E17",titulo:"Estatuto del Empleado Público: Derechos y Disciplina",enunciado:"Estatuto Básico del Empleado Público: derechos, deberes y disciplina.",leyes:[
-  {n:"Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público",arts:"Arts. 1–15, 21–30, 47–68, 93–98"}
-]}
-];
+            // Render Summary Row
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="b-dot" style="background:${block.color}"></span> <strong>B${block.id.slice(1)}</strong> — ${block.title.split(':')[0]}</td>
+                <td>${block.norms}</td>
+            `;
+            summaryBody.appendChild(tr);
+        });
 
-const BLOCKS = [
-  { id: 'b-melilla', name: 'Ciudad Autónoma de Melilla', defaultRange: { c1: [6,7, 32,37], c2: [10,15, 'E6','E6', 'E8','E11'] }, icon: `<svg viewBox="0 0 24 24" fill="#007AFF"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, accent: '#007AFF' },
-  { id: 'b-estado', name: 'Organización del Estado', defaultRange: { c1: [1,4], c2: [1,8] }, icon: `<svg viewBox="0 0 24 24" fill="#FF3B30"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, accent: '#FF3B30' },
-  { id: 'b-admin', name: 'Derecho Administrativo', defaultRange: { c1: [5,5, 9,27], c2: [9,9, 'E1','E5', 'E7','E7', 'E12','E14'] }, icon: `<svg viewBox="0 0 24 24" fill="#FF9500"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, accent: '#FF9500' },
-  { id: 'b-financiera', name: 'Gestión Financiera', defaultRange: { c1: [38,42], c2: ['E15','E16'] }, icon: `<svg viewBox="0 0 24 24" fill="#34C759"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, accent: '#34C759' },
-  { id: 'b-personal', name: 'Función Pública', defaultRange: { c1: [8,8, 28,31], c2: [16,16, 'E17','E17'] }, icon: `<svg viewBox="0 0 24 24" fill="#AF52DE"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>`, accent: '#AF52DE' }
-];
-
-const ALL_DATA = [
-  ...C1.map(x => ({...x, exam:'c1', id:'c1-'+x.num, examName:'Administrativo C1'})),
-  ...C2.map(x => ({...x, exam:'c2', id:'c2-'+x.num, examName:'Auxiliar C2'}))
-];
-
-function getInitialGrouping() {
-  const saved = localStorage.getItem('userGrouping');
-  if (saved) return JSON.parse(saved);
-  const mapping = {};
-  ALL_DATA.forEach(item => {
-    const block = BLOCKS.find(b => {
-      const isC1 = item.exam === 'c1';
-      const r = isC1 ? b.defaultRange.c1 : b.defaultRange.c2;
-      const n = item.num;
-      for(let i=0; i<r.length; i+=2) {
-        if(typeof r[i] === 'number') {
-          const val = parseInt(n.replace(/\D/g, ''));
-          if(val >= r[i] && val <= r[i+1]) return true;
-        } else {
-          if(n === r[i] || (n >= r[i] && n <= r[i+1])) return true;
-        }
-      }
-      return false;
-    });
-    mapping[item.id] = block ? block.id : 'b-admin';
-  });
-  return mapping;
-}
-
-let state = {
-  theme: localStorage.getItem('theme') || 'dark',
-  exam: 'all', q: '',
-  openBlocks: new Set(['b-melilla', 'b-estado', 'b-admin', 'b-financiera', 'b-personal']),
-  userGrouping: getInitialGrouping(),
-  editMode: false
-};
-
-function parseArts(text) {
-  const parts = text.split(/\s\+\s/);
-  return `<div class="law-breakdown">${parts.map(p => {
-    const regex = /(?:art[s]?\.?|artículo[s]?)\s*(\d+)(?:\s*[–-]\s*(\d+))?(?:\s+(bis|ter|quater))?/gi;
-    let articles = new Set();
-    let match;
-    while ((match = regex.exec(p)) !== null) {
-      let start = parseInt(match[1]);
-      let end = match[2] ? parseInt(match[2]) : start;
-      let suffix = match[3] ? ' ' + match[3] : '';
-      if (end >= start && (end - start) < 1000) { 
-         for(let i=start; i<=end; i++) {
-           articles.add(i + (start === end ? suffix : ''));
-         }
-      }
-    }
-    let artsArray = Array.from(articles).sort((a,b) => parseInt(a) - parseInt(b));
-    let descText = p.replace(/(Título\s+[IVXLC]+|Capítulo\s+[IVXLC]+)/gi, '<strong style="color:var(--melilla-blue)">$1</strong>');
-    return `
-      <div class="breakdown-chunk">
-        <div class="chunk-desc">${descText}</div>
-        ${artsArray.length > 0 ? `
-          <div class="article-grid">
-            ${artsArray.map(a => `
-              <label class="art-pill-label">
-                <input type="checkbox">
-                <div class="art-pill">Art. ${a}</div>
-              </label>
-            `).join('')}
-          </div>
-        ` : `<div style="font-size:11px; font-weight: 800; color: var(--melilla-gold); text-transform: uppercase;">Íntegra / Sin desglose numérico</div>`}
-      </div>
-    `;
-  }).join('')}</div>`;
-}
-
-function render() {
-  const container = document.getElementById('content');
-  const filtered = ALL_DATA.filter(d => (state.exam === 'all' || d.exam === state.exam) && (d.titulo + d.enunciado + d.num).toLowerCase().includes(state.q.toLowerCase()));
-  const grouped = BLOCKS.map(b => {
-    let items = filtered.filter(item => state.userGrouping[item.id] === b.id);
-    items.sort((a, b) => {
-      const na = parseInt(a.num.replace(/\D/g, ''));
-      const nb = parseInt(b.num.replace(/\D/g, ''));
-      if (na !== nb) return na - nb;
-      return a.exam.localeCompare(b.exam);
-    });
-    const general = items.filter(i => i.num.startsWith('T'));
-    const especifica = items.filter(i => i.num.startsWith('E'));
-    return { ...b, general, especifica, hasItems: items.length > 0 };
-  }).filter(b => b.hasItems || state.editMode);
-
-  container.innerHTML = grouped.map(block => {
-    const renderGrid = (items) => `
-      <div class="grid">
-        ${items.map(item => `
-          <article class="card" 
-                   draggable="${state.editMode}" 
-                   ondragstart="handleDragStart(event, '${item.id}')"
-                   ondragend="handleDragEnd(event)"
-                   onclick="${state.editMode ? '' : `openModal('${item.id}')`}">
-            <div class="card-num" style="color:${block.accent}">${item.num} · NÚCLEO</div>
-            <h2 class="card-title">${item.titulo}</h2>
-            ${state.editMode ? `
-              <select class="block-select" onchange="moveItem('${item.id}', this.value)" onclick="event.stopPropagation()">
-                ${BLOCKS.map(b => `<option value="${b.id}" ${b.id === block.id ? 'selected' : ''}>Mover a ${b.name}</option>`).join('')}
-              </select>
-            ` : ''}
-            <div style="margin-top:auto; font-size:11px; font-weight:800; opacity:0.6;">${item.examName}</div>
-          </article>
-        `).join('')}
-      </div>
-    `;
-    return `
-      <div class="block-container ${state.openBlocks.has(block.id) ? 'open' : ''}" 
-           id="${block.id}"
-           ondragover="handleDragOver(event, '${block.id}')" 
-           ondragleave="handleDragLeave(event, '${block.id}')"
-           ondrop="handleDrop(event, '${block.id}')">
-        <div class="block-header" onclick="toggleBlock('${block.id}')">
-          <div class="icon-wrap">
-            ${block.icon}
-            <h3 style="color:${block.accent}">${block.name}</h3>
-          </div>
-          <span style="font-size: 11px; font-weight: 900; opacity: 0.5; letter-spacing:1px; color:var(--text)">${state.openBlocks.has(block.id) ? 'CERRAR' : 'ABRIR'}</span>
-        </div>
-        <div class="block-content" style="${state.openBlocks.has(block.id) ? 'display:block' : 'display:none'}">
-          ${block.general.length > 0 ? `<div class="sub-header" style="color:${block.accent}">Parte General</div>${renderGrid(block.general)}` : ''}
-          ${block.especifica.length > 0 ? `<div class="sub-header" style="color:${block.accent}">Parte Específica</div>${renderGrid(block.especifica)}` : ''}
-          ${state.editMode && block.general.length === 0 && block.especifica.length === 0 ? `<div class="grid"><div style="grid-column: 1/-1; padding:40px; text-align:center; opacity:0.3; border: 2px dashed var(--line); border-radius:32px;">Suelta un tema aquí</div></div>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-  document.getElementById('resetBtn').style.display = state.editMode ? 'block' : 'none';
-}
-
-window.handleDragStart = (e, id) => { e.dataTransfer.setData('text/plain', id); e.currentTarget.classList.add('dragging'); };
-window.handleDragEnd = (e) => { e.currentTarget.classList.remove('dragging'); };
-window.handleDragOver = (e, blockId) => { if (!state.editMode) return; e.preventDefault(); document.getElementById(blockId).classList.add('drag-over'); };
-window.handleDragLeave = (e, blockId) => { document.getElementById(blockId).classList.remove('drag-over'); };
-window.handleDrop = (e, blockId) => { if (!state.editMode) return; e.preventDefault(); document.getElementById(blockId).classList.remove('drag-over'); const itemId = e.dataTransfer.getData('text/plain'); moveItem(itemId, blockId); };
-window.moveItem = (itemId, blockId) => { state.userGrouping[itemId] = blockId; localStorage.setItem('userGrouping', JSON.stringify(state.userGrouping)); render(); if (document.getElementById('modal').style.display === 'grid') { openModal(itemId); } };
-document.getElementById('editToggle').onclick = () => { state.editMode = !state.editMode; document.getElementById('editToggle').innerHTML = state.editMode ? '<span>🔒</span> Bloquear Orden' : '<span>🔓</span> Editar Orden'; document.getElementById('editToggle').classList.toggle('active', state.editMode); render(); };
-document.getElementById('resetBtn').onclick = () => { if (confirm('¿Restablecer el orden estratégico original?')) { localStorage.removeItem('userGrouping'); state.userGrouping = getInitialGrouping(); render(); } };
-window.toggleBlock = (id) => { if (state.openBlocks.has(id)) state.openBlocks.delete(id); else state.openBlocks.add(id); render(); };
-window.openModal = (id) => {
-  const item = ALL_DATA.find(d => d.id === id);
-  const currentBlockId = state.userGrouping[item.id];
-  const block = BLOCKS.find(b => b.id === currentBlockId);
-  const body = document.getElementById('modalBody');
-  body.innerHTML = `
-    <div class="modal-header-mini">
-      <div class="modal-title-wrap">
-        <h2>${item.titulo}</h2>
-        <p style="font-size: 14px; color: var(--text-muted); margin: 0 0 15px 0; font-weight: 600; line-height: 1.4;">${item.enunciado}</p>
-        <div class="modal-meta">
-          <span><span style="color:var(--melilla-gold)">ID:</span> ${item.num}</span>
-          <span><span style="color:var(--melilla-blue)">MODALIDAD:</span> ${item.examName}</span>
-          <span><span style="color:${block.accent}">${block.name.toUpperCase()}</span></span>
-        </div>
-      </div>
-      <div style="text-align:right">
-        <span style="font-size:10px; font-weight:900; opacity:0.4; letter-spacing:1px; display:block; margin-bottom:10px;">MOVIMIENTO RÁPIDO</span>
-        <select class="block-select" onchange="moveItem('${item.id}', this.value)" style="margin:0; width:180px; font-size:10px;">
-          ${BLOCKS.map(b => `<option value="${b.id}" ${b.id === currentBlockId ? 'selected' : ''}>${b.name}</option>`).join('')}
-        </select>
-      </div>
-    </div>
-    <div class="laws-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-      ${item.leyes.map(l => `
-        <div class="law-mini-card">
-          <div class="law-mini-title"><span>⚖️</span> ${l.n}</div>
-          <div class="law-mini-content">${parseArts(l.arts)}</div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  document.getElementById('modal').style.display = 'grid';
-  document.body.style.overflow = 'hidden';
-};
-window.closeModal = () => { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; };
-function setUI() { document.documentElement.setAttribute('data-theme', state.theme); document.querySelectorAll('#themeToggle span').forEach(s => s.classList.toggle('active', s.dataset.v === state.theme)); }
-document.getElementById('themeToggle').onclick = () => { state.theme = state.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', state.theme); setUI(); };
-document.getElementById('search').oninput = (e) => { state.q = e.target.value; render(); };
-document.querySelectorAll('.tab').forEach(t => { t.onclick = () => { document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); t.classList.add('active'); state.exam = t.dataset.exam; render(); }; });
-window.onclick = (e) => { if (e.target.id === 'modal') closeModal(); };
-
-let dashboardActive = false;
-let charts = {};
-function toggleDashboard() {
-  const dash = document.getElementById('analysisDashboard');
-  dashboardActive = !dashboardActive;
-  dash.classList.toggle('active', dashboardActive);
-  if (dashboardActive) {
-    calculateStats();
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => { document.querySelectorAll('.bar-fill').forEach(el => { el.style.width = el.getAttribute('data-w'); }); }, 100);
-  } else { document.body.style.overflow = ''; }
-}
-
-function calculateStats() {
-  const allThemes = ALL_DATA;
-  const lawCounts = {};
-  const typeCounts = { 'Leyes Orgánicas': 0, 'Reales Decretos Legislativos': 0, 'Leyes Ordinarias': 0, 'Reglamentos/Otros': 0 };
-  let totalArticles = 0;
-  const lawArticleCounts = {};
-  const blockArticleCounts = {};
-  BLOCKS.forEach(b => blockArticleCounts[b.id] = { name: b.name, articles: 0 });
-  allThemes.forEach(theme => {
-    const blockId = state.userGrouping[theme.id];
-    theme.leyes.forEach(law => {
-      const name = law.n;
-      lawCounts[name] = (lawCounts[name] || 0) + 1;
-      if (name.includes('Orgánica')) typeCounts['Leyes Orgánicas']++;
-      else if (name.includes('Real Decreto Legislativo')) typeCounts['Reales Decretos Legislativos']++;
-      else if (name.includes('Ley')) typeCounts['Leyes Ordinarias']++;
-      else typeCounts['Reglamentos/Otros']++;
-      const matches = law.arts.match(/\d+/g);
-      const articleCount = matches ? matches.length : 0;
-      totalArticles += articleCount;
-      lawArticleCounts[name] = (lawArticleCounts[name] || 0) + articleCount;
-      if(blockId && blockArticleCounts[blockId]) blockArticleCounts[blockId].articles += articleCount;
-    });
-  });
-  const estimatedHours = Math.round((totalArticles * 5) / 60);
-  const uniqueLaws = Object.keys(lawCounts).length;
-  document.getElementById('kpiGrid').innerHTML = `
-    <div class="kpi-card"><div class="kpi-value">${allThemes.length}</div><div class="kpi-label">Temas</div></div>
-    <div class="kpi-card"><div class="kpi-value">${uniqueLaws}</div><div class="kpi-label">Normas</div></div>
-    <div class="kpi-card"><div class="kpi-value">${totalArticles}</div><div class="kpi-label">Artículos</div></div>
-    <div class="kpi-card"><div class="kpi-value" style="color: #FF3B30">~${estimatedHours}h</div><div class="kpi-label">Estudio</div></div>
-    <div class="kpi-card" style="background: rgba(0, 122, 255, 0.05); border-color: rgba(0, 122, 255, 0.3);">
-      <div style="font-size: 14px; font-weight: 900; color: var(--melilla-blue); margin-bottom: 5px;">🎯 ESTRATEGIA</div>
-      <div style="font-size: 11px; line-height: 1.4; font-weight: 600; color: #555;">Prioriza <b>${Object.entries(lawArticleCounts).sort((a,b) => b[1]-a[1])[0][0].substring(0,25)}...</b></div>
-    </div>
-  `;
-  Object.values(charts).forEach(chart => chart.destroy());
-  charts = {};
-  const topLaws = Object.entries(lawArticleCounts).sort((a,b) => b[1] - a[1]).slice(0, 8);
-  const topLawsCtx = document.getElementById('topLawsChartCanvas').getContext('2d');
-  charts.topLaws = new Chart(topLawsCtx, { type: 'bar', data: { labels: topLaws.map(l => l[0].substring(0,30)+'...'), datasets: [{ label: 'Artículos', data: topLaws.map(l => l[1]), backgroundColor: 'rgba(0, 122, 255, 0.7)', borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } } });
-  const radarCtx = document.getElementById('blockRadarCanvas').getContext('2d');
-  charts.radar = new Chart(radarCtx, { type: 'radar', data: { labels: Object.values(blockArticleCounts).map(b => b.name), datasets: [{ label: 'Artículos', data: Object.values(blockArticleCounts).map(b => b.articles), backgroundColor: 'rgba(255, 215, 0, 0.4)', borderColor: 'rgba(255, 215, 0, 1)' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false } } }, plugins: { legend: { display: false } } } });
-  const mixCtx = document.getElementById('normativeMixCanvas').getContext('2d');
-  charts.mix = new Chart(mixCtx, { type: 'doughnut', data: { labels: Object.keys(typeCounts), datasets: [{ data: Object.values(typeCounts), backgroundColor: ['#FF3B30', '#FF9500', '#007AFF', '#34C759'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom' } } } });
-  const allLaws = Object.entries(lawArticleCounts).sort((a,b) => b[1] - a[1]);
-  const allLawsInner = document.getElementById('allLawsInner');
-  if (allLawsInner) {
-    allLawsInner.style.height = (allLaws.length * 35) + 'px';
-    const allLawsCtx = document.getElementById('allLawsChartCanvas').getContext('2d');
-    charts.allLaws = new Chart(allLawsCtx, { type: 'bar', data: { labels: allLaws.map(l => l[0].substring(0,50)+'...'), datasets: [{ label: 'Artículos', data: allLaws.map(l => l[1]), backgroundColor: 'rgba(0, 122, 255, 0.5)', borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } } });
-  }
-}
-setUI(); render();
-</script>
-</body></html>
+        // Simple scrollspy & smooth scroll
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.block-section');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                const top = s.offsetTop;
+                if (pageYOffset >= top - 150) current = s.getAttribute('id');
+            });
+            links.forEach(l => {
+                l.classList.remove('active');
+                if (l.getAttribute('href') === `#${current}`) l.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
